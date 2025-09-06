@@ -28,8 +28,11 @@ RUN adduser --system --uid 1001 nextjs
 
 # Copy necessary files from builder stage
 COPY --from=builder /app/next.config.js ./
-COPY --from=builder /app/public ./public
 COPY --from=builder /app/package*.json ./
+
+# Ensure public directory exists and copy files
+RUN mkdir -p ./public
+COPY --from=builder /app/public/ ./public/
 
 # Copy built application with proper permissions
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
