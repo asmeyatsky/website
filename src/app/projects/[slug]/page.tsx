@@ -82,7 +82,7 @@ export async function generateStaticParams() {
   }))
 }
 
-export default function ProjectPage({ params }: ProjectPageProps) {
+export default function ProjectPage({ params }: { params: any }) {
   const project = sampleProjects.find(p => p.slug === params.slug)
 
   if (!project) {

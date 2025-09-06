@@ -1,92 +1,12 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import Layout from '@/components/Layout'
 import Link from 'next/link'
+import { getBlogPosts, BlogPost, BlogPostSkeleton } from '@/lib/contentful'
+import type { Entry } from 'contentful'
 
-// Sample news articles (will be replaced with CMS data later)
-const sampleArticles = [
-  {
-    id: 1,
-    title: "The Future of Large Language Models: What's Next for AI?",
-    excerpt: "Exploring the latest developments in LLM technology and their implications for businesses and developers.",
-    content: "Full article content would go here...",
-    author: "Your Name",
-    publishedAt: "2024-01-15",
-    readTime: "8 min read",
-    category: "AI Trends",
-    tags: ["LLM", "GPT", "AI Development", "Future Tech"],
-    featured: true,
-    slug: "future-of-large-language-models"
-  },
-  {
-    id: 2,
-    title: "Computer Vision Breakthroughs in Autonomous Vehicles",
-    excerpt: "How recent advances in computer vision are accelerating the development of self-driving cars.",
-    content: "Full article content would go here...",
-    author: "Your Name",
-    publishedAt: "2024-01-10",
-    readTime: "6 min read",
-    category: "Computer Vision",
-    tags: ["Computer Vision", "Autonomous Vehicles", "YOLO", "Deep Learning"],
-    featured: true,
-    slug: "computer-vision-autonomous-vehicles"
-  },
-  {
-    id: 3,
-    title: "Building Ethical AI: Principles for Responsible Development",
-    excerpt: "A guide to implementing ethical considerations in AI projects from conception to deployment.",
-    content: "Full article content would go here...",
-    author: "Your Name",
-    publishedAt: "2024-01-05",
-    readTime: "10 min read",
-    category: "AI Ethics",
-    tags: ["AI Ethics", "Responsible AI", "Bias", "Fairness"],
-    featured: false,
-    slug: "building-ethical-ai"
-  },
-  {
-    id: 4,
-    title: "MLOps Best Practices: From Model to Production",
-    excerpt: "Essential strategies for deploying and maintaining machine learning models in production environments.",
-    content: "Full article content would go here...",
-    author: "Your Name",
-    publishedAt: "2023-12-28",
-    readTime: "12 min read",
-    category: "MLOps",
-    tags: ["MLOps", "Production", "DevOps", "Machine Learning"],
-    featured: false,
-    slug: "mlops-best-practices"
-  },
-  {
-    id: 5,
-    title: "Natural Language Processing: From BERT to ChatGPT",
-    excerpt: "Tracing the evolution of NLP models and their impact on conversational AI applications.",
-    content: "Full article content would go here...",
-    author: "Your Name",
-    publishedAt: "2023-12-20",
-    readTime: "7 min read",
-    category: "NLP",
-    tags: ["NLP", "BERT", "ChatGPT", "Transformers"],
-    featured: false,
-    slug: "nlp-bert-to-chatgpt"
-  },
-  {
-    id: 6,
-    title: "AI in Healthcare: Transforming Patient Care",
-    excerpt: "Examining how artificial intelligence is revolutionizing diagnosis, treatment, and patient outcomes.",
-    content: "Full article content would go here...",
-    author: "Your Name",
-    publishedAt: "2023-12-15",
-    readTime: "9 min read",
-    category: "AI Applications",
-    tags: ["Healthcare", "Medical AI", "Diagnostics", "Patient Care"],
-    featured: false,
-    slug: "ai-in-healthcare"
-  }
-]
-
-const ArticleCard = ({ article }: { article: typeof sampleArticles[0] }) => {
+const ArticleCard = ({ article }: { article: BlogPost }) => {
   return (
     <article className="glass-effect rounded-lg overflow-hidden hover-glow group">
       {/* Article Image Placeholder */}
@@ -94,13 +14,8 @@ const ArticleCard = ({ article }: { article: typeof sampleArticles[0] }) => {
         <div className="absolute inset-0 bg-gradient-to-br from-primary-accent/20 to-neon-purple/20 flex items-center justify-center">
           <div className="text-6xl opacity-50">📰</div>
         </div>
-        {article.featured && (
-          <div className="absolute top-3 right-3 bg-primary-accent text-primary-dark px-3 py-1 rounded-full text-xs font-bold">
-            Featured
-          </div>
-        )}
         <div className="absolute bottom-3 left-3 bg-primary-secondary/80 backdrop-blur-sm px-2 py-1 rounded-full">
-          <span className="text-xs text-primary-accent font-medium">{article.category}</span>
+          <span className="text-xs text-primary-accent font-medium">{article.tags}</span>
         </div>
       </div>
 
@@ -112,7 +27,7 @@ const ArticleCard = ({ article }: { article: typeof sampleArticles[0] }) => {
             month: 'long', 
             day: 'numeric' 
           })}</span>
-          <span>{article.readTime}</span>
+          <span>{article.readtime} min read</span>
         </div>
         
         <h2 className="text-xl font-bold text-primary-text mb-3 group-hover:text-primary-accent transition-colors duration-300 line-clamp-2">
@@ -125,7 +40,7 @@ const ArticleCard = ({ article }: { article: typeof sampleArticles[0] }) => {
         
         {/* Tags */}
         <div className="flex flex-wrap gap-2 mb-4">
-          {article.tags.slice(0, 3).map((tag) => (
+          {article.tags.split(',').slice(0, 3).map((tag) => (
             <span
               key={tag}
               className="text-xs bg-primary-accent/20 text-primary-accent px-2 py-1 rounded-full"
@@ -133,9 +48,9 @@ const ArticleCard = ({ article }: { article: typeof sampleArticles[0] }) => {
               {tag}
             </span>
           ))}
-          {article.tags.length > 3 && (
+          {article.tags.split(',').length > 3 && (
             <span className="text-xs text-primary-text/60 px-2 py-1">
-              +{article.tags.length - 3} more
+              +{article.tags.split(',').length - 3} more
             </span>
           )}
         </div>
@@ -156,21 +71,44 @@ const ArticleCard = ({ article }: { article: typeof sampleArticles[0] }) => {
 }
 
 const NewsPage = () => {
+  const [articles, setArticles] = useState<Entry<BlogPostSkeleton>[]>([])
+  const [loading, setLoading] = useState(true)
   const [filter, setFilter] = useState('All')
   const [searchTerm, setSearchTerm] = useState('')
 
-  const categories = ['All', ...Array.from(new Set(sampleArticles.map(a => a.category)))]
-  
-  const filteredArticles = sampleArticles
-    .filter(article => filter === 'All' || article.category === filter)
-    .filter(article => 
-      article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      article.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      article.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
-    )
+  useEffect(() => {
+    const fetchArticles = async () => {
+      const fetchedArticles = await getBlogPosts()
+      setArticles(fetchedArticles)
+      setLoading(false)
+    }
+    fetchArticles()
+  }, [])
 
-  const featuredArticles = filteredArticles.filter(a => a.featured)
-  const regularArticles = filteredArticles.filter(a => !a.featured)
+  const categories = useMemo(() => [
+    'All',
+    ...Array.from(
+      new Set<string>(
+        articles
+          .map(a => (a.fields.tags ? a.fields.tags.split(',')[0] : ''))
+          .filter(tag => tag)
+      )
+    ),
+  ], [articles])
+  
+  const filteredArticles = useMemo(() => {
+    return articles
+      .filter(article => filter === 'All' || (article.fields.tags && article.fields.tags.split(',')[0] === filter))
+      .filter(article => {
+        const lowerSearchTerm = searchTerm.toLowerCase()
+        return article.fields.title.toLowerCase().includes(lowerSearchTerm) ||
+        article.fields.excerpt.toLowerCase().includes(lowerSearchTerm) ||
+        (article.fields.tags && article.fields.tags.toLowerCase().includes(lowerSearchTerm))
+      })
+  }, [articles, filter, searchTerm])
+
+  const featuredArticles = filteredArticles.slice(0, 2)
+  const regularArticles = filteredArticles.slice(2)
 
   return (
     <Layout>
@@ -244,38 +182,47 @@ const NewsPage = () => {
           </div>
         </section>
 
-        {/* Featured Articles */}
-        {featuredArticles.length > 0 && (
-          <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
-            <h2 className="text-2xl font-mono font-bold text-primary-accent mb-6">Featured Articles</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {featuredArticles.map((article) => (
-                <ArticleCard key={article.id} article={article} />
-              ))}
-            </div>
-          </section>
-        )}
+        {loading ? (
+          <div className="text-center py-12">
+            <div className="animate-spin w-12 h-12 border-4 border-primary-accent/30 border-t-primary-accent rounded-full mx-auto mb-4"></div>
+            <p className="text-primary-text/80">Loading articles...</p>
+          </div>
+        ) : (
+          <>
+            {/* Featured Articles */}
+            {featuredArticles.length > 0 && (
+              <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+                <h2 className="text-2xl font-mono font-bold text-primary-accent mb-6">Featured Articles</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {featuredArticles.map((article) => (
+                    <ArticleCard key={article.sys.id} article={article.fields} />
+                  ))}
+                </div>
+              </section>
+            )}
 
-        {/* Recent Articles */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-mono font-bold text-primary-accent mb-6">
-            {featuredArticles.length > 0 ? 'Recent Articles' : 'All Articles'}
-          </h2>
-          
-          {regularArticles.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {regularArticles.map((article) => (
-                <ArticleCard key={article.id} article={article} />
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-12">
-              <div className="text-6xl mb-4 opacity-50">🔍</div>
-              <h3 className="text-xl font-bold text-primary-text/80 mb-2">No articles found</h3>
-              <p className="text-primary-text/60">Try adjusting your search or filter criteria.</p>
-            </div>
-          )}
-        </section>
+            {/* Recent Articles */}
+            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <h2 className="text-2xl font-mono font-bold text-primary-accent mb-6">
+                {featuredArticles.length > 0 ? 'Recent Articles' : 'All Articles'}
+              </h2>
+              
+              {regularArticles.length > 0 ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {regularArticles.map((article) => (
+                    <ArticleCard key={article.sys.id} article={article.fields} />
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-12">
+                  <div className="text-6xl mb-4 opacity-50">🔍</div>
+                  <h3 className="text-xl font-bold text-primary-text/80 mb-2">No articles found</h3>
+                  <p className="text-primary-text/60">Try adjusting your search or filter criteria.</p>
+                </div>
+              )}
+            </section>
+          </>
+        )}
       </div>
     </Layout>
   )

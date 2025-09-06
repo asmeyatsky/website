@@ -9,7 +9,7 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
+      setIsScrolled(window.scrollY > 10)
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
@@ -25,45 +25,31 @@ const Header = () => {
   ]
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 scan-lines ${
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled 
-        ? 'glass-effect backdrop-blur-lg border-b border-primary-accent/20' 
-        : 'bg-gradient-to-b from-primary-dark/80 to-transparent'
+        ? 'glass-effect backdrop-blur-md border-b border-primary-accent/30' 
+        : 'bg-gradient-to-b from-primary-dark/90 to-transparent'
     }`}>
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        {/* Holographic overlay */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary-accent/5 to-transparent animate-data-stream"></div>
-        </div>
-        
-        <div className="flex justify-between items-center py-4 relative z-10">
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3 group">
-            <div className="relative">
-              <div className="w-10 h-10 bg-gradient-to-br from-primary-accent via-neon-purple to-neon-pink rounded-lg flex items-center justify-center shadow-neon-blue group-hover:shadow-neon-purple transition-all duration-300 animate-pulse-glow">
-                <span className="font-cyber font-black text-lg text-primary-dark group-hover:text-white transition-colors duration-300">AI</span>
-              </div>
-              {/* Rotating ring effect */}
-              <div className="absolute inset-0 border-2 border-primary-accent/30 rounded-lg animate-rotate-3d group-hover:border-neon-pink/50 transition-colors duration-300"></div>
+            <div className="w-12 h-12 bg-gradient-to-br from-primary-accent to-accent-cyan rounded-xl flex items-center justify-center shadow-lg">
+              <span className="font-bold text-white text-xl">AI</span>
             </div>
-            <div className="flex flex-col">
-              <span className="font-cyber font-bold text-xl gradient-text-cyber">InnovationHub</span>
-              <span className="font-mono text-xs text-primary-accent/60 terminal-cursor">NEURAL_NET_v2.1</span>
-            </div>
+            <span className="font-bold text-2xl bg-gradient-to-r from-white to-accent-cyan bg-clip-text text-transparent">Nexus</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item, index) => (
+          <div className="hidden md:flex items-center space-x-10">
+            {navItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className={`relative font-mono font-medium text-primary-text/80 hover:text-primary-accent transition-all duration-300 group animation-delay-${(index + 1) * 100}`}
+                className="font-medium text-primary-text/90 hover:text-accent-cyan transition-all duration-300 relative group"
               >
-                <span className="relative z-10">{item.name}</span>
-                {/* Hover effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded blur-sm"></div>
-                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-accent to-neon-purple group-hover:w-full transition-all duration-300"></div>
+                {item.name}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent-cyan transition-all duration-300 group-hover:w-full"></span>
               </Link>
             ))}
           </div>
@@ -72,64 +58,51 @@ const Header = () => {
           <div className="hidden md:block">
             <Link
               href="/consulting"
-              className="ai-button group relative overflow-hidden"
+              className="ai-button px-6 py-3"
             >
-              <span className="relative z-10">INITIALIZE</span>
-              {/* Additional hover effects */}
-              <div className="absolute inset-0 bg-gradient-to-r from-neon-purple/20 to-primary-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              Get Started
             </Link>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden w-10 h-10 flex flex-col justify-center items-center space-y-1 relative group hover-glow-intense"
+            className="md:hidden w-10 h-10 flex flex-col justify-center items-center space-y-1 group"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle mobile menu"
           >
-            <div className={`w-6 h-0.5 bg-primary-accent shadow-neon-blue transition-all duration-300 ${
+            <div className={`w-6 h-0.5 bg-primary-text rounded-full transition-all duration-300 ${
               isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''
             }`} />
-            <div className={`w-6 h-0.5 bg-primary-accent shadow-neon-blue transition-all duration-300 ${
+            <div className={`w-6 h-0.5 bg-primary-text rounded-full transition-all duration-300 ${
               isMobileMenuOpen ? 'opacity-0' : ''
             }`} />
-            <div className={`w-6 h-0.5 bg-primary-accent shadow-neon-blue transition-all duration-300 ${
+            <div className={`w-6 h-0.5 bg-primary-text rounded-full transition-all duration-300 ${
               isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''
             }`} />
-            {/* Animated border */}
-            <div className="absolute inset-0 border border-primary-accent/30 rounded group-hover:border-neon-pink/50 transition-colors duration-300"></div>
           </button>
         </div>
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden hologram-card mt-2 p-6 backdrop-blur-xl">
-            <div className="flex flex-col space-y-6">
-              {navItems.map((item, index) => (
+          <div className="md:hidden glass-effect mt-4 p-6 rounded-xl animate-fade-in-up">
+            <div className="flex flex-col space-y-4">
+              {navItems.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`font-mono font-medium text-primary-text/80 hover:text-primary-accent transition-all duration-300 hover-glow animation-delay-${(index + 1) * 100} animate-fade-in-up relative group`}
+                  className="font-medium text-primary-text/90 hover:text-accent-cyan transition-colors duration-300 py-3 border-b border-primary-secondary/50 last:border-0"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  <span className="relative z-10">{item.name}</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded"></div>
+                  {item.name}
                 </Link>
               ))}
               <Link
                 href="/consulting"
-                className="ai-button text-center animate-zoom-in animation-delay-700"
+                className="ai-button text-center mt-4 py-3"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                INITIALIZE
+                Get Started
               </Link>
-            </div>
-            
-            {/* Mobile menu decorative elements */}
-            <div className="absolute top-2 right-2 text-xs font-mono text-primary-accent/40">
-              MENU_ACTIVE
-            </div>
-            <div className="absolute bottom-2 left-2 text-xs font-mono text-primary-accent/40 terminal-cursor">
-              SELECT_OPTION
             </div>
           </div>
         )}

@@ -1,80 +1,12 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Layout from '@/components/Layout'
 import Link from 'next/link'
+import { getProjects, Project, ProjectSkeleton } from '@/lib/contentful'
+import type { Entry } from 'contentful'
 
-// Sample project data (will be replaced with CMS data later)
-const sampleProjects = [
-  {
-    id: 1,
-    title: "Sentiment Analysis AI",
-    description: "Deep learning model that analyzes text sentiment with 94% accuracy using transformers.",
-    technologies: ["Python", "TensorFlow", "BERT", "Flask"],
-    category: "NLP",
-    image: "/api/placeholder/400/250",
-    date: "2024-01",
-    featured: true,
-    slug: "sentiment-analysis-ai"
-  },
-  {
-    id: 2,
-    title: "Computer Vision Object Detection",
-    description: "Real-time object detection system using YOLO v8 for autonomous vehicle applications.",
-    technologies: ["Python", "PyTorch", "OpenCV", "YOLO"],
-    category: "Computer Vision",
-    image: "/api/placeholder/400/250",
-    date: "2023-11",
-    featured: true,
-    slug: "computer-vision-detection"
-  },
-  {
-    id: 3,
-    title: "Chatbot with RAG",
-    description: "Intelligent chatbot using Retrieval-Augmented Generation for customer support automation.",
-    technologies: ["Python", "LangChain", "Vector DB", "OpenAI"],
-    category: "Chatbots",
-    image: "/api/placeholder/400/250",
-    date: "2023-09",
-    featured: false,
-    slug: "rag-chatbot"
-  },
-  {
-    id: 4,
-    title: "Time Series Forecasting",
-    description: "LSTM-based model for predicting stock prices and market trends with high accuracy.",
-    technologies: ["Python", "TensorFlow", "Pandas", "NumPy"],
-    category: "ML",
-    image: "/api/placeholder/400/250",
-    date: "2023-07",
-    featured: false,
-    slug: "time-series-forecasting"
-  },
-  {
-    id: 5,
-    title: "AI Image Generator",
-    description: "Stable Diffusion-based image generation API with custom fine-tuning capabilities.",
-    technologies: ["Python", "Stable Diffusion", "FastAPI", "Docker"],
-    category: "Generative AI",
-    image: "/api/placeholder/400/250",
-    date: "2023-05",
-    featured: false,
-    slug: "ai-image-generator"
-  },
-  {
-    id: 6,
-    title: "Voice Recognition System",
-    description: "Real-time speech-to-text system with custom wake word detection and noise filtering.",
-    technologies: ["Python", "Whisper", "WebRTC", "React"],
-    category: "Speech AI",
-    image: "/api/placeholder/400/250",
-    date: "2023-03",
-    featured: false,
-    slug: "voice-recognition-system"
-  }
-]
-
-const ProjectCard = ({ project }: { project: typeof sampleProjects[0] }) => {
+const ProjectCard = ({ project }: { project: Project }) => {
   return (
     <div className="glass-effect rounded-lg overflow-hidden hover-glow group">
       {/* Project Image */}
@@ -82,7 +14,7 @@ const ProjectCard = ({ project }: { project: typeof sampleProjects[0] }) => {
         <div className="absolute inset-0 bg-gradient-to-br from-primary-accent/20 to-neon-purple/20 flex items-center justify-center">
           <div className="text-6xl opacity-50">🤖</div>
         </div>
-        {project.featured && (
+        {project.status === 'Completed' && (
           <div className="absolute top-3 right-3 bg-primary-accent text-primary-dark px-2 py-1 rounded-full text-xs font-bold">
             Featured
           </div>
@@ -93,7 +25,7 @@ const ProjectCard = ({ project }: { project: typeof sampleProjects[0] }) => {
       <div className="p-6">
         <div className="flex items-center justify-between mb-2">
           <span className="text-primary-accent/80 text-sm font-mono">{project.category}</span>
-          <span className="text-primary-text/60 text-sm">{project.date}</span>
+          <span className="text-primary-text/60 text-sm">{project.status}</span>
         </div>
         
         <h3 className="text-xl font-bold text-primary-text mb-3 group-hover:text-primary-accent transition-colors duration-300">
@@ -137,21 +69,32 @@ const ProjectCard = ({ project }: { project: typeof sampleProjects[0] }) => {
 }
 
 const ProjectsPage = () => {
+  const [projects, setProjects] = useState<Entry<ProjectSkeleton>[]>([])
+  const [loading, setLoading] = useState(true)
   const [filter, setFilter] = useState('All')
   const [searchTerm, setSearchTerm] = useState('')
 
-  const categories = ['All', ...Array.from(new Set(sampleProjects.map(p => p.category)))]
+  useEffect(() => {
+    const fetchProjects = async () => {
+      const fetchedProjects = await getProjects()
+      setProjects(fetchedProjects)
+      setLoading(false)
+    }
+    fetchProjects()
+  }, [])
+
+  const categories = ['All', ...Array.from(new Set(projects.map(p => p.fields.category)))]
   
-  const filteredProjects = sampleProjects
-    .filter(project => filter === 'All' || project.category === filter)
+  const filteredProjects = projects
+    .filter(project => filter === 'All' || project.fields.category === filter)
     .filter(project => 
-      project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      project.technologies.some(tech => tech.toLowerCase().includes(searchTerm.toLowerCase()))
+      project.fields.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      project.fields.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      project.fields.technologies.some(tech => tech.toLowerCase().includes(searchTerm.toLowerCase()))
     )
 
-  const featuredProjects = filteredProjects.filter(p => p.featured)
-  const regularProjects = filteredProjects.filter(p => !p.featured)
+  const featuredProjects = filteredProjects.filter(p => p.fields.status === 'Completed')
+  const regularProjects = filteredProjects.filter(p => p.fields.status !== 'Completed')
 
   return (
     <Layout>
@@ -205,38 +148,47 @@ const ProjectsPage = () => {
           </div>
         </section>
 
-        {/* Featured Projects */}
-        {featuredProjects.length > 0 && (
-          <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
-            <h2 className="text-2xl font-mono font-bold text-primary-accent mb-6">Featured Projects</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {featuredProjects.map((project) => (
-                <ProjectCard key={project.id} project={project} />
-              ))}
-            </div>
-          </section>
-        )}
+        {loading ? (
+          <div className="text-center py-12">
+            <div className="animate-spin w-12 h-12 border-4 border-primary-accent/30 border-t-primary-accent rounded-full mx-auto mb-4"></div>
+            <p className="text-primary-text/80">Loading projects...</p>
+          </div>
+        ) : (
+          <>
+            {/* Featured Projects */}
+            {featuredProjects.length > 0 && (
+              <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+                <h2 className="text-2xl font-mono font-bold text-primary-accent mb-6">Featured Projects</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {featuredProjects.map((project) => (
+                    <ProjectCard key={project.sys.id} project={project.fields} />
+                  ))}
+                </div>
+              </section>
+            )}
 
-        {/* All Projects */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-mono font-bold text-primary-accent mb-6">
-            {featuredProjects.length > 0 ? 'All Projects' : 'Projects'}
-          </h2>
-          
-          {regularProjects.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {regularProjects.map((project) => (
-                <ProjectCard key={project.id} project={project} />
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-12">
-              <div className="text-6xl mb-4 opacity-50">🔍</div>
-              <h3 className="text-xl font-bold text-primary-text/80 mb-2">No projects found</h3>
-              <p className="text-primary-text/60">Try adjusting your search or filter criteria.</p>
-            </div>
-          )}
-        </section>
+            {/* All Projects */}
+            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <h2 className="text-2xl font-mono font-bold text-primary-accent mb-6">
+                {featuredProjects.length > 0 ? 'All Projects' : 'Projects'}
+              </h2>
+              
+              {regularProjects.length > 0 ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {regularProjects.map((project) => (
+                    <ProjectCard key={project.sys.id} project={project.fields} />
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-12">
+                  <div className="text-6xl mb-4 opacity-50">🔍</div>
+                  <h3 className="text-xl font-bold text-primary-text/80 mb-2">No projects found</h3>
+                  <p className="text-primary-text/60">Try adjusting your search or filter criteria.</p>
+                </div>
+              )}
+            </section>
+          </>
+        )}
       </div>
     </Layout>
   )

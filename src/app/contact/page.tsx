@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import Layout from '@/components/Layout'
+import { sendContactEmail, EmailData } from '@/lib/email'
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -28,22 +29,37 @@ const ContactPage = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setSubmitStatus('idle')
     
-    // Simulate form submission
     try {
-      // Replace with actual form submission logic
-      await new Promise(resolve => setTimeout(resolve, 1000))
-      setSubmitStatus('success')
-      setFormData({
-        name: '',
-        email: '',
-        company: '',
-        projectType: '',
-        budget: '',
-        message: '',
-        timeline: ''
-      })
+      const emailData: EmailData = {
+        name: formData.name,
+        email: formData.email,
+        company: formData.company || undefined,
+        projectType: formData.projectType || undefined,
+        budget: formData.budget || undefined,
+        message: formData.message,
+        timeline: formData.timeline || undefined
+      };
+
+      const success = await sendContactEmail(emailData)
+      
+      if (success) {
+        setSubmitStatus('success')
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          projectType: '',
+          budget: '',
+          message: '',
+          timeline: ''
+        })
+      } else {
+        setSubmitStatus('error')
+      }
     } catch (error) {
+      console.error('Error submitting form:', error)
       setSubmitStatus('error')
     } finally {
       setIsSubmitting(false)
