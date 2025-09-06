@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { getProjects, Project, ProjectSkeleton } from '@/lib/contentful'
 import type { Entry } from 'contentful'
 
-const ProjectCard = ({ project }: { project: Project }) => {
+const ProjectCard = ({ project }: { project: any }) => {
   return (
     <div className="glass-effect rounded-lg overflow-hidden hover-glow group">
       {/* Project Image */}
@@ -38,7 +38,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
         
         {/* Technologies */}
         <div className="flex flex-wrap gap-2 mb-4">
-          {project.technologies.slice(0, 3).map((tech) => (
+          {project.technologies.slice(0, 3).map((tech: string) => (
             <span
               key={tech}
               className="text-xs bg-primary-accent/20 text-primary-accent px-2 py-1 rounded-full"
@@ -83,18 +83,20 @@ const ProjectsPage = () => {
     fetchProjects()
   }, [])
 
-  const categories = ['All', ...Array.from(new Set(projects.map(p => p.fields.category)))]
+  const categories = ['All', ...Array.from(new Set(projects.map(p => typeof p.fields.category === 'string' ? p.fields.category : '').filter(Boolean)))]
   
   const filteredProjects = projects
-    .filter(project => filter === 'All' || project.fields.category === filter)
-    .filter(project => 
-      project.fields.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      project.fields.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      project.fields.technologies.some(tech => tech.toLowerCase().includes(searchTerm.toLowerCase()))
-    )
+    .filter(project => filter === 'All' || (typeof project.fields.category === 'string' && project.fields.category === filter))
+    .filter(project => {
+      const lowerSearchTerm = searchTerm.toLowerCase();
+      const titleMatch = typeof project.fields.title === 'string' && (project.fields.title as string).toLowerCase().includes(lowerSearchTerm);
+      const descriptionMatch = typeof project.fields.description === 'string' && (project.fields.description as string).toLowerCase().includes(lowerSearchTerm);
+      const technologiesMatch = Array.isArray(project.fields.technologies) && project.fields.technologies.some(tech => typeof tech === 'string' && tech.toLowerCase().includes(lowerSearchTerm));
+      return titleMatch || descriptionMatch || technologiesMatch;
+    })
 
-  const featuredProjects = filteredProjects.filter(p => p.fields.status === 'Completed')
-  const regularProjects = filteredProjects.filter(p => p.fields.status !== 'Completed')
+  const featuredProjects = filteredProjects.filter(p => typeof p.fields.status === 'string' && p.fields.status === 'Completed')
+  const regularProjects = filteredProjects.filter(p => typeof p.fields.status !== 'string' || p.fields.status !== 'Completed')
 
   return (
     <Layout>
@@ -133,15 +135,15 @@ const ProjectsPage = () => {
             <div className="flex flex-wrap gap-2">
               {categories.map((category) => (
                 <button
-                  key={category}
-                  onClick={() => setFilter(category)}
+                  key={String(category)}
+                  onClick={() => setFilter(String(category))}
                   className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
                     filter === category
                       ? 'bg-primary-accent text-primary-dark'
                       : 'glass-effect text-primary-text/80 hover:text-primary-accent'
                   }`}
                 >
-                  {category}
+                  {String(category)}
                 </button>
               ))}
             </div>

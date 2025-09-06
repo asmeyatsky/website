@@ -3,10 +3,10 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import Layout from '@/components/Layout'
 import Link from 'next/link'
-import { getBlogPosts, BlogPost, BlogPostSkeleton } from '@/lib/contentful'
+import { getBlogPosts, BlogPostSkeleton } from '@/lib/contentful'
 import type { Entry } from 'contentful'
 
-const ArticleCard = ({ article }: { article: BlogPost }) => {
+const ArticleCard = ({ article }: { article: any }) => {
   return (
     <article className="glass-effect rounded-lg overflow-hidden hover-glow group">
       {/* Article Image Placeholder */}
@@ -40,7 +40,7 @@ const ArticleCard = ({ article }: { article: BlogPost }) => {
         
         {/* Tags */}
         <div className="flex flex-wrap gap-2 mb-4">
-          {article.tags.split(',').slice(0, 3).map((tag) => (
+          {article.tags.split(',').slice(0, 3).map((tag: string) => (
             <span
               key={tag}
               className="text-xs bg-primary-accent/20 text-primary-accent px-2 py-1 rounded-full"
@@ -90,7 +90,12 @@ const NewsPage = () => {
     ...Array.from(
       new Set<string>(
         articles
-          .map(a => (a.fields.tags ? a.fields.tags.split(',')[0] : ''))
+          .map(a => {
+            if (typeof a.fields.tags === 'string') {
+              return (a.fields.tags as string).split(',')[0];
+            }
+            return '';
+          })
           .filter(tag => tag)
       )
     ),
@@ -98,12 +103,19 @@ const NewsPage = () => {
   
   const filteredArticles = useMemo(() => {
     return articles
-      .filter(article => filter === 'All' || (article.fields.tags && article.fields.tags.split(',')[0] === filter))
+      .filter(article => {
+        if (filter === 'All') return true;
+        if (typeof article.fields.tags === 'string') {
+          return (article.fields.tags as string).split(',')[0] === filter;
+        }
+        return false;
+      })
       .filter(article => {
         const lowerSearchTerm = searchTerm.toLowerCase()
-        return article.fields.title.toLowerCase().includes(lowerSearchTerm) ||
-        article.fields.excerpt.toLowerCase().includes(lowerSearchTerm) ||
-        (article.fields.tags && article.fields.tags.toLowerCase().includes(lowerSearchTerm))
+        const titleMatch = typeof article.fields.title === 'string' && (article.fields.title as string).toLowerCase().includes(lowerSearchTerm);
+        const excerptMatch = typeof article.fields.excerpt === 'string' && (article.fields.excerpt as string).toLowerCase().includes(lowerSearchTerm);
+        const tagsMatch = typeof article.fields.tags === 'string' && (article.fields.tags as string).toLowerCase().includes(lowerSearchTerm);
+        return titleMatch || excerptMatch || tagsMatch;
       })
   }, [articles, filter, searchTerm])
 
