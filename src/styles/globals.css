@@ -2,179 +2,103 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Import professional fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&display=swap');
-
 @layer base {
   html {
     scroll-behavior: smooth;
   }
   
   body {
-    @apply bg-primary-dark text-primary-text font-sans antialiased;
-    background: linear-gradient(135deg, #0A0F1F 0%, #161D31 50%, #0A0F1F 100%);
-    min-height: 100vh;
-  }
-
-  /* Futuristic scrollbar */
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-  
-  ::-webkit-scrollbar-track {
-    background: #161D31;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background: #4361EE;
-    border-radius: 4px;
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background: #5E60CE;
+    @apply bg-primary-dark text-primary-text font-sans antialiased min-h-screen;
+    background: linear-gradient(135deg, #0a0b0f 0%, #1a1b2e 100%);
   }
 }
 
 @layer components {
-  /* Futuristic glass effect */
-  .glass-effect {
-    @apply relative backdrop-blur-md border border-primary-accent/20 rounded-xl;
-    background: linear-gradient(135deg, rgba(22, 29, 49, 0.7) 0%, rgba(10, 15, 31, 0.7) 100%);
-    box-shadow: 0 4px 20px rgba(67, 97, 238, 0.15), 0 2px 8px rgba(67, 97, 238, 0.1);
-  }
-  
-  .glass-effect:hover {
-    box-shadow: 0 6px 25px rgba(67, 97, 238, 0.25), 0 4px 12px rgba(67, 97, 238, 0.15);
-    border-color: rgba(76, 201, 240, 0.3);
+  .professional-title {
+    @apply text-4xl font-bold tracking-tight text-primary-text sm:text-6xl;
   }
 
-  /* Hologram card with futuristic touch */
-  .hologram-card {
-    @apply glass-effect relative overflow-hidden rounded-xl;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    background: linear-gradient(135deg, rgba(22, 29, 49, 0.8) 0%, rgba(10, 15, 31, 0.8) 100%);
+  .professional-subtitle {
+    @apply mt-6 text-lg leading-8 text-primary-text/80 max-w-3xl mx-auto;
   }
 
-  .hologram-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.3), 0 15px 20px -5px rgba(0, 0, 0, 0.2);
-    border-color: rgba(76, 201, 240, 0.5);
-  }
-
-  /* Futuristic text effects */
-  .gradient-text {
-    background: linear-gradient(90deg, #4361EE 0%, #4CC9F0 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .gradient-text-cyber {
-    background: linear-gradient(90deg, #4361EE 0%, #7209B7 50%, #4CC9F0 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  
-  /* Futuristic hover effects */
-  .hover-glow {
-    @apply transition-all duration-300 ease-out;
-    position: relative;
-  }
-  
-  .hover-glow:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.25), 0 10px 15px -5px rgba(0, 0, 0, 0.15);
-  }
-
-  .hover-glow-intense {
-    @apply transition-all duration-300 ease-out;
-  }
-  
-  .hover-glow-intense:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 25px 40px -10px rgba(0, 0, 0, 0.3), 0 15px 25px -5px rgba(0, 0, 0, 0.2);
-  }
-
-  /* Futuristic buttons */
-  .ai-button {
-    @apply relative px-8 py-4 font-semibold text-white bg-gradient-to-r from-primary-accent to-accent-cyan rounded-xl;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3), 0 2px 8px rgba(67, 97, 238, 0.2);
-  }
-
-  .ai-button:hover {
-    box-shadow: 0 8px 25px rgba(67, 97, 238, 0.4), 0 6px 15px rgba(67, 97, 238, 0.3);
-    transform: translateY(-3px);
-    background: linear-gradient(90deg, #5E60CE 0%, #4CC9F0 100%);
-  }
-
-  .ai-button:active {
-    transform: translateY(-1px);
-  }
-
-  /* Futuristic section headers */
   .section-header {
-    @apply text-4xl font-bold text-center mb-16;
-    background: linear-gradient(90deg, #FFFFFF 0%, #4CC9F0 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    @apply text-3xl font-bold tracking-tight text-primary-text sm:text-4xl text-center mb-12;
   }
 
   .section-subheader {
-    @apply text-2xl font-bold text-primary-text mb-6;
+    @apply text-xl font-bold tracking-tight text-primary-text mb-4;
   }
 
-  /* Futuristic content containers */
+  .ai-button {
+    @apply inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-primary-accent to-accent-cyan px-6 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-cyan transition-all duration-300;
+  }
+
   .content-container {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 
   .section-padding {
-    @apply py-20;
+    @apply py-12 sm:py-16;
   }
 
-  /* Futuristic grid layouts */
   .card-grid {
-    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
+    @apply grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3;
   }
 
-  /* Futuristic typography */
-  .professional-title {
-    @apply text-5xl md:text-6xl font-bold text-primary-text mb-8 text-center;
+  .glass-effect {
+    @apply backdrop-blur-md bg-primary-secondary/30 border border-primary-accent/20 rounded-xl;
   }
 
-  .professional-subtitle {
-    @apply text-xl md:text-2xl text-neutral-medium mb-12 max-w-3xl mx-auto text-center;
+  .hologram-card {
+    @apply bg-gradient-to-br from-primary-secondary/50 to-primary-dark/50 border border-primary-accent/30 rounded-xl backdrop-blur-sm;
   }
 
-  /* Agentic AI icon styles */
   .ai-icon {
-    @apply text-5xl w-16 h-16 flex items-center justify-center rounded-full bg-gradient-to-br from-primary-accent/20 to-accent-cyan/20 mb-6;
-    box-shadow: 0 4px 15px rgba(67, 97, 238, 0.2);
+    @apply w-16 h-16 mb-6 rounded-lg flex items-center justify-center bg-gradient-to-br from-primary-accent/20 to-accent-cyan/20 text-accent-cyan;
   }
 
-  /* Futuristic badge */
   .futuristic-badge {
-    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-primary-accent/20 to-accent-cyan/20 text-accent-cyan border border-accent-cyan/30;
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary-accent/20 text-primary-accent border border-primary-accent/30;
   }
 
-  /* Floating elements */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary-accent to-accent-cyan bg-clip-text text-transparent;
+  }
+
+  .gradient-text-cyber {
+    @apply bg-gradient-to-r from-accent-cyan via-primary-accent to-accent-purple bg-clip-text text-transparent;
+  }
+
+  .hover-glow {
+    @apply transition-all duration-300 hover:shadow-lg hover:shadow-primary-accent/20 hover:scale-[1.02];
+  }
+
+  .hover-glow-intense {
+    @apply transition-all duration-300 hover:shadow-xl hover:shadow-accent-cyan/30 hover:scale-[1.03] hover:border-accent-cyan/40;
+  }
+
+  .bg-gradient-futuristic {
+    @apply bg-gradient-to-b from-primary-dark via-primary-secondary/50 to-primary-dark;
+  }
+
   .floating-element {
-    @apply animate-float;
+    animation: floatingElement 3s ease-in-out infinite;
   }
-}
 
-@layer utilities {
-  .animation-delay-100 { animation-delay: 100ms; }
-  .animation-delay-200 { animation-delay: 200ms; }
-  .animation-delay-300 { animation-delay: 300ms; }
-  .animation-delay-400 { animation-delay: 400ms; }
-  .animation-delay-500 { animation-delay: 500ms; }
-  .animation-delay-600 { animation-delay: 600ms; }
-  .animation-delay-700 { animation-delay: 700ms; }
-  .animation-delay-800 { animation-delay: 800ms; }
-  .animation-delay-2000 { animation-delay: 2000ms; }
-  .animation-delay-4000 { animation-delay: 4000ms; }
+  .animation-delay-100 {
+    animation-delay: 100ms;
+  }
+
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.3s ease-out;
+  }
 }
