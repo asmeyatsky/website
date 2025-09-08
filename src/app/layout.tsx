@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { Inter, JetBrains_Mono } from 'next/font/google'
 import '@/styles/globals.css'
 
+// Force deployment - professional styling update
+
 const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
