@@ -15,12 +15,12 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'AI Innovation Hub | Your Name',
-  description: 'Explore innovative AI projects, stay updated on the latest AI news, and access professional AI consulting services.',
-  keywords: ['AI', 'Artificial Intelligence', 'Machine Learning', 'Technology', 'Consulting'],
-  authors: [{ name: 'Your Name' }],
-  creator: 'Your Name',
-  publisher: 'Your Name',
+  title: 'Allan Smeyatsky | Technology Executive & AI Solutions Architect',
+  description: 'Transformational Technology Executive with 30+ years of experience in enterprise architecture, AI-native solutions, and multi-cloud strategies.',
+  keywords: ['Allan Smeyatsky', 'Technology Executive', 'AI Solutions', 'Enterprise Architecture', 'Multi-Cloud', 'Solution Architect', 'Consulting'],
+  authors: [{ name: 'Allan Smeyatsky' }],
+  creator: 'Allan Smeyatsky',
+  publisher: 'Allan Smeyatsky',
   robots: 'index, follow',
   viewport: 'width=device-width, initial-scale=1',
 }

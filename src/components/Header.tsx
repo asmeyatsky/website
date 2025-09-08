@@ -34,10 +34,10 @@ const Header = () => {
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3 group">
-            <div className="w-12 h-12 bg-gradient-to-br from-primary-accent to-accent-cyan rounded-xl flex items-center justify-center shadow-lg">
-              <span className="font-bold text-white text-xl">AI</span>
+            <div className="w-12 h-12 bg-gradient-to-br from-accent-blue to-accent-slate rounded-xl flex items-center justify-center shadow-lg">
+              <span className="font-bold text-white text-xl">AS</span>
             </div>
-            <span className="font-bold text-2xl bg-gradient-to-r from-white to-accent-cyan bg-clip-text text-transparent">Nexus</span>
+            <span className="font-bold text-2xl elegant-gradient">Allan Smeyatsky</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -46,10 +46,10 @@ const Header = () => {
               <Link
                 key={item.name}
                 href={item.href}
-                className="font-medium text-primary-text/90 hover:text-accent-cyan transition-all duration-300 relative group"
+                className="font-medium text-primary-text/90 hover:text-accent-blue transition-all duration-200 relative group"
               >
                 {item.name}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent-cyan transition-all duration-300 group-hover:w-full"></span>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent-blue transition-all duration-200 group-hover:w-full"></span>
               </Link>
             ))}
           </div>
@@ -58,7 +58,7 @@ const Header = () => {
           <div className="hidden md:block">
             <Link
               href="/consulting"
-              className="ai-button px-6 py-3"
+              className="professional-button px-6 py-3"
             >
               Get Started
             </Link>
@@ -84,13 +84,13 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden glass-effect mt-4 p-6 rounded-xl animate-fade-in-up">
+          <div className="md:hidden professional-card mt-4 p-6 rounded-xl animate-fade-in-up">
             <div className="flex flex-col space-y-4">
               {navItems.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="font-medium text-primary-text/90 hover:text-accent-cyan transition-colors duration-300 py-3 border-b border-primary-secondary/50 last:border-0"
+                  className="font-medium text-primary-text/90 hover:text-accent-blue transition-colors duration-200 py-3 border-b border-primary-secondary/50 last:border-0"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.name}
@@ -98,7 +98,7 @@ const Header = () => {
               ))}
               <Link
                 href="/consulting"
-                className="ai-button text-center mt-4 py-3"
+                className="professional-button text-center mt-4 py-3"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Get Started

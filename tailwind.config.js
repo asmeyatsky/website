@@ -9,28 +9,37 @@ module.exports = {
     extend: {
       colors: {
         'primary': {
-          '50': '#f0f5ff',
-          '100': '#e0eaff',
-          '200': '#c8d9ff',
-          '300': '#a6c1ff',
-          '400': '#81a8ff',
-          '500': '#6688ff',
-          '600': '#526eff',
-          '700': '#475aff',
-          '800': '#3a4bff',
-          '900': '#323bff',
-          '950': '#1e25ff',
-          'dark': '#0a0b0f',
-          'secondary': '#1a1b2e',
-          'accent': '#6d28d9',
-          'text': '#f1f5f9'
+          '50': '#f8fafc',
+          '100': '#f1f5f9',
+          '200': '#e2e8f0',
+          '300': '#cbd5e1',
+          '400': '#94a3b8',
+          '500': '#64748b',
+          '600': '#475569',
+          '700': '#334155',
+          '800': '#1e293b',
+          '900': '#0f172a',
+          '950': '#020617',
+          'dark': '#0f172a',
+          'secondary': '#1e293b',
+          'accent': '#3b82f6',
+          'text': '#f8fafc'
         },
         'accent': {
-          'cyan': '#06b6d4',
-          'purple': '#8b5cf6'
+          'blue': '#3b82f6',
+          'slate': '#64748b',
+          'gold': '#f59e0b'
         },
         'neutral': {
-          'medium': '#94a3b8'
+          'light': '#f1f5f9',
+          'medium': '#64748b',
+          'dark': '#334155'
+        },
+        'professional': {
+          'navy': '#1e293b',
+          'blue': '#3b82f6',
+          'gray': '#64748b',
+          'light': '#f8fafc'
         }
       },
       fontFamily: {

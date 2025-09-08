@@ -9,7 +9,7 @@
   
   body {
     @apply bg-primary-dark text-primary-text font-sans antialiased min-h-screen;
-    background: linear-gradient(135deg, #0a0b0f 0%, #1a1b2e 100%);
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
   }
 }
 
@@ -30,8 +30,8 @@
     @apply text-xl font-bold tracking-tight text-primary-text mb-4;
   }
 
-  .ai-button {
-    @apply inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-primary-accent to-accent-cyan px-6 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-cyan transition-all duration-300;
+  .professional-button {
+    @apply inline-flex items-center justify-center rounded-lg bg-accent-blue px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-blue transition-all duration-200 border border-transparent;
   }
 
   .content-container {
@@ -46,40 +46,40 @@
     @apply grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3;
   }
 
-  .glass-effect {
-    @apply backdrop-blur-md bg-primary-secondary/30 border border-primary-accent/20 rounded-xl;
+  .professional-card {
+    @apply bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl shadow-lg;
   }
 
-  .hologram-card {
-    @apply bg-gradient-to-br from-primary-secondary/50 to-primary-dark/50 border border-primary-accent/30 rounded-xl backdrop-blur-sm;
+  .elegant-card {
+    @apply bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-slate-600/20 rounded-xl shadow-xl backdrop-blur-sm;
   }
 
-  .ai-icon {
-    @apply w-16 h-16 mb-6 rounded-lg flex items-center justify-center bg-gradient-to-br from-primary-accent/20 to-accent-cyan/20 text-accent-cyan;
+  .professional-icon {
+    @apply w-16 h-16 mb-6 rounded-lg flex items-center justify-center bg-accent-blue/10 text-accent-blue border border-accent-blue/20;
   }
 
-  .futuristic-badge {
-    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary-accent/20 text-primary-accent border border-primary-accent/30;
+  .professional-badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-accent-blue/10 text-accent-blue border border-accent-blue/20;
   }
 
-  .gradient-text {
-    @apply bg-gradient-to-r from-primary-accent to-accent-cyan bg-clip-text text-transparent;
+  .professional-gradient {
+    @apply bg-gradient-to-r from-accent-blue to-accent-slate bg-clip-text text-transparent;
   }
 
-  .gradient-text-cyber {
-    @apply bg-gradient-to-r from-accent-cyan via-primary-accent to-accent-purple bg-clip-text text-transparent;
+  .elegant-gradient {
+    @apply bg-gradient-to-r from-white via-accent-blue to-accent-slate bg-clip-text text-transparent;
   }
 
-  .hover-glow {
-    @apply transition-all duration-300 hover:shadow-lg hover:shadow-primary-accent/20 hover:scale-[1.02];
+  .professional-hover {
+    @apply transition-all duration-200 hover:shadow-lg hover:shadow-accent-blue/20 hover:-translate-y-1;
   }
 
-  .hover-glow-intense {
-    @apply transition-all duration-300 hover:shadow-xl hover:shadow-accent-cyan/30 hover:scale-[1.03] hover:border-accent-cyan/40;
+  .elegant-hover {
+    @apply transition-all duration-300 hover:shadow-xl hover:shadow-accent-blue/30 hover:border-accent-blue/40 hover:-translate-y-1;
   }
 
-  .bg-gradient-futuristic {
-    @apply bg-gradient-to-b from-primary-dark via-primary-secondary/50 to-primary-dark;
+  .professional-section {
+    @apply bg-gradient-to-b from-slate-900/50 via-slate-800/30 to-slate-900/50;
   }
 
   .floating-element {
