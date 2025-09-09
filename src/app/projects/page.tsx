@@ -104,7 +104,7 @@ const ProjectsPage = () => {
         {/* Header Section */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
           <div className="text-center mb-8">
-            <h1 className="text-4xl md:text-6xl font-mono font-bold mb-4">
+            <h1 className="text-4xl md:text-6xl font-sans font-bold mb-4">
               <span className="gradient-text">AI Projects</span>
             </h1>
             <p className="text-xl text-primary-text/80 max-w-3xl mx-auto">
@@ -160,7 +160,7 @@ const ProjectsPage = () => {
             {/* Featured Projects */}
             {featuredProjects.length > 0 && (
               <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
-                <h2 className="text-2xl font-mono font-bold text-primary-accent mb-6">Featured Projects</h2>
+                <h2 className="text-2xl font-sans font-bold text-primary-accent mb-6">Featured Projects</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {featuredProjects.map((project) => (
                     <ProjectCard key={project.sys.id} project={project.fields} />
@@ -171,7 +171,7 @@ const ProjectsPage = () => {
 
             {/* All Projects */}
             <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <h2 className="text-2xl font-mono font-bold text-primary-accent mb-6">
+              <h2 className="text-2xl font-sans font-bold text-primary-accent mb-6">
                 {featuredProjects.length > 0 ? 'All Projects' : 'Projects'}
               </h2>
               

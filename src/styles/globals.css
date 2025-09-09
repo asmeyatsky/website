@@ -8,7 +8,8 @@
   }
   
   body {
-    @apply bg-primary-dark text-primary-text font-sans antialiased min-h-screen;
+    @apply bg-primary-dark text-primary-text antialiased min-h-screen;
+    font-family: var(--font-inter);
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
   }
 }

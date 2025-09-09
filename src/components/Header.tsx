@@ -46,7 +46,7 @@ const Header = () => {
               <Link
                 key={item.name}
                 href={item.href}
-                className="font-medium text-primary-text/90 hover:text-accent-blue transition-all duration-200 relative group"
+                className="font-sans font-medium text-primary-text/90 hover:text-accent-blue transition-all duration-200 relative group"
               >
                 {item.name}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent-blue transition-all duration-200 group-hover:w-full"></span>
@@ -90,7 +90,7 @@ const Header = () => {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="font-medium text-primary-text/90 hover:text-accent-blue transition-colors duration-200 py-3 border-b border-primary-secondary/50 last:border-0"
+                  className="font-sans font-medium text-primary-text/90 hover:text-accent-blue transition-colors duration-200 py-3 border-b border-primary-secondary/50 last:border-0"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.name}

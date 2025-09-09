@@ -53,7 +53,7 @@ const MatrixRain = ({ intensity = 0.3 }: { intensity?: number }) => {
       ctx.fillStyle = 'rgba(0, 8, 20, 0.05)'
       ctx.fillRect(0, 0, canvas.width, canvas.height)
 
-      ctx.font = `${fontSize}px 'JetBrains Mono', monospace`
+      ctx.font = `${fontSize}px 'Inter', sans-serif`
       ctx.textAlign = 'center'
 
       drops.forEach((drop) => {

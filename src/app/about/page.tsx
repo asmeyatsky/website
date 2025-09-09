@@ -1,74 +1,79 @@
+import Image from 'next/image'
 import React from 'react'
 import Layout from '@/components/Layout'
 import Link from 'next/link'
 
 const AboutPage = () => {
   const skills = [
-    { category: "Machine Learning", technologies: ["TensorFlow", "PyTorch", "Scikit-learn", "Keras", "XGBoost"] },
-    { category: "Natural Language Processing", technologies: ["BERT", "GPT", "Transformers", "spaCy", "NLTK"] },
-    { category: "Computer Vision", technologies: ["OpenCV", "YOLO", "ResNet", "CNN", "Image Processing"] },
-    { category: "Programming Languages", technologies: ["Python", "JavaScript", "TypeScript", "R", "SQL"] },
-    { category: "Cloud & DevOps", technologies: ["AWS", "GCP", "Docker", "Kubernetes", "MLOps"] },
-    { category: "Frameworks & Tools", technologies: ["Next.js", "React", "Flask", "FastAPI", "Jupyter"] }
+    { category: "Solution Architecture (30 Years)", technologies: ["Enterprise Architecture Design", "Hybrid & Multi-Cloud Strategies", "Microservices Architecture", "API-First Design", "Event-Driven Architecture", "Domain-Driven Design"] },
+    { category: "Multi-Cloud Expertise (8 Years)", technologies: ["Google Cloud Platform", "Amazon Web Services", "Microsoft Azure"] },
+    { category: "Google Cloud Specialization", technologies: ["Containerization & Kubernetes", "DevSecOps Pipelines", "Cloud-to-Cloud Migrations", "API Modernization", "Middleware Modernization", "Infrastructure as Code (Terraform)", "Container Security", "Network Policies", "Identity & Access Management"] },
+    { category: "AI & Machine Learning (2 Years)", technologies: ["Anthropic Claude", "Google Gemini", "OpenAI"] },
+    { category: "Active Development Stack", technologies: ["iOS Development", "Full-Stack JavaScript", "Python Development", "AI-Assisted Development"] }
   ]
 
   const experience = [
     {
-      title: "Senior AI Consultant",
-      company: "Independent Practice",
-      period: "2023 - Present",
-      description: "Providing AI strategy and implementation services to Fortune 500 companies and startups, focusing on machine learning, NLP, and computer vision solutions.",
+      title: "Global Infrastructure Modernization Leader (Senior Director)",
+      company: "Searce Inc",
+      period: "2021 - Present",
+      description: "Established and scaled global Infrastructure Modernization Practice from inception to 25+ direct reports and 800+ professionals across five continents. Generated practice revenue exceeding $50M through comprehensive cloud modernization strategies and AI-native architecture implementations.",
       achievements: [
-        "Delivered 20+ successful AI projects across various industries",
-        "Achieved average ROI of 300% for client implementations",
-        "Led teams of 5-15 engineers on complex AI initiatives"
+        "Architect and implement Google Cloud solutions utilizing GKE, Cloud Functions, and Google Distributed Cloud for Enterprise and Public Sector clients.",
+        "Spearhead DevSecOps transformations integrating advanced security scanning, policy enforcement, and automated compliance frameworks.",
+        "Pioneer AI integration strategies leveraging Anthropic Claude and Google Gemini for automated code generation, review, and optimization.",
+        "Develop internal iOS applications using Swift and SwiftUI integrated with AI APIs for operational efficiency and team productivity enhancement.",
+        "Create Python-based CLI tools for intelligent cloud resource management and automation workflows.",
+        "Build Node.js microservices with embedded AI capabilities for real-time data processing and API orchestration.",
+        "Orchestrate comprehensive architecture reviews and technical due diligence for enterprise transformation initiatives.",
+        "Design hybrid cloud strategies addressing complex regulatory compliance, data sovereignty, and performance requirements.",
+        "Implement API modernization programs transforming legacy SOAP services to GraphQL and RESTful architectures.",
       ]
     },
     {
-      title: "Lead AI Engineer",
-      company: "TechInnovate Corp",
-      period: "2021 - 2023",
-      description: "Led the AI research and development team, focusing on cutting-edge machine learning applications for enterprise clients.",
+      title: "Global Head of Application Modernization (Assistant Director)",
+      company: "HCL Technologies",
+      period: "March 2020 – August 2021",
+      description: "Directed global Application Modernization Tower with full P&L responsibility, overseeing integrated teams across presales, solution architecture, and delivery. Designed enterprise workload transformations through intelligent cloud migration strategies and AI/ML integration. Developed comprehensive hybrid and multi-cloud strategies leveraging Apigee and Google Anthos Ecosystem for enhanced performance optimization.",
       achievements: [
-        "Built and deployed 10+ production ML models serving millions of users",
-        "Reduced model inference time by 60% through optimization techniques",
-        "Mentored junior engineers and established ML best practices"
+        "Directed global Application Modernization Tower with full P&L responsibility, overseeing integrated teams across presales, solution architecture, and delivery.",
+        "Designed enterprise workload transformations through intelligent cloud migration strategies and AI/ML integration.",
+        "Developed comprehensive hybrid and multi-cloud strategies leveraging Apigee and Google Anthos Ecosystem for enhanced performance optimization.",
       ]
     },
     {
-      title: "Machine Learning Engineer",
-      company: "DataSolutions Inc",
-      period: "2019 - 2021",
-      description: "Developed and maintained machine learning pipelines for real-time data processing and predictive analytics.",
+      title: "Principal Solution Architect – Innovations & Solutions, Risk Advisory",
+      company: "Deloitte UK",
+      period: "September 2017 – February 2020",
+      description: "Designed cloud-native architectures for sophisticated risk analytics solutions across AWS and Azure platforms, ensuring enterprise-scale scalability and data integrity. Developed advanced Machine Learning algorithms and OCR automation systems for intelligent document processing. Created resilient Disaster Recovery frameworks with automated failover mechanisms and comprehensive business continuity planning.",
       achievements: [
-        "Designed ML architecture serving 1M+ daily predictions",
-        "Improved model accuracy by 25% through advanced feature engineering",
-        "Automated ML workflows reducing deployment time by 80%"
+        "Designed cloud-native architectures for sophisticated risk analytics solutions across AWS and Azure platforms, ensuring enterprise-scale scalability and data integrity.",
+        "Developed advanced Machine Learning algorithms and OCR automation systems for intelligent document processing.",
+        "Created resilient Disaster Recovery frameworks with automated failover mechanisms and comprehensive business continuity planning.",
       ]
+    },
+    {
+      title: "Previous Leadership Roles",
+      company: "",
+      period: "",
+      description: "Genesys Solution Architect | PC1 - Enterprise Communications Solutions | March 2017 – September 2017. Information Technology Solutions Architect | Nationwide - UK Financial Services | August 2015 – March 2017. Senior Technical Leadership Positions | EE, Vodafone, Orange, T-Mobile, Legion UK Limited - Telecommunications & Technology Companies.",
+      achievements: []
     }
   ]
 
   const education = [
     {
-      degree: "M.S. Computer Science",
-      school: "Stanford University",
-      year: "2019",
-      focus: "Artificial Intelligence & Machine Learning"
-    },
-    {
-      degree: "B.S. Computer Engineering",
-      school: "UC Berkeley", 
-      year: "2017",
-      focus: "Software Systems & Algorithms"
+      degree: "National Diploma in Computer Data Processing",
+      school: "Technikon Witwatersrand, Johannesburg",
+      year: "1989-1992",
+      focus: ""
     }
   ]
 
   const certifications = [
-    "AWS Certified Machine Learning - Specialty",
-    "Google Cloud Professional ML Engineer",
-    "TensorFlow Developer Certificate",
-    "Deep Learning Specialization (Coursera)",
-    "Advanced Machine Learning (Coursera)"
+    "Google Cloud Professional Architect",
+    "AWS Solutions Architect Professional",
+    "Azure Solutions Architect Expert"
   ]
 
   return (
@@ -81,8 +86,7 @@ const AboutPage = () => {
               <span className="gradient-text-cyber">About Me</span>
             </h1>
             <p className="professional-subtitle">
-              Pioneering AI engineer and consultant with 5+ years of experience building intelligent agentic systems 
-              that solve real-world problems and drive business transformation.
+              Transformational Technology Executive with three decades of solution architecture excellence spanning on-premises to cloud-native ecosystems across global enterprises.
             </p>
           </div>
 
@@ -90,21 +94,25 @@ const AboutPage = () => {
             {/* Profile Image */}
             <div className="lg:col-span-1">
               <div className="glass-effect p-8 rounded-xl text-center hover-glow-intense">
-                <div className="w-48 h-48 mx-auto mb-6 bg-gradient-to-br from-primary-accent/20 to-accent-cyan/20 rounded-full flex items-center justify-center">
-                  <div className="text-6xl">🤖</div>
+                <div className="w-48 h-48 mx-auto mb-6 rounded-full overflow-hidden relative">
+                  <Image
+                    src="/allan_smeyatsky.jpg" 
+                    alt="Allan Smeyatsky"
+                    fill
+                    style={{ objectFit: 'cover' }}
+                    priority
+                  />
                 </div>
-                <h2 className="text-2xl font-bold text-primary-text mb-2">Your Name</h2>
-                <p className="text-accent-cyan font-semibold mb-4">AI Engineer & Consultant</p>
+                <h2 className="text-2xl font-bold text-primary-text mb-2">Allan Smeyatsky</h2>
+                <p className="text-accent-cyan font-semibold mb-4">Global Technology Executive & Solution Architect</p>
                 <div className="flex justify-center space-x-4">
-                  <a href="https://github.com/yourname" className="text-primary-text/60 hover:text-accent-cyan transition-colors">
+                  <a href="https://github.com/asmeyatsky" className="text-primary-text/60 hover:text-accent-cyan transition-colors">
                     <span className="text-2xl">🔗</span>
                   </a>
-                  <a href="https://linkedin.com/in/yourname" className="text-primary-text/60 hover:text-accent-cyan transition-colors">
+                  <a href="https://linkedin.com/in/allansmeyatsky" className="text-primary-text/60 hover:text-accent-cyan transition-colors">
                     <span className="text-2xl">💼</span>
                   </a>
-                  <a href="https://twitter.com/yourname" className="text-primary-text/60 hover:text-accent-cyan transition-colors">
-                    <span className="text-2xl">🐦</span>
-                  </a>
+                  
                 </div>
               </div>
             </div>
@@ -115,21 +123,19 @@ const AboutPage = () => {
                 <h3 className="section-subheader">My Journey</h3>
                 <div className="space-y-4 text-primary-text/80">
                   <p>
-                    I&apos;m a pioneering AI engineer with over 5 years of experience transforming businesses through 
-                    intelligent automation and agentic AI solutions. My journey began with a fascination 
-                    for how computers could learn, reason, and act autonomously, leading me to pursue advanced degrees in 
-                    computer science and AI.
+                    Transformational Technology Executive with three decades of solution architecture excellence spanning 
+                    on-premises to cloud-native ecosystems across global enterprises. I am a distinguished leader who combines 
+                    strategic vision with hands-on technical execution, leading from architecting enterprise solutions to 
+                    developing production applications while building world-class engineering organizations.
                   </p>
                   <p>
-                    Throughout my career, I&apos;ve had the privilege of working on cutting-edge projects ranging from 
-                    large language models that understand human intent, to computer vision systems 
-                    that power autonomous agents. I believe in the transformative power of agentic AI when applied 
-                    thoughtfully and ethically.
+                    My current focus is on advancing AI-native architectures through direct experience with Anthropic Claude, 
+                    Google Gemini, and OpenAI platforms, complemented by active development in Swift/iOS, Node.js, and Python ecosystems.
                   </p>
                   <p>
-                    Today, I help organizations navigate the complex landscape of agentic AI implementation, from strategic 
-                    planning to hands-on development. My goal is to make autonomous AI systems accessible and valuable for businesses 
-                    of all sizes, while ensuring responsible and sustainable adoption.
+                    I embody a Technical Leadership Mindset, emphasizing strategic execution through direct involvement. 
+                    I seamlessly transition between architecting enterprise solutions, coding innovative applications, 
+                    and mentoring global engineering talent.
                   </p>
                 </div>
               </div>
@@ -137,20 +143,12 @@ const AboutPage = () => {
               {/* Quick Stats */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div className="glass-effect p-4 rounded-xl text-center hover-glow">
-                  <div className="text-3xl font-bold gradient-text">50+</div>
-                  <div className="text-sm text-primary-text/80">AI Projects</div>
-                </div>
-                <div className="glass-effect p-4 rounded-xl text-center hover-glow">
-                  <div className="text-3xl font-bold gradient-text">5+</div>
+                  <div className="text-3xl font-bold gradient-text">30+</div>
                   <div className="text-sm text-primary-text/80">Years Experience</div>
                 </div>
                 <div className="glass-effect p-4 rounded-xl text-center hover-glow">
-                  <div className="text-3xl font-bold gradient-text">25+</div>
-                  <div className="text-sm text-primary-text/80">Happy Clients</div>
-                </div>
-                <div className="glass-effect p-4 rounded-xl text-center hover-glow">
-                  <div className="text-3xl font-bold gradient-text">300%</div>
-                  <div className="text-sm text-primary-text/80">Avg ROI</div>
+                  <div className="text-3xl font-bold gradient-text">$50M+</div>
+                  <div className="text-sm text-primary-text/80">Revenue Generated</div>
                 </div>
               </div>
             </div>

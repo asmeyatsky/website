@@ -128,7 +128,7 @@ const NewsPage = () => {
         {/* Header Section */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
           <div className="text-center mb-8">
-            <h1 className="text-4xl md:text-6xl font-mono font-bold mb-4">
+            <h1 className="text-4xl md:text-6xl font-sans font-bold mb-4">
               <span className="gradient-text">AI News</span>
             </h1>
             <p className="text-xl text-primary-text/80 max-w-3xl mx-auto">
@@ -176,7 +176,7 @@ const NewsPage = () => {
           {/* Newsletter Signup */}
           <div className="glass-effect p-6 rounded-lg max-w-2xl mx-auto">
             <div className="text-center">
-              <h3 className="text-xl font-mono font-bold text-primary-accent mb-2">Stay Updated</h3>
+              <h3 className="text-xl font-sans font-bold text-primary-accent mb-2">Stay Updated</h3>
               <p className="text-primary-text/60 text-sm mb-4">
                 Get the latest AI insights delivered to your inbox weekly.
               </p>
@@ -204,7 +204,7 @@ const NewsPage = () => {
             {/* Featured Articles */}
             {featuredArticles.length > 0 && (
               <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
-                <h2 className="text-2xl font-mono font-bold text-primary-accent mb-6">Featured Articles</h2>
+                <h2 className="text-2xl font-sans font-bold text-primary-accent mb-6">Featured Articles</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {featuredArticles.map((article) => (
                     <ArticleCard key={article.sys.id} article={article.fields} />
@@ -215,7 +215,7 @@ const NewsPage = () => {
 
             {/* Recent Articles */}
             <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <h2 className="text-2xl font-mono font-bold text-primary-accent mb-6">
+              <h2 className="text-2xl font-sans font-bold text-primary-accent mb-6">
                 {featuredArticles.length > 0 ? 'Recent Articles' : 'All Articles'}
               </h2>
               

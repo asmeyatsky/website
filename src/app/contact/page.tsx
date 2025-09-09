@@ -71,27 +71,34 @@ const ContactPage = () => {
       icon: "📧",
       title: "Email",
       description: "Send me a message anytime",
-      value: "hello@example.com",
-      action: "mailto:hello@example.com"
+      value: "asmeyatsky@hotmail.com",
+      action: "mailto:asmeyatsky@hotmail.com"
     },
     {
       icon: "📞",
       title: "Phone",
       description: "Call for urgent matters",
-      value: "+1 (555) 123-4567",
-      action: "tel:+15551234567"
+      value: "+44 7930 399439 / +27 76 247 9862",
+      action: "tel:+447930399439"
     },
     {
       icon: "💼",
       title: "LinkedIn",
       description: "Connect professionally",
-      value: "@yourprofile",
-      action: "https://linkedin.com/in/yourname"
+      value: "allansmeyatsky",
+      action: "https://www.linkedin.com/in/allansmeyatsky/"
+    },
+    {
+      icon: "🔗",
+      title: "GitHub",
+      description: "Explore my code",
+      value: "asmeyatsky",
+      action: "https://github.com/asmeyatsky"
     },
     {
       icon: "🌍",
       title: "Location",
-      description: "Based in San Francisco, CA",
+      description: "Based in London, UK | Cape Town, South Africa",
       value: "Available globally",
       action: null
     }
@@ -122,7 +129,7 @@ const ContactPage = () => {
         {/* Hero Section */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
           <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-6xl font-mono font-bold mb-6">
+            <h1 className="text-4xl md:text-6xl font-sans font-bold mb-6">
               <span className="gradient-text">Get In Touch</span>
             </h1>
             <p className="text-xl text-primary-text/80 max-w-3xl mx-auto">
@@ -161,7 +168,7 @@ const ContactPage = () => {
             {/* Contact Form */}
             <div className="lg:col-span-2">
               <div className="glass-effect p-8 rounded-lg">
-                <h2 className="text-2xl font-mono font-bold text-primary-accent mb-6">
+                <h2 className="text-2xl font-sans font-bold text-primary-accent mb-6">
                   Start Your AI Journey
                 </h2>
                 
@@ -372,7 +379,7 @@ const ContactPage = () => {
 
         {/* FAQ Section */}
         <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-mono font-bold text-primary-accent text-center mb-12">
+          <h2 className="text-3xl font-sans font-bold text-primary-accent text-center mb-12">
             Frequently Asked Questions
           </h2>
           

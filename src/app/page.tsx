@@ -22,7 +22,7 @@ export default function Home() {
             
             {/* Subtitle */}
             <p className="professional-subtitle">
-              Transformational Technology Executive with three decades of solution architecture excellence.
+              Transformational Technology Executive with three decades of solution architecture excellence spanning on-premises to cloud-native ecosystems across global enterprises.
             </p>
             
             {/* CTA Buttons */}
@@ -149,22 +149,22 @@ export default function Home() {
               <div className="professional-card p-6 rounded-xl text-center professional-hover">
                 <div className="text-4xl mb-4">📱</div>
                 <h3 className="font-semibold text-primary-text mb-2">iOS Development</h3>
-                <p className="text-neutral-medium text-sm">Swift, SwiftUI, UIKit</p>
+                <p className="text-neutral-medium text-sm">Swift 5.9, SwiftUI, Xcode 15, UIKit, Core Data, CloudKit</p>
               </div>
               <div className="professional-card p-6 rounded-xl text-center professional-hover">
                 <div className="text-4xl mb-4">💻</div>
                 <h3 className="font-semibold text-primary-text mb-2">Full-Stack JavaScript</h3>
-                <p className="text-neutral-medium text-sm">Node.js, Express, React</p>
+                <p className="text-neutral-medium text-sm">Node.js, Express.js, React, TypeScript, RESTful APIs</p>
               </div>
               <div className="professional-card p-6 rounded-xl text-center professional-hover">
                 <div className="text-4xl mb-4">🐍</div>
                 <h3 className="font-semibold text-primary-text mb-2">Python Development</h3>
-                <p className="text-neutral-medium text-sm">FastAPI, Flask, CLI Tools</p>
+                <p className="text-neutral-medium text-sm">FastAPI, Flask, CLI Tools, Data Processing, Automation Scripts</p>
               </div>
               <div className="professional-card p-6 rounded-xl text-center professional-hover">
                 <div className="text-4xl mb-4">🤖</div>
                 <h3 className="font-semibold text-primary-text mb-2">AI-Assisted Development</h3>
-                <p className="text-neutral-medium text-sm">Claude, Gemini, Copilot</p>
+                <p className="text-neutral-medium text-sm">Claude Code, Gemini CLI, GitHub Copilot (1 Year)</p>
               </div>
             </div>
           </div>
