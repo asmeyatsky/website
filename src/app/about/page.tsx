@@ -96,7 +96,7 @@ const AboutPage = () => {
               <div className="glass-effect p-8 rounded-xl text-center hover-glow-intense">
                 <div className="w-48 h-48 mx-auto mb-6 rounded-full overflow-hidden relative">
                   <Image
-                    src="/allan_smeyatsky.jpg" 
+                    src="/allansmeyatsky.jpeg" 
                     alt="Allan Smeyatsky"
                     fill
                     style={{ objectFit: 'cover' }}
