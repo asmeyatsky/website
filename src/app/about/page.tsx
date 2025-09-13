@@ -112,7 +112,9 @@ const AboutPage = () => {
                   <a href="https://linkedin.com/in/allansmeyatsky" className="text-primary-text/60 hover:text-accent-cyan transition-colors">
                     <span className="text-2xl">💼</span>
                   </a>
-                  
+                  <a href="https://www.instagram.com/allansmeyatsky/" className="text-primary-text/60 hover:text-accent-cyan transition-colors">
+                    <span className="text-2xl">📸</span>
+                  </a>
                 </div>
               </div>
             </div>

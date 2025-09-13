@@ -71,8 +71,8 @@ const ContactPage = () => {
       icon: "📧",
       title: "Email",
       description: "Send me a message anytime",
-      value: "asmeyatsky@hotmail.com",
-      action: "mailto:asmeyatsky@hotmail.com"
+      value: "allan@smeyatsky.com",
+      action: "mailto:allan@smeyatsky.com"
     },
     {
       icon: "📞",

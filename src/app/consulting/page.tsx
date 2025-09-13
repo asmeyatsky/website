@@ -269,7 +269,7 @@ const ConsultingPage = () => {
                 Schedule Consultation
               </Link>
               <a
-                href="mailto:hello@example.com"
+                href="mailto:allan@smeyatsky.com"
                 className="glass-effect px-8 py-4 text-lg font-semibold text-accent-cyan border border-accent-cyan/30 hover:border-accent-cyan transition-all duration-300 rounded-xl"
               >
                 Send Email
