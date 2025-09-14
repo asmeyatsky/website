@@ -5,6 +5,7 @@ import Layout from '@/components/Layout'
 import Link from 'next/link'
 import { getProjects, Project, ProjectSkeleton } from '@/lib/contentful'
 import type { Entry } from 'contentful'
+import BookCallButton from '@/components/BookCallButton'
 
 const ProjectCard = ({ project }: { project: any }) => {
   return (
@@ -185,7 +186,19 @@ const ProjectsPage = () => {
                 <div className="text-center py-12">
                   <div className="text-6xl mb-4 opacity-50">🔍</div>
                   <h3 className="text-xl font-bold text-primary-text/80 mb-2">No projects found</h3>
-                  <p className="text-primary-text/60">Try adjusting your search or filter criteria.</p>
+                  <p className="text-primary-text/60 mb-6">Try adjusting your search or filter criteria.</p>
+                  
+                  {/* CTA for consultation */}
+                  <div className="max-w-md mx-auto">
+                    <BookCallButton 
+                      className="ai-button px-8 py-4"
+                    >
+                      Schedule Free Consultation
+                    </BookCallButton>
+                    <p className="text-primary-text/60 text-sm mt-4">
+                      Want to discuss a custom AI project? Let's talk!
+                    </p>
+                  </div>
                 </div>
               )}
             </section>

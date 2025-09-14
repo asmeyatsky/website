@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import Layout from '@/components/Layout'
 import { sendContactEmail, EmailData } from '@/lib/email'
+import BookCallButton from '@/components/BookCallButton'
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -349,6 +350,19 @@ const ContactPage = () => {
                     Available for global projects across all time zones
                   </div>
                 </div>
+              </div>
+
+              {/* Scheduling Option */}
+              <div className="glass-effect p-6 rounded-lg">
+                <h3 className="font-bold text-primary-accent mb-4">Want to Chat Directly?</h3>
+                <p className="text-primary-text/80 text-sm mb-4">
+                  Skip the form and schedule a free 30-minute consultation to discuss your project needs.
+                </p>
+                <BookCallButton 
+                  className="ai-button px-8 py-4"
+                >
+                  Schedule Free Consultation
+                </BookCallButton>
               </div>
 
               {/* Next Steps */}

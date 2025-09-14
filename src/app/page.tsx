@@ -1,5 +1,9 @@
+'use client'
+
+import React from 'react'
 import Layout from '@/components/Layout'
 import Link from 'next/link'
+import BookCallButton from '@/components/BookCallButton'
 
 export default function Home() {
   return (
@@ -34,12 +38,11 @@ export default function Home() {
                 Explore Solutions
               </Link>
               
-              <Link 
-                href="/consulting" 
-                className="professional-card px-8 py-4 text-lg font-semibold text-accent-blue border border-accent-blue/30 hover:border-accent-blue transition-all duration-200 rounded-xl inline-block"
+              <BookCallButton 
+                className="professional-card px-8 py-4 text-lg font-semibold text-accent-blue border border-accent-blue/30 hover:border-accent-blue transition-all duration-200 rounded-xl"
               >
-                Start Consulting
-              </Link>
+                Book a Consultation
+              </BookCallButton>
             </div>
 
             {/* Stats */}

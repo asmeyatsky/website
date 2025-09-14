@@ -3,9 +3,10 @@
 import React from 'react'
 import Layout from '@/components/Layout'
 import Link from 'next/link'
+import CalendlyWidget from '@/components/CalendlyWidget'
+import BookCallButton from '@/components/BookCallButton'
 
 const ConsultingPage = () => {
-
   return (
     <Layout>
       <div className="min-h-screen py-12">
@@ -19,14 +20,21 @@ const ConsultingPage = () => {
               Ready to transform your business with intelligent AI solutions? Schedule a free 30-minute consultation to discuss your challenges and explore how we can achieve your goals together.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              {/* Calendly Link */}
+              {/* Popup Calendly Button */}
+              <BookCallButton 
+                className="ai-button px-8 py-4"
+              >
+                Schedule Your Free Consultation
+              </BookCallButton>
+              
+              {/* Alternative: Direct link */}
               <a
                 href="https://calendly.com/allan-smeyatsky/30min" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="ai-button px-8 py-4"
+                className="glass-effect px-8 py-4 text-primary-accent hover-glow inline-flex items-center justify-center"
               >
-                Schedule Your Free Consultation
+                Book on Calendly
               </a>
             </div>
           </div>
@@ -42,8 +50,11 @@ const ConsultingPage = () => {
               Use the calendar below to select a convenient 30-minute slot. My availability is Monday to Friday, 09:00 to 17:00, in your local timezone.
             </p>
             
-            {/* Calendly Inline Embed Widget */}
-            <div className="calendly-inline-widget" data-url="https://calendly.com/allan-smeyatsky/30min?hide_event_type_details=1&hide_gdpr_banner=1" style={{ minWidth: '320px', height: '700px' }}></div>
+            {/* Improved Calendly Widget */}
+            <CalendlyWidget 
+              url="https://calendly.com/allan-smeyatsky/30min?hide_event_type_details=1&hide_gdpr_banner=1" 
+              height="700px"
+            />
             
             <p className="text-primary-text/60 text-sm mt-8">
               If the embed is not loading, please use the direct link above.
@@ -51,7 +62,7 @@ const ConsultingPage = () => {
           </div>
         </section>
 
-        {/* Original CTA Section (simplified) */}
+        {/* CTA Section */}
         <section className="content-container section-padding">
           <div className="glass-effect p-8 md:p-12 rounded-xl text-center">
             <h2 className="text-3xl font-bold gradient-text mb-4">

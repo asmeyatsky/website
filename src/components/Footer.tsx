@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import BookCallButton from '@/components/BookCallButton'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
@@ -108,6 +109,21 @@ const Footer = () => {
                 Subscribe
               </button>
             </div>
+          </div>
+        </div>
+
+        {/* Booking CTA */}
+        <div className="professional-card p-6 rounded-xl mb-8">
+          <div className="max-w-2xl mx-auto text-center">
+            <h3 className="font-semibold text-accent-blue mb-2">Ready to Transform Your Business?</h3>
+            <p className="text-primary-text/60 text-sm mb-4">
+              Book a free 30-minute consultation to discuss your AI and technology challenges.
+            </p>
+            <BookCallButton 
+              className="ai-button px-8 py-3"
+            >
+              Schedule Free Consultation
+            </BookCallButton>
           </div>
         </div>
 

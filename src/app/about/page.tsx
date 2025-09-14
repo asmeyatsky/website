@@ -1,7 +1,10 @@
+'use client'
+
 import Image from 'next/image'
 import React from 'react'
 import Layout from '@/components/Layout'
 import Link from 'next/link'
+import BookCallButton from '@/components/BookCallButton'
 
 const AboutPage = () => {
   const skills = [
@@ -260,12 +263,11 @@ const AboutPage = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/consulting"
+              <BookCallButton 
                 className="ai-button px-8 py-4"
               >
-                Explore Services
-              </Link>
+                Schedule Free Consultation
+              </BookCallButton>
               <Link
                 href="/contact"
                 className="glass-effect px-8 py-4 text-lg font-semibold text-accent-cyan border border-accent-cyan/30 hover:border-accent-cyan transition-all duration-300 rounded-xl"

@@ -1,9 +1,8 @@
 import type { Metadata } from 'next'
 import { Inter, JetBrains_Mono } from 'next/font/google'
 import '@/styles/globals.css'
-import Script from 'next/script' // New import
-
-// Force deployment - professional styling update (triggering new build)
+import Script from 'next/script'
+import { CalendlyProvider } from '@/context/calendly-context'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -36,8 +35,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <body className="min-h-screen">
-        {children}
-        <Script src="https://assets.calendly.com/assets/external/widget.js" async /> {/* Calendly Script */}
+        <CalendlyProvider>
+          {children}
+        </CalendlyProvider>
+        <Script src="https://assets.calendly.com/assets/external/widget.js" async />
       </body>
     </html>
   )
