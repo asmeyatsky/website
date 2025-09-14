@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter, JetBrains_Mono } from 'next/font/google'
 import '@/styles/globals.css'
+import Script from 'next/script' // New import
 
 // Force deployment - professional styling update
 
@@ -36,6 +37,7 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <body className="min-h-screen">
         {children}
+        <Script src="https://assets.calendly.com/assets/external/widget.js" async /> {/* Calendly Script */}
       </body>
     </html>
   )
