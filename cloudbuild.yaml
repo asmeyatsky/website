@@ -35,6 +35,11 @@ steps:
       - '--all-tags'
       - 'us-central1-docker.pkg.dev/$PROJECT_ID/ai-news-scraper-repo-us/ai-news-scraper'
 
+  # Test GCS access before Next.js build
+  - name: 'gcr.io/cloud-builders/gsutil'
+    args: ['cat', 'gs://website-469906-ai-news/ai_news.json']
+    id: 'test-gcs-access'
+
   # Deploy Next.js Website to Cloud Run
   - name: 'gcr.io/cloud-builders/gcloud'
     args:
