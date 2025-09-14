@@ -75,29 +75,17 @@ const NewsClientPage = ({ initialArticles }: NewsClientPageProps) => {
 
   useEffect(() => {
     if (initialArticles.length === 0) {
-      // Fetch data from the public GCS URL
+      // Fetch data from the API route
       const fetchArticles = async () => {
         try {
-          const response = await fetch('https://storage.googleapis.com/website-469906-ai-news/ai_news.json')
-          const data = await response.json()
+          const response = await fetch('/api/news')
+          const articles = await response.json()
 
-          const fetchedArticles: NewsArticle[] = []
-
-          // Flatten the data and add category
-          for (const category in data) {
-            if (Object.prototype.hasOwnProperty.call(data, category)) {
-              data[category].forEach((article: any) => {
-                fetchedArticles.push({
-                  title: article.title,
-                  link: article.link,
-                  published: article.published,
-                  category: category,
-                })
-              })
-            }
+          if (response.ok) {
+            setArticles(articles)
+          } else {
+            console.error('Error fetching news data:', articles.error)
           }
-
-          setArticles(fetchedArticles)
           setLoading(false)
         } catch (error) {
           console.error('Error fetching news data:', error)
