@@ -56,6 +56,16 @@ steps:
       - '1'
       - '--max-instances'
       - '10'
+      - '--set-startup-cpu-boost=true' # Ensure CPU boost is enabled
+      - '--set-env-vars=PORT=3000' # Explicitly set PORT env var
+      - '--set-env-vars=NODE_ENV=production' # Explicitly set NODE_ENV
+      - '--set-env-vars=GOOGLE_CLOUD_PROJECT=website-469906' # Add project ID for GCS client
+      - '--set-env-vars=GOOGLE_APPLICATION_CREDENTIALS=/var/run/secrets/kubernetes.io/serviceaccount/token' # Use default service account token
+      - '--set-env-vars=GOOGLE_APPLICATION_CREDENTIALS_JSON_BASE64=' # Placeholder for key if needed
+      - '--set-env-vars=GCS_BUCKET_NAME=website-469906-ai-news' # Pass bucket name as env var
+      - '--set-env-vars=GCS_FILE_NAME=ai_news.json' # Pass file name as env var
+      - '--set-env-vars=NEXT_PUBLIC_GCS_NEWS_JSON_URL=https://storage.googleapis.com/website-469906-ai-news/ai_news.json' # Public URL for client-side fetch
+      - '--set-timeout=600' # Increase timeout to 10 minutes
 
 # Store images in Google Container Registry and Artifact Registry
 images:
