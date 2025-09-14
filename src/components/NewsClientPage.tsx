@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useEffect } from 'react'
 import Link from 'next/link'
 
 // Define the structure of an article
@@ -70,14 +70,52 @@ interface NewsClientPageProps {
 const NewsClientPage = ({ initialArticles }: NewsClientPageProps) => {
   const [filter, setFilter] = useState('All')
   const [searchTerm, setSearchTerm] = useState('')
+  const [articles, setArticles] = useState<NewsArticle[]>(initialArticles)
+  const [loading, setLoading] = useState(initialArticles.length === 0)
+
+  useEffect(() => {
+    if (initialArticles.length === 0) {
+      // Fetch data from the public GCS URL
+      const fetchArticles = async () => {
+        try {
+          const response = await fetch('https://storage.googleapis.com/website-469906-ai-news/ai_news.json')
+          const data = await response.json()
+
+          const fetchedArticles: NewsArticle[] = []
+
+          // Flatten the data and add category
+          for (const category in data) {
+            if (Object.prototype.hasOwnProperty.call(data, category)) {
+              data[category].forEach((article: any) => {
+                fetchedArticles.push({
+                  title: article.title,
+                  link: article.link,
+                  published: article.published,
+                  category: category,
+                })
+              })
+            }
+          }
+
+          setArticles(fetchedArticles)
+          setLoading(false)
+        } catch (error) {
+          console.error('Error fetching news data:', error)
+          setLoading(false)
+        }
+      }
+
+      fetchArticles()
+    }
+  }, [initialArticles])
 
   const categories = useMemo(() => [
     'All',
-    ...Array.from(new Set(initialArticles.map(a => a.category))),
-  ], [initialArticles])
-  
+    ...Array.from(new Set(articles.map(a => a.category))),
+  ], [articles])
+
   const filteredArticles = useMemo(() => {
-    return initialArticles
+    return articles
       .filter(article => {
         if (filter === 'All') return true;
         return article.category === filter;
@@ -88,7 +126,7 @@ const NewsClientPage = ({ initialArticles }: NewsClientPageProps) => {
         const categoryMatch = article.category.toLowerCase().includes(lowerSearchTerm);
         return titleMatch || categoryMatch;
       })
-  }, [initialArticles, filter, searchTerm])
+  }, [articles, filter, searchTerm])
 
   const sortedArticles = useMemo(() => {
     return [...filteredArticles].sort((a, b) => {
@@ -170,10 +208,16 @@ const NewsClientPage = ({ initialArticles }: NewsClientPageProps) => {
         </div>
       </section>
 
-      {sortedArticles.length === 0 ? (
+      {loading ? (
         <div className="text-center py-12">
           <div className="animate-spin w-12 h-12 border-4 border-primary-accent/30 border-t-primary-accent rounded-full mx-auto mb-4"></div>
           <p className="text-primary-text/80">Loading articles...</p>
+        </div>
+      ) : sortedArticles.length === 0 ? (
+        <div className="text-center py-12">
+          <div className="text-6xl mb-4 opacity-50">📰</div>
+          <h3 className="text-xl font-bold text-primary-text/80 mb-2">No articles available</h3>
+          <p className="text-primary-text/60">Unable to load news articles at this time.</p>
         </div>
       ) : (
         <>
