@@ -16,6 +16,7 @@
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^16.1.0",
     "@emailjs/browser": "^4.4.1",
+    "@google-cloud/storage": "^7.17.1",
     "@types/node": "^24.3.0",
     "@types/react": "^19.1.11",
     "@types/react-dom": "^19.1.7",
