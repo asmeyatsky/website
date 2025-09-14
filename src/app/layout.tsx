@@ -3,7 +3,7 @@ import { Inter, JetBrains_Mono } from 'next/font/google'
 import '@/styles/globals.css'
 import Script from 'next/script' // New import
 
-// Force deployment - professional styling update
+// Force deployment - professional styling update (triggering new build)
 
 const inter = Inter({
   subsets: ['latin'],
