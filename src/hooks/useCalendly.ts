@@ -54,6 +54,18 @@ export const useCalendly = ({ url, prefill, utm }: UseCalendlyProps) => {
         return;
       }
 
+      // Create script element if not already present
+      const scriptId = 'calendly-widget-script';
+      let script = document.getElementById(scriptId) as HTMLScriptElement;
+      
+      if (!script) {
+        script = document.createElement('script');
+        script.id = scriptId;
+        script.src = 'https://assets.calendly.com/assets/external/widget.js';
+        script.async = true;
+        document.body.appendChild(script);
+      }
+
       // Wait for Calendly to load
       const checkCalendly = setInterval(() => {
         if (window.Calendly) {
@@ -62,17 +74,25 @@ export const useCalendly = ({ url, prefill, utm }: UseCalendlyProps) => {
         }
       }, 100);
 
-      // Timeout after 5 seconds
-      setTimeout(() => {
+      // Timeout after 10 seconds
+      const timeout = setTimeout(() => {
         clearInterval(checkCalendly);
-      }, 5000);
+        console.warn('Calendly widget failed to load within 10 seconds');
+      }, 10000);
+
+      return () => {
+        clearInterval(checkCalendly);
+        clearTimeout(timeout);
+      };
     };
 
     initializeCalendly();
 
+    const currentContainer = containerRef.current;
+
     return () => {
-      if (containerRef.current) {
-        containerRef.current.innerHTML = '';
+      if (currentContainer) {
+        currentContainer.innerHTML = '';
       }
     };
   }, [url, prefill, utm]);

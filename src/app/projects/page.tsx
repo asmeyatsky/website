@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { getProjects, Project, ProjectSkeleton } from '@/lib/contentful'
 import type { Entry } from 'contentful'
 import BookCallButton from '@/components/BookCallButton'
+import CalendlySection from '@/components/CalendlySection'
 
 const ProjectCard = ({ project }: { project: any }) => {
   return (
@@ -204,6 +205,17 @@ const ProjectsPage = () => {
             </section>
           </>
         )}
+
+        {/* Calendly Section */}
+        <CalendlySection 
+          title="Discuss Your Custom AI Project"
+          description="Have a unique project in mind? Schedule a free 30-minute consultation to discuss your specific AI needs and explore how we can achieve your goals together."
+          showWidget={false}
+          showButton={true}
+          buttonText="Schedule Free Consultation"
+          buttonClass="ai-button px-8 py-4"
+          showAlternativeLink={false}
+        />
       </div>
     </Layout>
   )

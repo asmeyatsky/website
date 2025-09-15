@@ -39,28 +39,28 @@ export default function Home() {
               </Link>
               
               <BookCallButton 
-                className="professional-card px-8 py-4 text-lg font-semibold text-accent-blue border border-accent-blue/30 hover:border-accent-blue transition-all duration-200 rounded-xl"
+                className="professional-card px-8 py-4 text-lg font-semibold text-accent-blue border border-accent-blue/30 hover:border-accent-blue transition-all duration-200 rounded-xl inline-flex items-center justify-center"
               >
-                Book a Consultation
+                Schedule Free Consultation
               </BookCallButton>
             </div>
 
             {/* Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-              <div className="professional-card p-6 rounded-xl professional-hover">
+              <div className="professional-card p-6 rounded-xl text-center hover-glow-intense">
                 <div className="text-3xl font-bold professional-gradient mb-2">30+</div>
                 <div className="text-neutral-medium text-sm">Years Experience</div>
               </div>
-              <div className="professional-card p-6 rounded-xl professional-hover">
+              <div className="professional-card p-6 rounded-xl text-center hover-glow-intense">
                 <div className="text-3xl font-bold professional-gradient mb-2">AI-Native</div>
                 <div className="text-neutral-medium text-sm">Architecture</div>
               </div>
-              <div className="professional-card p-6 rounded-xl professional-hover">
+              <div className="professional-card p-6 rounded-xl text-center hover-glow-intense">
                 <div className="text-3xl font-bold professional-gradient mb-2">Multi-Cloud</div>
                 <div className="text-neutral-medium text-sm">Expert</div>
               </div>
-              <div className="professional-card p-6 rounded-xl professional-hover">
-                <div className="text-3xl font-bold professional-gradient mb-2">$50M+</div>
+              <div className="professional-card p-6 rounded-xl text-center hover-glow-intense">
+                <div className="text-3xl font-bold professional-gradient mb-2">$$50M+</div>
                 <div className="text-neutral-medium text-sm">Revenue Generated</div>
               </div>
             </div>

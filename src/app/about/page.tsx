@@ -5,6 +5,7 @@ import React from 'react'
 import Layout from '@/components/Layout'
 import Link from 'next/link'
 import BookCallButton from '@/components/BookCallButton'
+import CalendlySection from '@/components/CalendlySection'
 
 const AboutPage = () => {
   const skills = [
@@ -152,7 +153,7 @@ const AboutPage = () => {
                   <div className="text-sm text-primary-text/80">Years Experience</div>
                 </div>
                 <div className="glass-effect p-4 rounded-xl text-center hover-glow">
-                  <div className="text-3xl font-bold gradient-text">$50M+</div>
+                  <div className="text-3xl font-bold gradient-text">$$50M+</div>
                   <div className="text-sm text-primary-text/80">Revenue Generated</div>
                 </div>
               </div>
@@ -228,7 +229,7 @@ const AboutPage = () => {
                     <h3 className="font-bold text-primary-text">{edu.degree}</h3>
                     <p className="text-accent-cyan font-semibold">{edu.school}</p>
                     <div className="flex justify-between items-center mt-2">
-                      <span className="text-neutral-medium text-sm">{edu.focus}</span>
+                      <span className="text-neutral-medium text-sm"></span>
                       <span className="text-neutral-medium text-sm">{edu.year}</span>
                     </div>
                   </div>
@@ -255,11 +256,10 @@ const AboutPage = () => {
         <section className="content-container section-padding">
           <div className="glass-effect p-8 md:p-12 rounded-xl text-center">
             <h2 className="text-3xl font-bold gradient-text mb-4">
-              Let&apos;s Build the Future
+              Let's Build the Future
             </h2>
             <p className="text-primary-text/80 mb-8 max-w-2xl mx-auto">
-              Ready to bring agentic AI innovation to your organization? I&apos;d love to discuss your challenges 
-              and explore how we can achieve your goals together with autonomous AI systems.
+              Ready to bring agentic AI innovation to your organization? I'd love to discuss your challenges and explore how we can achieve your goals together with autonomous AI systems.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -277,6 +277,17 @@ const AboutPage = () => {
             </div>
           </div>
         </section>
+
+        {/* Calendly Section */}
+        <CalendlySection 
+          title="Schedule Your Free Consultation"
+          description="Prefer to schedule directly? Use the calendar below to select a convenient 30-minute slot. My availability is Monday to Friday, 09:00 to 17:00, in your local timezone."
+          showWidget={true}
+          widgetUrl="https://calendly.com/allan-smeyatsky/30min?hide_event_type_details=1&hide_gdpr_banner=1"
+          widgetHeight="700px"
+          showButton={false}
+          showAlternativeLink={true}
+        />
       </div>
     </Layout>
   )

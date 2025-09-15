@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import Layout from '@/components/Layout'
 import { sendContactEmail, EmailData } from '@/lib/email'
 import BookCallButton from '@/components/BookCallButton'
+import CalendlySection from '@/components/CalendlySection'
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -359,7 +360,7 @@ const ContactPage = () => {
                   Skip the form and schedule a free 30-minute consultation to discuss your project needs.
                 </p>
                 <BookCallButton 
-                  className="ai-button px-8 py-4"
+                  className="ai-button px-8 py-4 w-full"
                 >
                   Schedule Free Consultation
                 </BookCallButton>
@@ -390,6 +391,17 @@ const ContactPage = () => {
             </div>
           </div>
         </section>
+
+        {/* Calendly Section */}
+        <CalendlySection 
+          title="Schedule Your Free Consultation"
+          description="Prefer to schedule directly? Use the calendar below to find a convenient time for your free 30-minute consultation."
+          showWidget={false}
+          showButton={true}
+          buttonText="Schedule Free Consultation"
+          buttonClass="ai-button px-8 py-4"
+          showAlternativeLink={false}
+        />
 
         {/* FAQ Section */}
         <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

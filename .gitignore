@@ -1,3 +1,39 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# Dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# Testing
+/coverage
+
+# Next.js
+/.next/
+/out/
+
+# Production
+/build
+
+# Other
+.DS_Store
+*.pem
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Local .env files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE files
+.idea
+.vscode
 
 # Temporary and sensitive files
 PyGoogleNews.pdf
@@ -5,3 +41,17 @@ nextjs-gcs-reader-key.json
 org-policy-update.yaml
 org-policy.yaml
 policy.yaml
+
+# Documentation files (generated/temporary)
+CALENDLY_INTEGRATION_IMPROVEMENTS.md
+CALENDLY_INTEGRATION_VALIDATION.md
+CALPENDLY_CONSISTENCY_GUIDE.md
+CALPENDLY_CONSISTENCY_IMPLEMENTATION.md
+CALPENDLY_ENHANCEMENT_SUMMARY.md
+CALPENDLY_INTEGRATION_COMPLETE.md
+GEMINI.md
+SECURITY.md
+Resume Allan Smeyatsky - August 2025.pdf
+
+# tsconfig build info
+tsconfig.tsbuildinfo
