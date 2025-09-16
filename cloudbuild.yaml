@@ -70,6 +70,8 @@ steps:
       - '--set-env-vars=GCS_BUCKET_NAME=website-469906-ai-news' # Pass bucket name as env var
       - '--set-env-vars=GCS_FILE_NAME=ai_news.json' # Pass file name as env var
       - '--set-env-vars=NEXT_PUBLIC_GCS_NEWS_JSON_URL=https://storage.googleapis.com/website-469906-ai-news/ai_news.json' # Public URL for client-side fetch
+      - '--set-env-vars=CONTENTFUL_SPACE_ID=cxkmb6m0pcxc' # Contentful Space ID
+      - '--set-env-vars=CONTENTFUL_ACCESS_TOKEN=wiC8MN-A3xfd1t5PBzKOhgg6Jn2TVX2CGcWe6de_j6o' # Contentful Access Token
       - '--set-timeout=600' # Increase timeout to 10 minutes
 
 # Store images in Google Container Registry and Artifact Registry
