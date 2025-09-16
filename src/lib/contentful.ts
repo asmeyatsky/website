@@ -27,8 +27,8 @@ export interface ProjectSkeleton extends EntrySkeletonType {
     slug: string
     description: string
     longDescription: any // Rich text field
-    featuredImage: Asset
-    technologies: string[]
+    featuredImage?: Asset
+    technologies?: string // Changed from string[] to string to match Contentful data
     githubUrl?: string
     liveUrl?: string
     category: 'AI/ML' | 'Web Development' | 'Mobile' | 'Data Science'
@@ -208,4 +208,20 @@ export function getImageUrl(asset: any, width?: number, height?: number, format?
   params.append('q', '80'); // Quality
 
   return params.toString() ? `${url as string}?${params.toString()}` : url as string;
+}
+
+// Helper function to parse technologies string into array
+export function parseTechnologies(technologies: string | string[] | undefined | null | any): string[] {
+  if (Array.isArray(technologies)) {
+    return technologies;
+  }
+  if (typeof technologies === 'string' && technologies.length > 0) {
+    // Split by common delimiters and clean up
+    return technologies
+      .split(/[,;|]/)
+      .map(tech => tech.trim())
+      .filter(tech => tech.length > 0)
+      .slice(0, 10); // Limit to prevent UI issues
+  }
+  return [];
 }

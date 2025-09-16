@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import Layout from '@/components/Layout'
 import Link from 'next/link'
-import { getProjects, Project, ProjectSkeleton } from '@/lib/contentful'
+import { getProjects, Project, ProjectSkeleton, parseTechnologies } from '@/lib/contentful'
 import type { Entry } from 'contentful'
 import BookCallButton from '@/components/BookCallButton'
 import CalendlySection from '@/components/CalendlySection'
@@ -40,7 +40,7 @@ const ProjectCard = ({ project }: { project: any }) => {
         
         {/* Technologies */}
         <div className="flex flex-wrap gap-2 mb-4">
-          {(Array.isArray(project.technologies) ? project.technologies : []).slice(0, 3).map((tech: string) => (
+          {parseTechnologies(project.technologies).slice(0, 3).map((tech: string) => (
             <span
               key={tech}
               className="text-xs bg-primary-accent/20 text-primary-accent px-2 py-1 rounded-full"
@@ -48,9 +48,9 @@ const ProjectCard = ({ project }: { project: any }) => {
               {tech}
             </span>
           ))}
-          {project.technologies.length > 3 && (
+          {parseTechnologies(project.technologies).length > 3 && (
             <span className="text-xs text-primary-text/60 px-2 py-1">
-              +{project.technologies.length - 3} more
+              +{parseTechnologies(project.technologies).length - 3} more
             </span>
           )}
         </div>
@@ -84,7 +84,7 @@ const ProjectsClientPage = ({ initialProjects }: { initialProjects: Entry<Projec
       const lowerSearchTerm = searchTerm.toLowerCase();
       const titleMatch = typeof project.fields.title === 'string' && (project.fields.title as string).toLowerCase().includes(lowerSearchTerm);
       const descriptionMatch = typeof project.fields.description === 'string' && (project.fields.description as string).toLowerCase().includes(lowerSearchTerm);
-      const technologiesMatch = Array.isArray(project.fields.technologies) && project.fields.technologies.some(tech => typeof tech === 'string' && tech.toLowerCase().includes(lowerSearchTerm));
+      const technologiesMatch = parseTechnologies(project.fields.technologies).some(tech => tech.toLowerCase().includes(lowerSearchTerm));
       return titleMatch || descriptionMatch || technologiesMatch;
     })
 
