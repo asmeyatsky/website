@@ -14,8 +14,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function ProjectPage({ params, searchParams }: PageProps<{ slug: string }>) {
-  const project = await getProject(params.slug);
+export default async function ProjectPage({ params, searchParams }: { params: Promise<{ slug: string }>, searchParams?: Promise<{ [key: string]: string | string[] | undefined }> }) {
+  const resolvedParams = await params as { slug: string };
+  const project = await getProject(resolvedParams.slug);
 
   if (!project) {
     notFound();
@@ -89,9 +90,9 @@ export default async function ProjectPage({ params, searchParams }: PageProps<{ 
         {/* Project Image */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
           <div className="glass-effect p-4 rounded-lg">
-            {projectFields.featuredImage && projectFields.featuredImage.fields && projectFields.featuredImage.fields.file ? (
+            {projectFields.featuredImage ? (
               <img
-                src={getImageUrl(projectFields.featuredImage as Asset, 800, 400)}
+                src={getImageUrl(projectFields.featuredImage, 800, 400)}
                 alt={(typeof projectFields.title === 'string' ? projectFields.title : 'Project Image')}
                 className="w-full h-auto rounded-lg"
               />
