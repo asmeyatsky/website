@@ -178,19 +178,34 @@ export async function getProjectsByCategory(category: string): Promise<Entry<Pro
   }
 }
 
+// Helper to safely extract string values from Contentful fields
+export function getSafeString(value: any, defaultValue: string = ''): string {
+  if (typeof value === 'string') {
+    return value;
+  }
+  // Handle Contentful returning empty objects for empty fields
+  if (typeof value === 'object' && value !== null && Object.keys(value).length === 0) {
+    return defaultValue;
+  }
+  return defaultValue;
+}
+
 // Helper function to extract image URL from Contentful asset
-export function getImageUrl(asset: Asset | undefined, width?: number, height?: number, format?: string): string {
-  if (!asset?.fields?.file?.url) return ''
-  
-  let url = asset.fields.file.url
-  if (typeof url === 'string' && url.startsWith('//')) url = `https:${url}`
-  
+export function getImageUrl(asset: any, width?: number, height?: number, format?: string): string {
+  // Robust check for asset being a valid object with expected properties
+  if (!asset || typeof asset !== 'object' || !asset.fields || !asset.fields.file || !asset.fields.file.url) {
+    return '';
+  }
+
+  let url = asset.fields.file.url;
+  if (typeof url === 'string' && url.startsWith('//')) url = `https:${url}`;
+
   // Add image optimization parameters
-  const params = new URLSearchParams()
-  if (width) params.append('w', width.toString())
-  if (height) params.append('h', height.toString())
-  if (format) params.append('fm', format)
-  params.append('q', '80') // Quality
-  
-  return params.toString() ? `${url as string}?${params.toString()}` : url as string
+  const params = new URLSearchParams();
+  if (width) params.append('w', width.toString());
+  if (height) params.append('h', height.toString());
+  if (format) params.append('fm', format);
+  params.append('q', '80'); // Quality
+
+  return params.toString() ? `${url as string}?${params.toString()}` : url as string;
 }
