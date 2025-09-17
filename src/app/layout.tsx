@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono } from 'next/font/google'
 import '@/styles/globals.css'
 import Script from 'next/script'
 import { CalendlyProvider } from '@/context/calendly-context'
+import LinkedInCompatibility from '@/components/LinkedInCompatibility'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -15,6 +16,17 @@ const jetbrainsMono = JetBrains_Mono({
   display: 'swap',
   variable: '--font-jetbrains-mono',
 })
+
+// Add LinkedIn-specific meta tags
+const linkedInMeta = `
+<meta http-equiv="refresh" content="0; url=https://smeyatsky.com" />
+<script>
+  // Fallback for LinkedIn in-app browser
+  if (window.location !== window.parent.location) {
+    window.top.location.href = 'https://smeyatsky.com';
+  }
+</script>
+`
 
 export const metadata: Metadata = {
   title: 'Allan Smeyatsky | Technology Executive & AI Solutions Architect',
@@ -57,6 +69,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <body className="min-h-screen">
+        <LinkedInCompatibility />
         <CalendlyProvider>
           {children}
         </CalendlyProvider>
