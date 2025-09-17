@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://smeyatsky.com/og-image.svg',
+        url: 'https://smeyatsky.com/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Allan Smeyatsky - Technology Executive & AI Solutions Architect',
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Allan Smeyatsky | Technology Executive & AI Solutions Architect',
     description: 'Transformational Technology Executive with 30+ years of experience in enterprise architecture, AI-native solutions, and multi-cloud strategies.',
-    images: ['https://smeyatsky.com/og-image.svg'],
+    images: ['https://smeyatsky.com/og-image.png'],
   },
 }
 
