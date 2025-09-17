@@ -69,6 +69,43 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <body className="min-h-screen">
+        <noscript>
+          <div style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            zIndex: 9999,
+            backgroundColor: '#1f2937',
+            color: 'white',
+            padding: '12px',
+            textAlign: 'center',
+            fontSize: '14px'
+          }}>
+            💼 For the best experience, open this link in your browser instead of the LinkedIn app
+          </div>
+        </noscript>
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            (function() {
+              var ua = navigator.userAgent || '';
+              var isLinkedIn = ua.includes('LinkedInApp') || ua.includes('com.linkedin.LinkedIn') ||
+                               (ua.includes('Mobile') && ua.includes('Safari') && !ua.includes('Chrome'));
+
+              if (isLinkedIn || window.location !== window.parent.location) {
+                var banner = document.createElement('div');
+                banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:9999;background:#1f2937;color:white;padding:12px;text-align:center;font-size:14px;font-family:system-ui,sans-serif';
+                banner.innerHTML = '💼 <span style="margin:0 8px">For best experience, tap menu → "Open in Browser"</span> <button onclick="window.open(location.href)" style="background:#3b82f6;color:white;border:none;padding:4px 12px;border-radius:4px;margin-left:8px">Open</button>';
+                document.body.insertBefore(banner, document.body.firstChild);
+
+                // Try to break out of iframe
+                if (window.top && window.top !== window) {
+                  try { window.top.location.href = window.location.href; } catch(e) {}
+                }
+              }
+            })();
+          `
+        }} />
         <LinkedInCompatibility />
         <CalendlyProvider>
           {children}
