@@ -1,9 +1,7 @@
 import emailjs from '@emailjs/browser';
 
-// Initialize EmailJS with public key from environment variables
-if (typeof window !== 'undefined') {
-  emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || '');
-}
+// Initialize EmailJS - we'll initialize with specific keys per function
+// No global init needed
 
 export interface EmailData {
   name: string;
@@ -34,16 +32,56 @@ export const sendContactEmail = async (data: EmailData): Promise<boolean> => {
       to_email: 'allan@smeyatsky.com',
     };
 
+    // Initialize with contact form public key
+    emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_CONTACT_PUBLIC_KEY || '');
+
     const result = await emailjs.send(
-      process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '',
-      process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || '',
+      process.env.NEXT_PUBLIC_EMAILJS_CONTACT_SERVICE_ID || '',
+      process.env.NEXT_PUBLIC_EMAILJS_CONTACT_TEMPLATE_ID || '',
       templateParams
     );
 
-    console.log('Email sent successfully:', result);
+    console.log('Contact email sent successfully:', result);
     return true;
   } catch (error) {
-    console.error('Error sending email:', error);
+    console.error('Error sending contact email:', error);
+    return false;
+  }
+};
+
+export interface NewsletterData {
+  email: string;
+  name?: string;
+}
+
+export const sendNewsletterSignup = async (data: NewsletterData): Promise<boolean> => {
+  try {
+    // Only run on client-side
+    if (typeof window === 'undefined') {
+      console.log('EmailJS can only run on client-side');
+      return false;
+    }
+
+    const templateParams = {
+      from_email: data.email,
+      from_name: data.name || '',
+      to_email: 'allan@smeyatsky.com',
+      signup_date: new Date().toLocaleDateString(),
+    };
+
+    // Initialize with newsletter public key
+    emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_NEWSLETTER_PUBLIC_KEY || '');
+
+    const result = await emailjs.send(
+      process.env.NEXT_PUBLIC_EMAILJS_NEWSLETTER_SERVICE_ID || '',
+      process.env.NEXT_PUBLIC_EMAILJS_NEWSLETTER_TEMPLATE_ID || '',
+      templateParams
+    );
+
+    console.log('Newsletter signup sent successfully:', result);
+    return true;
+  } catch (error) {
+    console.error('Error sending newsletter signup:', error);
     return false;
   }
 };
