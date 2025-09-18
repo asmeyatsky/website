@@ -31,7 +31,7 @@ export const sendContactEmail = async (data: EmailData): Promise<boolean> => {
       budget: data.budget || '',
       message: data.message,
       timeline: data.timeline || '',
-      to_email: 'your_email@example.com', // Replace with your actual email
+      to_email: 'allan@smeyatsky.com',
     };
 
     const result = await emailjs.send(
