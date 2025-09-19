@@ -81,6 +81,7 @@ const NewsClientPage = ({ initialArticles }: NewsClientPageProps) => {
 
   const handleNewsletterSignup = async (e: React.FormEvent) => {
     e.preventDefault()
+    console.log('News page newsletter signup triggered with email:', email)
 
     if (!email.trim()) {
       setMessage('Please enter your email address')

@@ -13,6 +13,7 @@ const Footer = () => {
 
   const handleNewsletterSignup = async (e: React.FormEvent) => {
     e.preventDefault()
+    console.log('Footer newsletter signup triggered with email:', email)
 
     if (!email.trim()) {
       setMessage('Please enter your email address')

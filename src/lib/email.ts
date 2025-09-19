@@ -56,6 +56,8 @@ export interface NewsletterData {
 
 export const sendNewsletterSignup = async (data: NewsletterData): Promise<boolean> => {
   try {
+    console.log('Newsletter signup called with data:', data);
+
     // Only run on client-side
     if (typeof window === 'undefined') {
       console.log('EmailJS can only run on client-side');
@@ -70,11 +72,17 @@ export const sendNewsletterSignup = async (data: NewsletterData): Promise<boolea
     };
 
     // Initialize with newsletter public key
-    emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_NEWSLETTER_PUBLIC_KEY || '');
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_NEWSLETTER_PUBLIC_KEY || '';
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_NEWSLETTER_SERVICE_ID || '';
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_NEWSLETTER_TEMPLATE_ID || '';
+
+    console.log('EmailJS config:', { publicKey, serviceId, templateId });
+
+    emailjs.init(publicKey);
 
     const result = await emailjs.send(
-      process.env.NEXT_PUBLIC_EMAILJS_NEWSLETTER_SERVICE_ID || '',
-      process.env.NEXT_PUBLIC_EMAILJS_NEWSLETTER_TEMPLATE_ID || '',
+      serviceId,
+      templateId,
       templateParams
     );
 
