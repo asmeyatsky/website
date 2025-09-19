@@ -32,11 +32,12 @@ export const sendContactEmail = async (data: EmailData): Promise<boolean> => {
       to_email: 'allan@smeyatsky.com',
     };
 
-    // Initialize with contact form public key
-    const contactPublicKey = process.env.NEXT_PUBLIC_EMAILJS_CONTACT_PUBLIC_KEY || '';
-    const contactServiceId = process.env.NEXT_PUBLIC_EMAILJS_CONTACT_SERVICE_ID || '';
-    const contactTemplateId = process.env.NEXT_PUBLIC_EMAILJS_CONTACT_TEMPLATE_ID || '';
+    // Use hardcoded contact configuration for production reliability
+    const contactPublicKey = '11IgiqqknI_1XVn7c';
+    const contactServiceId = 'service_uyqiqsr';
+    const contactTemplateId = 'template_ce8x97i';
 
+    console.log('Contact EmailJS Config:', { contactPublicKey, contactServiceId, contactTemplateId });
 
     emailjs.init(contactPublicKey);
 
@@ -73,10 +74,10 @@ export const sendNewsletterSignup = async (data: NewsletterData): Promise<boolea
       name: data.name || 'Newsletter Subscriber',
     };
 
-    // Use newsletter-specific configuration
-    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_NEWSLETTER_PUBLIC_KEY || '';
-    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_NEWSLETTER_SERVICE_ID || '';
-    const templateId = process.env.NEXT_PUBLIC_EMAILJS_NEWSLETTER_TEMPLATE_ID || '';
+    // Use hardcoded newsletter configuration for production reliability
+    const publicKey = '11IgiqqknI_1XVn7c';
+    const serviceId = 'service_uyqiqsr';
+    const templateId = 'template_pmw9ndd';
 
     console.log('Newsletter EmailJS Config:', { publicKey, serviceId, templateId });
     console.log('Newsletter Template Params:', templateParams);
