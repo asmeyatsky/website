@@ -1,9 +1,38 @@
-import React from 'react'
+'use client'
+
+import React, { useState } from 'react'
 import Link from 'next/link'
 import BookCallButton from '@/components/BookCallButton'
+import { sendNewsletterSignup } from '@/lib/email'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
+  const [email, setEmail] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitMessage, setSubmitMessage] = useState('')
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!email) return
+
+    setIsSubmitting(true)
+    setSubmitMessage('')
+
+    try {
+      const success = await sendNewsletterSignup({ email })
+      if (success) {
+        setSubmitMessage('Thanks for subscribing!')
+        setEmail('')
+      } else {
+        setSubmitMessage('Failed to subscribe. Please try again.')
+      }
+    } catch (error) {
+      console.error('Newsletter signup error:', error)
+      setSubmitMessage('Failed to subscribe. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
   const socialLinks = [
     { name: 'GitHub', href: 'https://github.com/asmeyatsky', icon: '🔗' },
@@ -99,16 +128,28 @@ const Footer = () => {
             <p className="text-primary-text/60 text-sm mb-4">
               Get insights on AI innovation, enterprise architecture, and technology leadership.
             </p>
-            <div className="flex gap-2">
+            <form onSubmit={handleNewsletterSubmit} className="flex gap-2">
               <input
                 type="email"
                 placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="flex-1 bg-primary-dark/50 border border-accent-blue/30 rounded-xl px-4 py-2 text-primary-text placeholder-primary-text/40 focus:outline-none focus:border-accent-blue transition-colors duration-200"
+                disabled={isSubmitting}
               />
-              <button className="bg-accent-blue text-white px-6 py-2 rounded-xl font-semibold hover:bg-blue-600 transition-colors duration-200 whitespace-nowrap">
-                Subscribe
+              <button
+                type="submit"
+                disabled={isSubmitting || !email}
+                className="bg-accent-blue text-white px-6 py-2 rounded-xl font-semibold hover:bg-blue-600 transition-colors duration-200 whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isSubmitting ? 'Subscribing...' : 'Subscribe'}
               </button>
-            </div>
+            </form>
+            {submitMessage && (
+              <p className={`text-sm mt-2 ${submitMessage.includes('Thanks') ? 'text-green-400' : 'text-red-400'}`}>
+                {submitMessage}
+              </p>
+            )}
           </div>
         </div>
 

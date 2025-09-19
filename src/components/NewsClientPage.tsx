@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo, useEffect } from 'react'
 import Link from 'next/link'
+import { sendNewsletterSignup } from '@/lib/email'
 
 // Define the structure of an article
 interface NewsArticle {
@@ -72,6 +73,32 @@ const NewsClientPage = ({ initialArticles }: NewsClientPageProps) => {
   const [searchTerm, setSearchTerm] = useState('')
   const [articles, setArticles] = useState<NewsArticle[]>(initialArticles)
   const [loading, setLoading] = useState(initialArticles.length === 0)
+  const [email, setEmail] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitMessage, setSubmitMessage] = useState('')
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!email) return
+
+    setIsSubmitting(true)
+    setSubmitMessage('')
+
+    try {
+      const success = await sendNewsletterSignup({ email })
+      if (success) {
+        setSubmitMessage('Thanks for subscribing!')
+        setEmail('')
+      } else {
+        setSubmitMessage('Failed to subscribe. Please try again.')
+      }
+    } catch (error) {
+      console.error('Newsletter signup error:', error)
+      setSubmitMessage('Failed to subscribe. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
   useEffect(() => {
     if (initialArticles.length === 0) {
@@ -182,16 +209,28 @@ const NewsClientPage = ({ initialArticles }: NewsClientPageProps) => {
             <p className="text-primary-text/60 text-sm mb-4">
               Get the latest AI insights delivered to your inbox weekly.
             </p>
-            <div className="flex gap-2 max-w-md mx-auto">
+            <form onSubmit={handleNewsletterSubmit} className="flex gap-2 max-w-md mx-auto">
               <input
                 type="email"
                 placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="flex-1 bg-primary-dark/50 border border-primary-accent/30 rounded-lg px-4 py-3 text-primary-text placeholder-primary-text/40 focus:outline-none focus:border-primary-accent transition-colors duration-300"
+                disabled={isSubmitting}
               />
-              <button className="bg-primary-accent text-primary-dark px-6 py-2 rounded-lg font-semibold hover:bg-primary-accent/90 transition-colors duration-300 whitespace-nowrap">
-                Subscribe
+              <button
+                type="submit"
+                disabled={isSubmitting || !email}
+                className="bg-primary-accent text-primary-dark px-6 py-2 rounded-lg font-semibold hover:bg-primary-accent/90 transition-colors duration-300 whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isSubmitting ? 'Subscribing...' : 'Subscribe'}
               </button>
-            </div>
+            </form>
+            {submitMessage && (
+              <p className={`text-sm mt-2 ${submitMessage.includes('Thanks') ? 'text-green-400' : 'text-red-400'}`}>
+                {submitMessage}
+              </p>
+            )}
           </div>
         </div>
       </section>
