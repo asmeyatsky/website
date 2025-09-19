@@ -1,9 +1,47 @@
-import React from 'react'
+'use client'
+
+import React, { useState } from 'react'
 import Link from 'next/link'
 import BookCallButton from '@/components/BookCallButton'
+import { sendNewsletterSignup } from '@/lib/email'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
+  const [email, setEmail] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [message, setMessage] = useState('')
+
+  const handleNewsletterSignup = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if (!email.trim()) {
+      setMessage('Please enter your email address')
+      return
+    }
+
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      setMessage('Please enter a valid email address')
+      return
+    }
+
+    setIsSubmitting(true)
+    setMessage('')
+
+    try {
+      const success = await sendNewsletterSignup({ email })
+
+      if (success) {
+        setMessage('Successfully subscribed! Thank you for joining.')
+        setEmail('')
+      } else {
+        setMessage('Sorry, there was an error. Please try again.')
+      }
+    } catch (error) {
+      setMessage('Sorry, there was an error. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
   const socialLinks = [
     { name: 'GitHub', href: 'https://github.com/asmeyatsky', icon: '🔗' },
@@ -93,22 +131,36 @@ const Footer = () => {
         </div>
 
         {/* Newsletter Signup */}
-        <div className="professional-card p-6 rounded-xl mb-8">
+        <div className="professional-card p-6 rounded-xl mb-8" id="newsletter">
           <div className="max-w-md mx-auto text-center">
             <h3 className="font-semibold text-accent-blue mb-2">Stay Connected</h3>
             <p className="text-primary-text/60 text-sm mb-4">
               Get insights on AI innovation, enterprise architecture, and technology leadership.
             </p>
-            <div className="flex gap-2">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 bg-primary-dark/50 border border-accent-blue/30 rounded-xl px-4 py-2 text-primary-text placeholder-primary-text/40 focus:outline-none focus:border-accent-blue transition-colors duration-200"
-              />
-              <button className="bg-accent-blue text-white px-6 py-2 rounded-xl font-semibold hover:bg-blue-600 transition-colors duration-200 whitespace-nowrap">
-                Subscribe
-              </button>
-            </div>
+            <form onSubmit={handleNewsletterSignup} className="space-y-3">
+              <div className="flex gap-2">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email"
+                  disabled={isSubmitting}
+                  className="flex-1 bg-primary-dark/50 border border-accent-blue/30 rounded-xl px-4 py-2 text-primary-text placeholder-primary-text/40 focus:outline-none focus:border-accent-blue transition-colors duration-200 disabled:opacity-50"
+                />
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="bg-accent-blue text-white px-6 py-2 rounded-xl font-semibold hover:bg-blue-600 transition-colors duration-200 whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? 'Subscribing...' : 'Subscribe'}
+                </button>
+              </div>
+              {message && (
+                <p className={`text-sm ${message.includes('Successfully') ? 'text-green-400' : 'text-red-400'}`}>
+                  {message}
+                </p>
+              )}
+            </form>
           </div>
         </div>
 
