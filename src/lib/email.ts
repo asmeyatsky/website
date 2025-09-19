@@ -33,11 +33,16 @@ export const sendContactEmail = async (data: EmailData): Promise<boolean> => {
     };
 
     // Initialize with contact form public key
-    emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_CONTACT_PUBLIC_KEY || '');
+    const contactPublicKey = process.env.NEXT_PUBLIC_EMAILJS_CONTACT_PUBLIC_KEY || '';
+    const contactServiceId = process.env.NEXT_PUBLIC_EMAILJS_CONTACT_SERVICE_ID || '';
+    const contactTemplateId = process.env.NEXT_PUBLIC_EMAILJS_CONTACT_TEMPLATE_ID || '';
+
+
+    emailjs.init(contactPublicKey);
 
     const result = await emailjs.send(
-      process.env.NEXT_PUBLIC_EMAILJS_CONTACT_SERVICE_ID || '',
-      process.env.NEXT_PUBLIC_EMAILJS_CONTACT_TEMPLATE_ID || '',
+      contactServiceId,
+      contactTemplateId,
       templateParams
     );
 
@@ -62,19 +67,25 @@ export const sendNewsletterSignup = async (data: NewsletterData): Promise<boolea
       return false;
     }
 
+    // Simple parameters for welcome template
     const templateParams = {
-      from_email: data.email,
-      from_name: data.name || '',
-      to_email: 'allan@smeyatsky.com',
-      signup_date: new Date().toLocaleDateString(),
+      email: data.email,
+      name: data.name || 'Newsletter Subscriber',
     };
 
-    // Initialize with newsletter public key
-    emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_NEWSLETTER_PUBLIC_KEY || '');
+    // Use newsletter-specific configuration
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_NEWSLETTER_PUBLIC_KEY || '';
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_NEWSLETTER_SERVICE_ID || '';
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_NEWSLETTER_TEMPLATE_ID || '';
+
+    console.log('Newsletter EmailJS Config:', { publicKey, serviceId, templateId });
+    console.log('Newsletter Template Params:', templateParams);
+
+    emailjs.init(publicKey);
 
     const result = await emailjs.send(
-      process.env.NEXT_PUBLIC_EMAILJS_NEWSLETTER_SERVICE_ID || '',
-      process.env.NEXT_PUBLIC_EMAILJS_NEWSLETTER_TEMPLATE_ID || '',
+      serviceId,
+      templateId,
       templateParams
     );
 
@@ -82,6 +93,12 @@ export const sendNewsletterSignup = async (data: NewsletterData): Promise<boolea
     return true;
   } catch (error) {
     console.error('Error sending newsletter signup:', error);
+    if (error && typeof error === 'object' && 'text' in error) {
+      console.error('EmailJS Error Details:', error.text);
+    }
+    if (error && typeof error === 'object' && 'status' in error) {
+      console.error('EmailJS Status Code:', error.status);
+    }
     return false;
   }
 };
