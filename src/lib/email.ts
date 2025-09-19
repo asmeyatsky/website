@@ -33,11 +33,16 @@ export const sendContactEmail = async (data: EmailData): Promise<boolean> => {
     };
 
     // Initialize with contact form public key
-    emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_CONTACT_PUBLIC_KEY || '');
+    const contactPublicKey = process.env.NEXT_PUBLIC_EMAILJS_CONTACT_PUBLIC_KEY || '';
+    const contactServiceId = process.env.NEXT_PUBLIC_EMAILJS_CONTACT_SERVICE_ID || '';
+    const contactTemplateId = process.env.NEXT_PUBLIC_EMAILJS_CONTACT_TEMPLATE_ID || '';
+
+
+    emailjs.init(contactPublicKey);
 
     const result = await emailjs.send(
-      process.env.NEXT_PUBLIC_EMAILJS_CONTACT_SERVICE_ID || '',
-      process.env.NEXT_PUBLIC_EMAILJS_CONTACT_TEMPLATE_ID || '',
+      contactServiceId,
+      contactTemplateId,
       templateParams
     );
 
@@ -56,8 +61,6 @@ export interface NewsletterData {
 
 export const sendNewsletterSignup = async (data: NewsletterData): Promise<boolean> => {
   try {
-    console.log('Newsletter signup called with data:', data);
-
     // Only run on client-side
     if (typeof window === 'undefined') {
       console.log('EmailJS can only run on client-side');
@@ -65,18 +68,16 @@ export const sendNewsletterSignup = async (data: NewsletterData): Promise<boolea
     }
 
     const templateParams = {
-      from_email: data.email,
-      from_name: data.name || '',
+      user_email: data.email,
+      user_name: data.name || 'Newsletter Subscriber',
       to_email: 'allan@smeyatsky.com',
       signup_date: new Date().toLocaleDateString(),
     };
 
-    // Initialize with newsletter public key
+    // Use newsletter-specific configuration
     const publicKey = process.env.NEXT_PUBLIC_EMAILJS_NEWSLETTER_PUBLIC_KEY || '';
     const serviceId = process.env.NEXT_PUBLIC_EMAILJS_NEWSLETTER_SERVICE_ID || '';
     const templateId = process.env.NEXT_PUBLIC_EMAILJS_NEWSLETTER_TEMPLATE_ID || '';
-
-    console.log('EmailJS config:', { publicKey, serviceId, templateId });
 
     emailjs.init(publicKey);
 
