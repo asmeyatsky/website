@@ -4,6 +4,7 @@ import '@/styles/globals.css'
 import Script from 'next/script'
 import { CalendlyProvider } from '@/context/calendly-context'
 import LinkedInCompatibility from '@/components/LinkedInCompatibility'
+import AIChat from '@/components/ai-chat'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -114,6 +115,7 @@ export default function RootLayout({
         <LinkedInCompatibility />
         <CalendlyProvider>
           {children}
+          <AIChat />
         </CalendlyProvider>
         <Script src="https://assets.calendly.com/assets/external/widget.js" async />
 
