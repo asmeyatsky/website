@@ -67,17 +67,19 @@ export const sendNewsletterSignup = async (data: NewsletterData): Promise<boolea
       return false;
     }
 
+    // Simple parameters for welcome template
     const templateParams = {
-      user_email: data.email,
-      user_name: data.name || 'Newsletter Subscriber',
-      to_email: 'allan@smeyatsky.com',
-      signup_date: new Date().toLocaleDateString(),
+      email: data.email,
+      name: data.name || 'Newsletter Subscriber',
     };
 
     // Use newsletter-specific configuration
     const publicKey = process.env.NEXT_PUBLIC_EMAILJS_NEWSLETTER_PUBLIC_KEY || '';
     const serviceId = process.env.NEXT_PUBLIC_EMAILJS_NEWSLETTER_SERVICE_ID || '';
     const templateId = process.env.NEXT_PUBLIC_EMAILJS_NEWSLETTER_TEMPLATE_ID || '';
+
+    console.log('Newsletter EmailJS Config:', { publicKey, serviceId, templateId });
+    console.log('Newsletter Template Params:', templateParams);
 
     emailjs.init(publicKey);
 
@@ -91,6 +93,12 @@ export const sendNewsletterSignup = async (data: NewsletterData): Promise<boolea
     return true;
   } catch (error) {
     console.error('Error sending newsletter signup:', error);
+    if (error && typeof error === 'object' && 'text' in error) {
+      console.error('EmailJS Error Details:', error.text);
+    }
+    if (error && typeof error === 'object' && 'status' in error) {
+      console.error('EmailJS Status Code:', error.status);
+    }
     return false;
   }
 };
