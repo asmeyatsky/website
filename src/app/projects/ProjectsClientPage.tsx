@@ -5,8 +5,6 @@ import Layout from '@/components/Layout'
 import Link from 'next/link'
 import { getProjects, Project, ProjectSkeleton, parseTechnologies } from '@/lib/contentful'
 import type { Entry } from 'contentful'
-import BookCallButton from '@/components/BookCallButton'
-import CalendlySection from '@/components/CalendlySection'
 
 const ProjectCard = ({ project }: { project: any }) => {
   return (
@@ -174,15 +172,16 @@ const ProjectsClientPage = ({ initialProjects }: { initialProjects: Entry<Projec
                   <h3 className="text-xl font-bold text-primary-text/80 mb-2">No projects found</h3>
                   <p className="text-primary-text/60 mb-6">Try adjusting your search or filter criteria.</p>
                   
-                  {/* CTA for consultation */}
+                  {/* CTA for portfolio */}
                   <div className="max-w-md mx-auto">
-                    <BookCallButton 
+                    <Link
+                      href="/about"
                       className="ai-button px-8 py-4"
                     >
-                      Schedule Free Consultation
-                    </BookCallButton>
+                      Learn About My Experience
+                    </Link>
                     <p className="text-primary-text/60 text-sm mt-4">
-                      Want to discuss a custom AI project? Let's talk!
+                      Discover my technical journey and capabilities.
                     </p>
                   </div>
                 </div>
@@ -190,16 +189,29 @@ const ProjectsClientPage = ({ initialProjects }: { initialProjects: Entry<Projec
             </section>
           </>
 
-        {/* Calendly Section */}
-        <CalendlySection 
-          title="Discuss Your Custom AI Project"
-          description="Have a unique project in mind? Schedule a free 30-minute consultation to discuss your specific AI needs and explore how we can achieve your goals together."
-          showWidget={false}
-          showButton={true}
-          buttonText="Schedule Free Consultation"
-          buttonClass="ai-button px-8 py-4"
-          showAlternativeLink={false}
-        />
+        {/* Additional Resources Section */}
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="text-center">
+            <h2 className="text-2xl font-sans font-bold text-primary-accent mb-6">Explore More</h2>
+            <p className="text-xl text-primary-text/80 max-w-3xl mx-auto mb-8">
+              Learn more about my technical expertise and professional journey.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/about"
+                className="ai-button px-8 py-4"
+              >
+                About My Journey
+              </Link>
+              <Link
+                href="/consulting"
+                className="glass-effect px-8 py-4 text-lg font-semibold text-accent-blue border border-accent-blue/30 hover:border-accent-blue transition-all duration-200 rounded-xl inline-flex items-center justify-center"
+              >
+                Technical Capabilities
+              </Link>
+            </div>
+          </div>
+        </section>
       </div>
     </Layout>
   )

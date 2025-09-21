@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
-import BookCallButton from '@/components/BookCallButton'
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -57,11 +56,12 @@ const Header = () => {
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <BookCallButton 
+            <Link
+              href="/projects"
               className="professional-button px-6 py-3 text-sm"
             >
-              Book a Call
-            </BookCallButton>
+              Portfolio
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -97,11 +97,12 @@ const Header = () => {
                 </Link>
               ))}
               <div className="pt-4">
-                <BookCallButton 
+                <Link
+                  href="/projects"
                   className="professional-button w-full text-center py-3"
                 >
-                  Book a Call
-                </BookCallButton>
+                  Portfolio
+                </Link>
               </div>
             </div>
           </div>

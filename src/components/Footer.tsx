@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react'
 import Link from 'next/link'
-import BookCallButton from '@/components/BookCallButton'
 import { sendNewsletterSignup } from '@/lib/email'
 
 const Footer = () => {
@@ -153,18 +152,19 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Booking CTA */}
+        {/* Portfolio CTA */}
         <div className="professional-card p-6 rounded-xl mb-8">
           <div className="max-w-2xl mx-auto text-center">
-            <h3 className="font-semibold text-accent-blue mb-2">Ready to Transform Your Business?</h3>
+            <h3 className="font-semibold text-accent-blue mb-2">Explore My Work</h3>
             <p className="text-primary-text/60 text-sm mb-4">
-              Book a free 30-minute consultation to discuss your AI and technology challenges.
+              Discover my technical projects and capabilities in AI, enterprise architecture, and cloud solutions.
             </p>
-            <BookCallButton 
+            <Link
+              href="/projects"
               className="ai-button px-8 py-3"
             >
-              Schedule Free Consultation
-            </BookCallButton>
+              View Portfolio
+            </Link>
           </div>
         </div>
 
