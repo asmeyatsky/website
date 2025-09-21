@@ -1,83 +1,88 @@
 import React from 'react'
 import Layout from '@/components/Layout'
 import Link from 'next/link'
-import CalendlySection from '@/components/CalendlySection'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Technology Consulting Services | Allan Smeyatsky',
-  description: 'Expert technology consulting services specializing in AI strategy, enterprise architecture, cloud migration, and digital transformation. Book a free 30-minute consultation to discuss your business challenges.',
-  keywords: ['technology consulting', 'AI strategy', 'enterprise architecture', 'cloud migration', 'digital transformation', 'business consulting', 'technology solutions'],
+  title: 'Technology Capabilities | Allan Smeyatsky',
+  description: 'Technology expertise in AI implementation, enterprise architecture, cloud migration, and digital transformation gained through three decades of experience.',
+  keywords: ['technology expertise', 'AI experience', 'enterprise architecture', 'cloud migration', 'digital transformation', 'technology capabilities'],
   openGraph: {
-    title: 'Expert Technology Consulting Services',
-    description: 'Transform your business with intelligent AI solutions and enterprise architecture. Schedule a free consultation today.',
+    title: 'Technology Capabilities and Experience',
+    description: 'Explore technology expertise in AI solutions and enterprise architecture gained through decades of experience.',
     type: 'website',
     locale: 'en_US',
     url: 'https://asmeyatsky.com/consulting',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Expert Technology Consulting Services | Allan Smeyatsky',
-    description: 'Transform your business with intelligent AI solutions and enterprise architecture. Schedule a free consultation today.',
+    title: 'Technology Capabilities | Allan Smeyatsky',
+    description: 'Explore technology expertise in AI solutions and enterprise architecture gained through decades of experience.',
   },
 }
 
 const ConsultingPage = () => {
-  // Service offerings data
-  const services = [
+  // Capability areas data
+  const capabilities = [
     {
       title: "AI Strategy & Implementation",
-      description: "Transform your business with cutting-edge AI solutions tailored to your specific needs and goals.",
+      description: "Deep experience with cutting-edge AI solutions including Anthropic Claude, Google Gemini, and OpenAI platforms.",
       icon: "🤖"
     },
     {
       title: "Enterprise Architecture",
-      description: "Design scalable, secure, and efficient technology infrastructures that support your business growth.",
+      description: "30+ years designing scalable, secure, and efficient technology infrastructures for global enterprises.",
       icon: "🏗️"
     },
     {
       title: "Cloud Migration & Optimization",
-      description: "Seamlessly migrate to the cloud and optimize your infrastructure for performance and cost-efficiency.",
+      description: "Multi-cloud expertise across GCP, AWS, and Azure with focus on performance and cost optimization.",
       icon: "☁️"
     },
     {
       title: "Digital Transformation",
-      description: "Guide your organization through comprehensive digital transformation initiatives with minimal disruption.",
+      description: "Proven experience leading comprehensive digital transformation initiatives across multiple industries.",
       icon: "🚀"
     }
   ]
 
-  // Benefits data
-  const benefits = [
+  // Experience highlights data
+  const highlights = [
     {
       title: "30+ Years Experience",
       description: "Proven track record in enterprise technology and AI solutions"
     },
     {
-      title: "Custom Solutions",
-      description: "Tailored approaches that align with your unique business objectives"
+      title: "Global Experience",
+      description: "Multi-continental experience across diverse industries and enterprise scales"
     },
     {
-      title: "Future-Proof Strategies",
-      description: "Implementations designed to scale with emerging technologies"
+      title: "Modern Technology Stack",
+      description: "Active development with cutting-edge technologies and AI platforms"
     },
     {
-      title: "ROI Focused",
-      description: "Solutions that deliver measurable business value and return on investment"
+      title: "Architecture Excellence",
+      description: "Deep expertise in solution architecture and technical leadership"
     }
   ]
 
-  // Testimonials data
-  const testimonials = [
+  // Key achievements data
+  const achievements = [
     {
-      quote: "Allan's expertise in AI implementation transformed our business operations, resulting in 40% efficiency gains.",
-      author: "Sarah Johnson",
-      role: "CTO, TechCorp"
+      title: "AI-Native Architecture",
+      description: "2+ years hands-on experience with Anthropic Claude, Google Gemini, and OpenAI platforms"
     },
     {
-      quote: "The strategic guidance provided during our cloud migration saved us months of development time.",
-      author: "Michael Chen",
-      role: "VP Engineering, InnovateCo"
+      title: "Multi-Cloud Expertise",
+      description: "8+ years across GCP, AWS, and Azure with specialized focus on containerization and DevSecOps"
+    },
+    {
+      title: "Enterprise Scale",
+      description: "Led global infrastructure modernization practices across 5 continents"
+    },
+    {
+      title: "Technical Leadership",
+      description: "Built and scaled engineering organizations from startup to enterprise level"
     }
   ]
 
@@ -192,24 +197,23 @@ const ConsultingPage = () => {
         <section className="content-container py-16 md:py-24">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="professional-title mb-6">
-              <span className="elegant-gradient">Expert Technology Consulting</span>
+              <span className="elegant-gradient">Technology Capabilities</span>
             </h1>
             <p className="professional-subtitle mb-10">
-              Transform your business with intelligent AI solutions and enterprise architecture. 
-              Schedule a free 30-minute consultation to discuss your challenges and explore how we can achieve your goals together.
+              Three decades of technology leadership and innovation in AI, enterprise architecture, and cloud-native solutions across global enterprises.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link 
-                href="#schedule"
+              <Link
+                href="/about"
                 className="professional-button px-8 py-4"
               >
-                Book Your Free Consultation
+                Learn More About My Experience
               </Link>
-              <Link 
-                href="/projects" 
+              <Link
+                href="/projects"
                 className="glass-effect px-8 py-4 text-lg font-semibold text-accent-blue border border-accent-blue/30 hover:border-accent-blue transition-all duration-200 rounded-xl inline-flex items-center justify-center"
               >
-                View Case Studies
+                View Technical Projects
               </Link>
             </div>
           </div>
@@ -219,19 +223,19 @@ const ConsultingPage = () => {
         <section className="content-container section-padding">
           <div className="text-center mb-16">
             <h2 className="section-header">
-              <span className="elegant-gradient">Specialized Consulting Services</span>
+              <span className="elegant-gradient">Core Technology Expertise</span>
             </h2>
             <p className="professional-subtitle max-w-3xl mx-auto">
-              Comprehensive technology solutions designed to accelerate your business growth and innovation
+              Deep expertise in modern technology areas gained through hands-on leadership and implementation
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {services.map((service, index) => (
+            {capabilities.map((capability, index) => (
               <div key={index} className="professional-card p-8 text-center elegant-hover">
-                <div className="text-4xl mb-4">{service.icon}</div>
-                <h3 className="text-xl font-bold text-primary-text mb-3">{service.title}</h3>
-                <p className="text-primary-text/80">{service.description}</p>
+                <div className="text-4xl mb-4">{capability.icon}</div>
+                <h3 className="text-xl font-bold text-primary-text mb-3">{capability.title}</h3>
+                <p className="text-primary-text/80">{capability.description}</p>
               </div>
             ))}
           </div>
@@ -241,97 +245,106 @@ const ConsultingPage = () => {
         <section className="content-container section-padding professional-section">
           <div className="text-center mb-16">
             <h2 className="section-header">
-              <span className="elegant-gradient">Why Choose My Consulting Services</span>
+              <span className="elegant-gradient">Experience Highlights</span>
             </h2>
             <p className="professional-subtitle max-w-3xl mx-auto">
-              Decades of experience delivering transformative technology solutions for enterprises worldwide
+              Key achievements and areas of expertise developed through global technology leadership
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {benefits.map((benefit, index) => (
+            {highlights.map((highlight, index) => (
               <div key={index} className="text-center">
                 <div className="professional-icon mx-auto">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold text-primary-text mb-3">{benefit.title}</h3>
-                <p className="text-primary-text/80">{benefit.description}</p>
+                <h3 className="text-xl font-bold text-primary-text mb-3">{highlight.title}</h3>
+                <p className="text-primary-text/80">{highlight.description}</p>
               </div>
             ))}
           </div>
         </section>
 
-        {/* Testimonials Section */}
+        {/* Key Achievements Section */}
         <section className="content-container section-padding">
           <div className="text-center mb-16">
             <h2 className="section-header">
-              <span className="elegant-gradient">Client Success Stories</span>
+              <span className="elegant-gradient">Key Achievements</span>
             </h2>
             <p className="professional-subtitle max-w-3xl mx-auto">
-              Hear from organizations that have transformed their business through our consulting services
+              Notable accomplishments and technical milestones across enterprise technology leadership
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {testimonials.map((testimonial, index) => (
+            {achievements.map((achievement, index) => (
               <div key={index} className="professional-card p-8">
-                <div className="text-accent-blue text-5xl mb-4">"</div>
-                <p className="text-primary-text/90 text-lg mb-6 italic">{testimonial.quote}</p>
-                <div>
-                  <p className="font-bold text-primary-text">{testimonial.author}</p>
-                  <p className="text-primary-text/70">{testimonial.role}</p>
-                </div>
+                <h3 className="text-xl font-bold text-accent-blue mb-4">{achievement.title}</h3>
+                <p className="text-primary-text/90 text-lg">{achievement.description}</p>
               </div>
             ))}
           </div>
         </section>
 
-        {/* Calendly Section */}
-        <section id="schedule" className="content-container section-padding">
+        {/* Technical Stack Section */}
+        <section className="content-container section-padding">
           <div className="text-center mb-12">
             <h2 className="section-header">
-              <span className="elegant-gradient">Schedule Your Free Consultation</span>
+              <span className="elegant-gradient">Current Technical Focus</span>
             </h2>
             <p className="professional-subtitle max-w-3xl mx-auto">
-              Book a 30-minute session to discuss your technology challenges and explore how we can work together to achieve your business objectives.
+              Active involvement in cutting-edge technologies and hands-on development across multiple platforms.
             </p>
           </div>
-          
-          <CalendlySection 
-            title="Find a Time That Works For You"
-            description="Select a convenient 30-minute slot below. My availability is Monday to Friday, 09:00 to 17:00, in your local timezone."
-            widgetUrl="https://calendly.com/allan-smeyatsky/30min?hide_event_type_details=1&hide_gdpr_banner=1"
-            widgetHeight="700px"
-            buttonText="Schedule Your Free Consultation"
-            buttonClass="professional-button px-8 py-4"
-          />
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+            <div className="professional-card p-6 rounded-xl text-center">
+              <div className="text-4xl mb-4">📱</div>
+              <h3 className="font-semibold text-primary-text mb-2">iOS Development</h3>
+              <p className="text-neutral-medium text-sm">Swift 5.9, SwiftUI, Xcode 15</p>
+            </div>
+            <div className="professional-card p-6 rounded-xl text-center">
+              <div className="text-4xl mb-4">💻</div>
+              <h3 className="font-semibold text-primary-text mb-2">Full-Stack JavaScript</h3>
+              <p className="text-neutral-medium text-sm">Node.js, React, TypeScript</p>
+            </div>
+            <div className="professional-card p-6 rounded-xl text-center">
+              <div className="text-4xl mb-4">🐍</div>
+              <h3 className="font-semibold text-primary-text mb-2">Python Development</h3>
+              <p className="text-neutral-medium text-sm">FastAPI, CLI Tools, Automation</p>
+            </div>
+            <div className="professional-card p-6 rounded-xl text-center">
+              <div className="text-4xl mb-4">🤖</div>
+              <h3 className="font-semibold text-primary-text mb-2">AI Development</h3>
+              <p className="text-neutral-medium text-sm">Claude, Gemini, OpenAI APIs</p>
+            </div>
+          </div>
         </section>
 
-        {/* Final CTA Section */}
+        {/* Connect Section */}
         <section className="content-container section-padding">
           <div className="glass-effect p-8 md:p-12 rounded-xl text-center">
             <h2 className="text-3xl font-bold gradient-text mb-4">
-              Ready to Transform Your Business?
+              Explore More
             </h2>
             <p className="text-primary-text/80 mb-8 max-w-2xl mx-auto">
-              Take the first step towards digital transformation with a free consultation. 
-              Let's discuss how we can solve your technology challenges together.
+              Learn more about my technical journey, view my latest projects, or connect with me on professional networks.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link 
-                href="#schedule"
+              <Link
+                href="/about"
                 className="professional-button px-8 py-4"
               >
-                Book Your Free Consultation
+                View Full Experience
               </Link>
               <Link
-                href="/contact"
+                href="/projects"
                 className="glass-effect px-8 py-4 text-lg font-semibold text-accent-blue border border-accent-blue/30 hover:border-accent-blue transition-all duration-200 rounded-xl inline-flex items-center justify-center"
               >
-                Contact Me Directly
+                Technical Portfolio
               </Link>
             </div>
           </div>

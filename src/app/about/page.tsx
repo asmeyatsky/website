@@ -4,8 +4,6 @@ import Image from 'next/image'
 import React from 'react'
 import Layout from '@/components/Layout'
 import Link from 'next/link'
-import BookCallButton from '@/components/BookCallButton'
-import CalendlySection from '@/components/CalendlySection'
 
 const AboutPage = () => {
   const skills = [
@@ -19,9 +17,9 @@ const AboutPage = () => {
   const experience = [
     {
       title: "Global Infrastructure Modernization Leader (Senior Director)",
-      company: "Searce Inc",
+      company: "Current Role",
       period: "2021 - Present",
-      description: "Established and scaled global Infrastructure Modernization Practice from inception to 25+ direct reports and 800+ professionals across five continents. Generated practice revenue exceeding $50M through comprehensive cloud modernization strategies and AI-native architecture implementations.",
+      description: "Established and scaled global Infrastructure Modernization Practice from inception to 25+ direct reports and 800+ professionals across five continents. Leading comprehensive cloud modernization strategies and AI-native architecture implementations.",
       achievements: [
         "Architect and implement Google Cloud solutions utilizing GKE, Cloud Functions, and Google Distributed Cloud for Enterprise and Public Sector clients.",
         "Spearhead DevSecOps transformations integrating advanced security scanning, policy enforcement, and automated compliance frameworks.",
@@ -33,7 +31,7 @@ const AboutPage = () => {
     },
     {
       title: "Global Head of Application Modernization (Assistant Director)",
-      company: "HCL Technologies",
+      company: "Global Technology Consultancy",
       period: "March 2020 – August 2021",
       description: "Directed global Application Modernization Tower with full P&L responsibility, overseeing integrated teams across presales, solution architecture, and delivery. Designed enterprise workload transformations through intelligent cloud migration strategies and AI/ML integration. Developed comprehensive hybrid and multi-cloud strategies leveraging Apigee and Google Anthos Ecosystem for enhanced performance optimization.",
       achievements: [
@@ -44,7 +42,7 @@ const AboutPage = () => {
     },
     {
       title: "Principal Solution Architect – Innovations & Solutions, Risk Advisory",
-      company: "Deloitte UK",
+      company: "Big Four Consulting Firm",
       period: "September 2017 – February 2020",
       description: "Designed cloud-native architectures for sophisticated risk analytics solutions across AWS and Azure platforms, ensuring enterprise-scale scalability and data integrity. Developed advanced Machine Learning algorithms and OCR automation systems for intelligent document processing. Created resilient Disaster Recovery frameworks with automated failover mechanisms and comprehensive business continuity planning.",
       achievements: [
@@ -150,8 +148,8 @@ const AboutPage = () => {
                   <div className="text-sm text-primary-text/80">Years Experience</div>
                 </div>
                 <div className="glass-effect p-4 rounded-xl text-center hover-glow">
-                  <div className="text-3xl font-bold gradient-text">$$50M+</div>
-                  <div className="text-sm text-primary-text/80">Revenue Generated</div>
+                  <div className="text-3xl font-bold gradient-text">Global</div>
+                  <div className="text-sm text-primary-text/80">Enterprise Impact</div>
                 </div>
               </div>
             </div>
@@ -256,35 +254,45 @@ const AboutPage = () => {
               Let's Build the Future
             </h2>
             <p className="text-primary-text/80 mb-8 max-w-2xl mx-auto">
-              Ready to bring agentic AI innovation to your organization? I'd love to discuss your challenges and explore how we can achieve your goals together with autonomous AI systems.
+              Explore my technical portfolio and learn about my journey in AI innovation, enterprise architecture, and cloud transformation.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <BookCallButton 
+              <Link
+                href="/projects"
                 className="ai-button px-8 py-4"
               >
-                Schedule Free Consultation
-              </BookCallButton>
+                View Technical Portfolio
+              </Link>
               <Link
-                href="/contact"
+                href="/consulting"
                 className="glass-effect px-8 py-4 text-lg font-semibold text-accent-cyan border border-accent-cyan/30 hover:border-accent-cyan transition-all duration-300 rounded-xl"
               >
-                Get In Touch
+                Explore Capabilities
               </Link>
             </div>
           </div>
         </section>
 
-        {/* Calendly Section */}
-        <CalendlySection 
-          title="Schedule Your Free Consultation"
-          description="Prefer to schedule directly? Use the calendar below to select a convenient 30-minute slot. My availability is Monday to Friday, 09:00 to 17:00, in your local timezone."
-          showWidget={true}
-          widgetUrl="https://calendly.com/allan-smeyatsky/30min?hide_event_type_details=1&hide_gdpr_banner=1"
-          widgetHeight="700px"
-          showButton={false}
-          showAlternativeLink={true}
-        />
+        {/* Professional Links Section */}
+        <section className="content-container section-padding">
+          <div className="text-center">
+            <h2 className="section-header">Professional Networks</h2>
+            <p className="professional-subtitle mb-8">
+              Connect with me on professional platforms to stay updated on my latest technical work and insights.
+            </p>
+            <div className="flex justify-center space-x-6">
+              <a href="https://github.com/asmeyatsky" className="text-primary-text/60 hover:text-accent-cyan transition-colors">
+                <span className="text-3xl">🔗</span>
+                <p className="text-sm mt-2">GitHub</p>
+              </a>
+              <a href="https://linkedin.com/in/allansmeyatsky" className="text-primary-text/60 hover:text-accent-cyan transition-colors">
+                <span className="text-3xl">💼</span>
+                <p className="text-sm mt-2">LinkedIn</p>
+              </a>
+            </div>
+          </div>
+        </section>
       </div>
     </Layout>
   )

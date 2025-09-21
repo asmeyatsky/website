@@ -3,7 +3,6 @@
 import React from 'react'
 import Layout from '@/components/Layout'
 import Link from 'next/link'
-import BookCallButton from '@/components/BookCallButton'
 
 export default function Home() {
   return (
@@ -31,18 +30,19 @@ export default function Home() {
             
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
-              <Link 
-                href="/projects" 
+              <Link
+                href="/projects"
                 className="professional-button px-8 py-4 text-lg"
               >
-                Explore Solutions
+                Explore Portfolio
               </Link>
-              
-              <BookCallButton 
+
+              <Link
+                href="/about"
                 className="professional-card px-8 py-4 text-lg font-semibold text-accent-blue border border-accent-blue/30 hover:border-accent-blue transition-all duration-200 rounded-xl inline-flex items-center justify-center"
               >
-                Schedule Free Consultation
-              </BookCallButton>
+                Learn About My Journey
+              </Link>
             </div>
 
             {/* Stats */}
@@ -60,8 +60,8 @@ export default function Home() {
                 <div className="text-neutral-medium text-sm">Expert</div>
               </div>
               <div className="professional-card p-6 rounded-xl text-center hover-glow-intense">
-                <div className="text-3xl font-bold professional-gradient mb-2">$$50M+</div>
-                <div className="text-neutral-medium text-sm">Revenue Generated</div>
+                <div className="text-3xl font-bold professional-gradient mb-2">Enterprise</div>
+                <div className="text-neutral-medium text-sm">Scale Impact</div>
               </div>
             </div>
           </div>
@@ -93,7 +93,7 @@ export default function Home() {
                   <span className="professional-badge">API-First</span>
                 </div>
                 <Link href="/consulting" className="font-semibold text-accent-blue hover:text-white transition-colors duration-200">
-                  Learn More →
+                  View Capabilities →
                 </Link>
               </div>
               
@@ -112,7 +112,7 @@ export default function Home() {
                   <span className="professional-badge">Azure</span>
                 </div>
                 <Link href="/consulting" className="font-semibold text-accent-blue hover:text-white transition-colors duration-200">
-                  Explore Tech →
+                  Technical Expertise →
                 </Link>
               </div>
               
@@ -131,7 +131,7 @@ export default function Home() {
                   <span className="professional-badge">OpenAI</span>
                 </div>
                 <Link href="/consulting" className="font-semibold text-accent-blue hover:text-white transition-colors duration-200">
-                  AI Solutions →
+                  AI Experience →
                 </Link>
               </div>
             </div>
