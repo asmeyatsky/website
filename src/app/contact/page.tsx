@@ -3,8 +3,6 @@
 import React, { useState } from 'react'
 import Layout from '@/components/Layout'
 import { sendContactEmail, EmailData } from '@/lib/email'
-import BookCallButton from '@/components/BookCallButton'
-import CalendlySection from '@/components/CalendlySection'
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -108,20 +106,20 @@ const ContactPage = () => {
 
   const faqs = [
     {
-      question: "What types of AI projects do you work on?",
-      answer: "I specialize in machine learning, natural language processing, computer vision, and AI strategy consulting. From chatbots to predictive analytics, I help businesses implement AI solutions that drive real results."
+      question: "What technologies do you specialize in?",
+      answer: "I have deep expertise in AI/ML platforms (Anthropic Claude, Google Gemini, OpenAI), enterprise architecture, multi-cloud solutions (GCP, AWS, Azure), and modern development with Swift, JavaScript, Python, and TypeScript."
     },
     {
-      question: "How long do projects typically take?",
-      answer: "Project timelines vary based on complexity. Strategy consultations take 2-4 weeks, while custom AI development can range from 6-16 weeks. I provide detailed timelines during our initial consultation."
+      question: "What's your current availability?",
+      answer: "I'm currently based in South Africa (SAST timezone) and available Monday-Friday, 9:00 AM - 6:00 PM SAST. I collaborate with teams globally and can accommodate different time zones for important discussions."
     },
     {
-      question: "Do you work with startups and small businesses?",
-      answer: "Absolutely! I work with organizations of all sizes, from startups to Fortune 500 companies. I offer flexible engagement models to fit different budgets and requirements."
+      question: "How can we collaborate?",
+      answer: "I'm open to discussing various collaboration opportunities including technical advisory roles, architecture reviews, technology strategy discussions, and knowledge sharing on AI and enterprise solutions."
     },
     {
-      question: "What's included in a free consultation?",
-      answer: "Our 30-minute consultation covers your business challenges, potential AI opportunities, high-level implementation approach, and estimated timeline and budget. No commitment required."
+      question: "What's the best way to reach you?",
+      answer: "Email (allan@smeyatsky.com) is the most reliable way to reach me. I typically respond within 24 hours. You can also connect with me on LinkedIn for professional networking."
     }
   ]
 
@@ -135,8 +133,7 @@ const ContactPage = () => {
               <span className="gradient-text">Get In Touch</span>
             </h1>
             <p className="text-xl text-primary-text/80 max-w-3xl mx-auto">
-              Ready to explore AI opportunities for your business? Let's start a conversation about 
-              how artificial intelligence can transform your operations and drive growth.
+              Interested in discussing technology solutions or collaboration opportunities? Let's connect and explore how my expertise in AI, enterprise architecture, and cloud solutions can help.
             </p>
           </div>
         </section>
@@ -171,7 +168,7 @@ const ContactPage = () => {
             <div className="lg:col-span-2">
               <div className="glass-effect p-8 rounded-lg">
                 <h2 className="text-2xl font-sans font-bold text-primary-accent mb-6">
-                  Start Your AI Journey
+                  Let's Connect
                 </h2>
                 
                 {submitStatus === 'success' && (
@@ -336,7 +333,7 @@ const ContactPage = () => {
                   </div>
                   <div className="flex items-center">
                     <span className="text-neon-purple mr-2">💬</span>
-                    <span>Free initial discussion</span>
+                    <span>Professional consultation</span>
                   </div>
                 </div>
               </div>
@@ -345,25 +342,30 @@ const ContactPage = () => {
               <div className="glass-effect p-6 rounded-lg">
                 <h3 className="font-bold text-primary-accent mb-4">Availability</h3>
                 <div className="space-y-2 text-sm text-primary-text/80">
-                  <div>Monday - Friday: 9:00 AM - 6:00 PM PST</div>
-                  <div>Weekend: Emergency projects only</div>
+                  <div>Monday - Friday: 9:00 AM - 6:00 PM SAST</div>
+                  <div>Weekend: Limited availability</div>
                   <div className="text-primary-text/60 mt-3">
-                    Available for global projects across all time zones
+                    Currently based in South Africa (SAST/UTC+2). Available for global collaboration across all time zones.
                   </div>
                 </div>
               </div>
 
-              {/* Scheduling Option */}
+              {/* Professional Links */}
               <div className="glass-effect p-6 rounded-lg">
-                <h3 className="font-bold text-primary-accent mb-4">Want to Chat Directly?</h3>
+                <h3 className="font-bold text-primary-accent mb-4">Connect Directly</h3>
                 <p className="text-primary-text/80 text-sm mb-4">
-                  Skip the form and schedule a free 30-minute consultation to discuss your project needs.
+                  Prefer direct communication? Connect with me on professional platforms.
                 </p>
-                <BookCallButton 
-                  className="ai-button px-8 py-4 w-full"
-                >
-                  Schedule Free Consultation
-                </BookCallButton>
+                <div className="space-y-3">
+                  <a href="https://linkedin.com/in/allansmeyatsky" className="flex items-center text-accent-blue hover:text-white transition-colors duration-200">
+                    <span className="text-xl mr-3">💼</span>
+                    <span>LinkedIn</span>
+                  </a>
+                  <a href="mailto:allan@smeyatsky.com" className="flex items-center text-accent-blue hover:text-white transition-colors duration-200">
+                    <span className="text-xl mr-3">📧</span>
+                    <span>Email</span>
+                  </a>
+                </div>
               </div>
 
               {/* Next Steps */}
@@ -376,7 +378,7 @@ const ContactPage = () => {
                   </div>
                   <div className="flex items-start">
                     <span className="text-primary-accent mr-2 mt-1">2.</span>
-                    <span>Schedule a free consultation call</span>
+                    <span>Initial response within 24 hours</span>
                   </div>
                   <div className="flex items-start">
                     <span className="text-primary-accent mr-2 mt-1">3.</span>
@@ -392,16 +394,29 @@ const ContactPage = () => {
           </div>
         </section>
 
-        {/* Calendly Section */}
-        <CalendlySection 
-          title="Schedule Your Free Consultation"
-          description="Prefer to schedule directly? Use the calendar below to find a convenient time for your free 30-minute consultation."
-          showWidget={false}
-          showButton={true}
-          buttonText="Schedule Free Consultation"
-          buttonClass="ai-button px-8 py-4"
-          showAlternativeLink={false}
-        />
+        {/* Additional Contact Info */}
+        <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+          <div className="glass-effect p-8 rounded-lg text-center">
+            <h2 className="text-2xl font-bold text-primary-accent mb-4">Ready to Collaborate?</h2>
+            <p className="text-primary-text/80 mb-6">
+              I'm always interested in discussing new technology challenges and opportunities. Feel free to reach out to explore how we can work together.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="/about"
+                className="professional-button px-8 py-4"
+              >
+                Learn About My Experience
+              </a>
+              <a
+                href="/consulting"
+                className="glass-effect px-8 py-4 text-lg font-semibold text-accent-blue border border-accent-blue/30 hover:border-accent-blue transition-all duration-200 rounded-xl"
+              >
+                View Technical Capabilities
+              </a>
+            </div>
+          </div>
+        </section>
 
         {/* FAQ Section */}
         <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
