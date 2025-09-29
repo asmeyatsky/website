@@ -65,19 +65,20 @@ if (typeof window === 'undefined') {
 export async function getBlogPosts(): Promise<Entry<BlogPostSkeleton>[]> {
   console.log('getBlogPosts called - checking if running on server or client')
   console.log('typeof window:', typeof window)
-  
+
   // Return empty array if Contentful is not configured
   if (!client) {
     console.warn('Contentful not configured. Returning empty array.')
     return []
   }
-  
+
   try {
     console.log('Fetching blog posts from Contentful...')
     const entries = await client.getEntries<BlogPostSkeleton>({
       content_type: 'blogPost',
       order: ['-sys.createdAt'],
       limit: 20,
+      include: 0, // Don't include linked assets to avoid unresolvable errors
     })
     console.log('Contentful API response:', JSON.stringify(entries, null, 2))
     console.log('Successfully fetched blog posts:', entries.items.length)
@@ -103,6 +104,7 @@ export async function getBlogPost(slug: string): Promise<Entry<BlogPostSkeleton>
     const entries = await client.getEntries<BlogPostSkeleton>({
       content_type: 'blogPost',
       limit: 1,
+      include: 0, // Don't include linked assets to avoid unresolvable errors
     })
     // Filter by slug on the client side since Contentful doesn't support field queries in this version
     const filtered = entries.items.filter(item => item.fields.slug === slug)
@@ -126,7 +128,9 @@ export async function getProjects(): Promise<Entry<ProjectSkeleton>[]> {
       content_type: 'project',
       order: ['-sys.createdAt'],
       limit: 50,
+      include: 0, // Don't include linked assets to avoid unresolvable errors
     })
+    console.log('Fetched projects:', entries.items.length)
     return entries.items
   } catch (error) {
     console.error('Error fetching projects:', error)
@@ -146,6 +150,7 @@ export async function getProject(slug: string): Promise<Entry<ProjectSkeleton> |
     const entries = await client.getEntries<ProjectSkeleton>({
       content_type: 'project',
       limit: 1,
+      include: 0, // Don't include linked assets to avoid unresolvable errors
     })
     // Filter by slug on the client side since Contentful doesn't support field queries in this version
     const filtered = entries.items.filter(item => item.fields.slug === slug)
@@ -168,6 +173,7 @@ export async function getProjectsByCategory(category: string): Promise<Entry<Pro
     const entries = await client.getEntries<ProjectSkeleton>({
       content_type: 'project',
       order: ['-sys.createdAt'],
+      include: 0, // Don't include linked assets to avoid unresolvable errors
     })
     // Filter by category on the client side since Contentful doesn't support field queries in this version
     const filtered = entries.items.filter(item => item.fields.category === category)
@@ -192,6 +198,12 @@ export function getSafeString(value: any, defaultValue: string = ''): string {
 
 // Helper function to extract image URL from Contentful asset
 export function getImageUrl(asset: any, width?: number, height?: number, format?: string): string {
+  // Handle case where asset is just a link reference (when include=0)
+  if (asset && typeof asset === 'object' && asset.sys && asset.sys.type === 'Link') {
+    console.warn('Asset is unresolved link, returning empty string');
+    return '';
+  }
+
   // Robust check for asset being a valid object with expected properties
   if (!asset || typeof asset !== 'object' || !asset.fields || !asset.fields.file || !asset.fields.file.url) {
     return '';

@@ -20,6 +20,7 @@ const Header = () => {
     { name: 'Projects', href: '/projects' },
     { name: 'AI News', href: '/news' },
     { name: 'Consulting', href: '/consulting' },
+    { name: 'VibeCode', href: '/vibecoding-charter' },
     { name: 'About', href: '/about' },
     { name: 'Contact', href: '/contact' },
   ]

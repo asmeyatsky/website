@@ -43,6 +43,13 @@ export default function Home() {
               >
                 Learn About My Journey
               </Link>
+
+              <Link
+                href="/vibecoding-charter"
+                className="professional-card px-8 py-4 text-lg font-semibold text-accent-cyan border border-accent-cyan/30 hover:border-accent-cyan transition-all duration-200 rounded-xl inline-flex items-center justify-center"
+              >
+                VibeCode Charter
+              </Link>
             </div>
 
             {/* Stats */}
