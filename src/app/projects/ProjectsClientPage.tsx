@@ -204,6 +204,14 @@ const ProjectsClientPage = ({ initialProjects }: { initialProjects: Entry<Projec
                 About My Journey
               </Link>
               <Link
+                href="https://github.com/asmeyatsky"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="glass-effect px-8 py-4 text-lg font-semibold text-accent-blue border border-accent-blue/30 hover:border-accent-blue transition-all duration-200 rounded-xl inline-flex items-center justify-center"
+              >
+                View on GitHub
+              </Link>
+              <Link
                 href="/consulting"
                 className="glass-effect px-8 py-4 text-lg font-semibold text-accent-blue border border-accent-blue/30 hover:border-accent-blue transition-all duration-200 rounded-xl inline-flex items-center justify-center"
               >
