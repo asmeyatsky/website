@@ -59,7 +59,7 @@ module.exports = {
         }
       },
       fontFamily: {
-        'sans': ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        'sans': ['var(--font-jetbrains-mono)', 'monospace'],
         'mono': ['var(--font-jetbrains-mono)', 'monospace']
       },
       animation: {
