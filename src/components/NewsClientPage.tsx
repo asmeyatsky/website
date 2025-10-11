@@ -17,17 +17,17 @@ const ArticleCard = ({ article }: { article: NewsArticle }) => {
 
   return (
     <article className="glass-effect rounded-lg overflow-hidden hover-glow group">
-      <div className="relative h-48 bg-primary-secondary/50 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-accent/20 to-neon-purple/20 flex items-center justify-center">
+      <div className="relative h-48 bg-brutalist-code-bg/50 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-brutalist-accent/20 to-neon-purple/20 flex items-center justify-center">
           <div className="text-6xl opacity-50">📰</div>
         </div>
-        <div className="absolute bottom-3 left-3 bg-primary-secondary/80 backdrop-blur-sm px-2 py-1 rounded-full">
-          <span className="text-xs text-primary-accent font-medium">{displayCategory}</span>
+        <div className="absolute bottom-3 left-3 bg-brutalist-code-bg/80 backdrop-blur-sm px-2 py-1 rounded-full">
+          <span className="text-xs text-brutalist-accent font-medium">{displayCategory}</span>
         </div>
       </div>
 
       <div className="p-6">
-        <div className="flex items-center justify-between text-sm text-primary-text/60 mb-3">
+        <div className="flex items-center justify-between text-sm text-brutalist-text/60 mb-3">
           <span>{new Date(article.published).toLocaleDateString('en-US', { 
             year: 'numeric', 
             month: 'long', 
@@ -35,14 +35,14 @@ const ArticleCard = ({ article }: { article: NewsArticle }) => {
           })}</span>
         </div>
         
-        <h2 className="text-xl font-bold text-primary-text mb-3 group-hover:text-primary-accent transition-colors duration-300 line-clamp-2">
+        <h2 className="text-xl font-bold text-brutalist-text mb-3 group-hover:text-brutalist-accent transition-colors duration-300 line-clamp-2">
           {article.title}
         </h2>
         
         <div className="flex flex-wrap gap-2 mb-4">
           <span
             key={displayCategory}
-            className="text-xs bg-primary-accent/20 text-primary-accent px-2 py-1 rounded-full"
+            className="text-xs bg-brutalist-accent/20 text-brutalist-accent px-2 py-1 rounded-full"
           >
             {displayCategory}
           </span>
@@ -52,7 +52,7 @@ const ArticleCard = ({ article }: { article: NewsArticle }) => {
           href={article.link}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center text-primary-accent hover:text-primary-accent/80 transition-colors duration-300 font-medium"
+          className="inline-flex items-center text-brutalist-accent hover:text-brutalist-accent/80 transition-colors duration-300 font-medium"
         >
           Read Article
           <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -160,7 +160,7 @@ const NewsClientPage = ({ initialArticles }: NewsClientPageProps) => {
           <h1 className="text-4xl md:text-6xl font-sans font-bold mb-4">
             <span className="gradient-text">AI News</span>
           </h1>
-          <p className="text-xl text-primary-text/80 max-w-3xl mx-auto">
+          <p className="text-xl text-brutalist-text/80 max-w-3xl mx-auto">
             Stay updated with the latest developments in artificial intelligence, 
             industry insights, and technical deep-dives.
           </p>
@@ -175,9 +175,9 @@ const NewsClientPage = ({ initialArticles }: NewsClientPageProps) => {
               placeholder="Search articles..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-primary-secondary/50 border border-primary-accent/30 rounded-lg px-4 py-3 pl-10 text-primary-text placeholder-primary-text/40 focus:outline-none focus:border-primary-accent transition-colors duration-300"
+              className="w-full bg-brutalist-code-bg/50 border border-brutalist-accent/30 rounded-lg px-4 py-3 pl-10 text-brutalist-text placeholder-brutalist-text/40 focus:outline-none focus:border-brutalist-accent transition-colors duration-300"
             />
-            <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-primary-text/40">
+            <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-brutalist-text/40">
               <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
@@ -192,8 +192,8 @@ const NewsClientPage = ({ initialArticles }: NewsClientPageProps) => {
                 onClick={() => setFilter(category)}
                 className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
                   filter === category
-                    ? 'bg-primary-accent text-primary-dark'
-                    : 'glass-effect text-primary-text/80 hover:text-primary-accent'
+                    ? 'bg-brutalist-accent text-brutalist-bg'
+                    : 'glass-effect text-brutalist-text/80 hover:text-brutalist-accent'
                 }`}
               >
                 {category}
@@ -205,8 +205,8 @@ const NewsClientPage = ({ initialArticles }: NewsClientPageProps) => {
         {/* Newsletter Signup */}
         <div className="glass-effect p-6 rounded-lg max-w-2xl mx-auto">
           <div className="text-center">
-            <h3 className="text-xl font-sans font-bold text-primary-accent mb-2">Stay Updated</h3>
-            <p className="text-primary-text/60 text-sm mb-4">
+            <h3 className="text-xl font-sans font-bold text-brutalist-accent mb-2">Stay Updated</h3>
+            <p className="text-brutalist-text/60 text-sm mb-4">
               Get the latest AI insights delivered to your inbox weekly.
             </p>
             <form onSubmit={handleNewsletterSubmit} className="flex gap-2 max-w-md mx-auto">
@@ -215,19 +215,19 @@ const NewsClientPage = ({ initialArticles }: NewsClientPageProps) => {
                 placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 bg-primary-dark/50 border border-primary-accent/30 rounded-lg px-4 py-3 text-primary-text placeholder-primary-text/40 focus:outline-none focus:border-primary-accent transition-colors duration-300"
+                className="flex-1 bg-brutalist-bg/50 border border-brutalist-accent/30 rounded-lg px-4 py-3 text-brutalist-text placeholder-brutalist-text/40 focus:outline-none focus:border-brutalist-accent transition-colors duration-300"
                 disabled={isSubmitting}
               />
               <button
                 type="submit"
                 disabled={isSubmitting || !email}
-                className="bg-primary-accent text-primary-dark px-6 py-2 rounded-lg font-semibold hover:bg-primary-accent/90 transition-colors duration-300 whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
+                className="bg-brutalist-accent text-brutalist-bg px-6 py-2 rounded-lg font-semibold hover:bg-brutalist-accent/90 transition-colors duration-300 whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? 'Subscribing...' : 'Subscribe'}
               </button>
             </form>
             {submitMessage && (
-              <p className={`text-sm mt-2 ${submitMessage.includes('Thanks') ? 'text-green-400' : 'text-red-400'}`}>
+              <p className={`text-sm mt-2 ${submitMessage.includes('Thanks') ? 'text-brutalist-success' : 'text-brutalist-warning'}`}>
                 {submitMessage}
               </p>
             )}
@@ -237,21 +237,21 @@ const NewsClientPage = ({ initialArticles }: NewsClientPageProps) => {
 
       {loading ? (
         <div className="text-center py-12">
-          <div className="animate-spin w-12 h-12 border-4 border-primary-accent/30 border-t-primary-accent rounded-full mx-auto mb-4"></div>
-          <p className="text-primary-text/80">Loading articles...</p>
+          <div className="animate-spin w-12 h-12 border-4 border-brutalist-accent/30 border-t-brutalist-accent rounded-full mx-auto mb-4"></div>
+          <p className="text-brutalist-text/80">Loading articles...</p>
         </div>
       ) : sortedArticles.length === 0 ? (
         <div className="text-center py-12">
           <div className="text-6xl mb-4 opacity-50">📰</div>
-          <h3 className="text-xl font-bold text-primary-text/80 mb-2">No articles available</h3>
-          <p className="text-primary-text/60">Unable to load news articles at this time.</p>
+          <h3 className="text-xl font-bold text-brutalist-text/80 mb-2">No articles available</h3>
+          <p className="text-brutalist-text/60">Unable to load news articles at this time.</p>
         </div>
       ) : (
         <>
           {/* Featured Articles */}
           {featuredArticles.length > 0 && (
             <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
-              <h2 className="text-2xl font-sans font-bold text-primary-accent mb-6">Featured Articles</h2>
+              <h2 className="text-2xl font-sans font-bold text-brutalist-accent mb-6">Featured Articles</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {featuredArticles.map((article) => (
                   <ArticleCard key={article.link} article={article} />
@@ -262,7 +262,7 @@ const NewsClientPage = ({ initialArticles }: NewsClientPageProps) => {
 
           {/* Recent Articles */}
           <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-sans font-bold text-primary-accent mb-6">
+            <h2 className="text-2xl font-sans font-bold text-brutalist-accent mb-6">
               {featuredArticles.length > 0 ? 'Recent Articles' : 'All Articles'}
             </h2>
             
@@ -275,8 +275,8 @@ const NewsClientPage = ({ initialArticles }: NewsClientPageProps) => {
             ) : (
               <div className="text-center py-12">
                 <div className="text-6xl mb-4 opacity-50">🔍</div>
-                <h3 className="text-xl font-bold text-primary-text/80 mb-2">No articles found</h3>
-                <p className="text-primary-text/60">Try adjusting your search or filter criteria.</p>
+                <h3 className="text-xl font-bold text-brutalist-text/80 mb-2">No articles found</h3>
+                <p className="text-brutalist-text/60">Try adjusting your search or filter criteria.</p>
               </div>
             )}
           </section>
