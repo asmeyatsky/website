@@ -3,179 +3,244 @@
 import React from 'react'
 import Layout from '@/components/Layout'
 import Link from 'next/link'
+import { TerminalLines } from '@/components/TerminalTyping'
+import GitHubProfile from '@/components/GitHubProfile'
+import ExperienceTimeline from '@/components/ExperienceTimeline'
+import AINewsPreview from '@/components/AINewsPreview'
 
 export default function Home() {
+  const vibeCodePrinciples = [
+    'Human-AI Symbiosis',
+    'Mindful Development',
+    'Flow State Engineering',
+  ]
+
   return (
     <Layout>
       <div className="min-h-screen">
-        {/* Hero Section */}
-        <section className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden">
-          {/* Floating geometric shapes */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary-accent/5 rounded-full blur-3xl floating-element animation-delay-100"></div>
-            <div className="absolute bottom-1/3 right-1/3 w-48 h-48 bg-accent-cyan/5 rounded-full blur-3xl floating-element animation-delay-200"></div>
-            <div className="absolute top-1/3 right-1/4 w-32 h-32 bg-accent-purple/5 rounded-full blur-3xl floating-element animation-delay-300"></div>
-          </div>
-          
-          <div className="text-center max-w-5xl mx-auto relative z-10">
-            {/* Main Title */}
-            <h1 className="professional-title">
-              <span className="elegant-gradient">Allan Smeyatsky</span>
-            </h1>
-            
-            {/* Subtitle */}
-            <p className="professional-subtitle">
-              Transformational Technology Executive with three decades of solution architecture excellence spanning on-premises to cloud-native ecosystems across global enterprises.
-            </p>
-            
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
-              <Link
-                href="/projects"
-                className="professional-button px-8 py-4 text-lg"
-              >
-                Explore Portfolio
-              </Link>
+        {/* Hero Section - VibeCode First */}
+        <section className="min-h-screen flex items-center justify-center px-4 py-20">
+          <div className="content-wrapper max-w-4xl">
+            <div className="text-center space-y-8">
+              {/* Main Title */}
+              <h1 className="hero-title">
+                VibeCode
+                <br />
+                Developer
+              </h1>
 
-              <Link
-                href="/about"
-                className="professional-card px-8 py-4 text-lg font-semibold text-accent-blue border border-accent-blue/30 hover:border-accent-blue transition-all duration-200 rounded-xl inline-flex items-center justify-center"
-              >
-                Learn About My Journey
-              </Link>
+              {/* Animated Principles */}
+              <div className="space-y-2 sm:space-y-3">
+                <TerminalLines
+                  lines={vibeCodePrinciples}
+                  lineDelay={800}
+                  speed={30}
+                  className="terminal-line"
+                />
+              </div>
 
-              <Link
-                href="/vibecoding-charter"
-                className="professional-card px-8 py-4 text-lg font-semibold text-accent-cyan border border-accent-cyan/30 hover:border-accent-cyan transition-all duration-200 rounded-xl inline-flex items-center justify-center"
-              >
-                VibeCode Charter
-              </Link>
-            </div>
+              {/* CTAs */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
+                <Link
+                  href="/vibecoding-charter"
+                  className="brutalist-button"
+                >
+                  Read the Charter
+                </Link>
+                <Link
+                  href="https://github.com/asmeyatsky/vibecoding"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="brutalist-button-outline"
+                >
+                  View on GitHub
+                </Link>
+              </div>
 
-            {/* Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-              <div className="professional-card p-6 rounded-xl text-center hover-glow-intense">
-                <div className="text-3xl font-bold professional-gradient mb-2">30+</div>
-                <div className="text-neutral-medium text-sm">Years Experience</div>
+              {/* Divider */}
+              <div className="pt-12 pb-8">
+                <div className="h-px bg-border"></div>
               </div>
-              <div className="professional-card p-6 rounded-xl text-center hover-glow-intense">
-                <div className="text-3xl font-bold professional-gradient mb-2">AI-Native</div>
-                <div className="text-neutral-medium text-sm">Architecture</div>
-              </div>
-              <div className="professional-card p-6 rounded-xl text-center hover-glow-intense">
-                <div className="text-3xl font-bold professional-gradient mb-2">Multi-Cloud</div>
-                <div className="text-neutral-medium text-sm">Expert</div>
-              </div>
-              <div className="professional-card p-6 rounded-xl text-center hover-glow-intense">
-                <div className="text-3xl font-bold professional-gradient mb-2">Enterprise</div>
-                <div className="text-neutral-medium text-sm">Scale Impact</div>
+
+              {/* Personal Brand */}
+              <div className="text-center space-y-4">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-mono font-bold text-text">
+                  Allan Smeyatsky
+                </h2>
+                <p className="text-base sm:text-lg md:text-xl font-mono text-accent">
+                  30yr Tech Executive • AI • Cloud • Architecture
+                </p>
+                <p className="text-sm sm:text-base font-mono text-text-secondary max-w-2xl mx-auto">
+                  Transformational technology leader combining strategic vision with hands-on technical execution
+                </p>
               </div>
             </div>
           </div>
         </section>
-        
-        {/* Feature Sections */}
-        <section className="section-padding professional-section">
-          <div className="content-container">
-            {/* Section Header */}
-            <div className="text-center mb-16">
-              <h2 className="section-header">Core Expertise</h2>
-              <p className="text-xl text-neutral-medium max-w-2xl mx-auto">
-                Three decades of transformational technology leadership and innovation
-              </p>
-            </div>
 
-            <div className="card-grid">
-              {/* Solution Architecture */}
-              <div className="elegant-card p-8 elegant-hover">
-                <div className="professional-icon">
-                  <span className="text-3xl">🏛️</span>
-                </div>
-                <h3 className="section-subheader">Solution Architecture</h3>
-                <p className="text-primary-text/80 mb-6">
-                  30 years of experience in enterprise architecture, hybrid/multi-cloud strategies, microservices, API-first design, and domain-driven design.
-                </p>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  <span className="professional-badge">Enterprise Architecture</span>
-                  <span className="professional-badge">API-First</span>
-                </div>
-                <Link href="/consulting" className="font-semibold text-accent-blue hover:text-white transition-colors duration-200">
-                  View Capabilities →
-                </Link>
+        {/* Stats Section */}
+        <section className="section-spacing bg-code-bg">
+          <div className="content-wrapper">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+              <div className="brutalist-card text-center">
+                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-accent font-mono">30+</div>
+                <div className="text-xs sm:text-sm text-text-secondary font-mono mt-2">Years Experience</div>
               </div>
-              
-              {/* Multi-Cloud Expertise */}
-              <div className="elegant-card p-8 elegant-hover">
-                <div className="professional-icon">
-                  <span className="text-3xl">☁️</span>
-                </div>
-                <h3 className="section-subheader">Multi-Cloud Expertise</h3>
-                <p className="text-primary-text/80 mb-6">
-                  8 years of expertise across GCP, AWS, and Azure, with specializations in GKE, EKS, AKS, serverless, and more.
+              <div className="brutalist-card text-center">
+                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-accent font-mono">AI</div>
+                <div className="text-xs sm:text-sm text-text-secondary font-mono mt-2">Native Architecture</div>
+              </div>
+              <div className="brutalist-card text-center">
+                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-accent font-mono">GCP</div>
+                <div className="text-xs sm:text-sm text-text-secondary font-mono mt-2">Multi-Cloud Expert</div>
+              </div>
+              <div className="brutalist-card text-center">
+                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-accent font-mono">800+</div>
+                <div className="text-xs sm:text-sm text-text-secondary font-mono mt-2">Team Members Led</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* GitHub Profile Section */}
+        <section className="section-spacing">
+          <div className="content-wrapper">
+            <h2 className="section-title text-center">Open Source Work</h2>
+            <div className="max-w-2xl mx-auto">
+              <GitHubProfile />
+            </div>
+          </div>
+        </section>
+
+        {/* Experience Timeline Section */}
+        <section className="section-spacing bg-code-bg">
+          <div className="content-wrapper">
+            <h2 className="section-title text-center">Experience</h2>
+            <p className="section-subtitle text-center">
+              Three decades of transformational technology leadership
+            </p>
+            <div className="max-w-4xl mx-auto">
+              <ExperienceTimeline />
+            </div>
+          </div>
+        </section>
+
+        {/* AI News Section */}
+        <section className="section-spacing">
+          <div className="content-wrapper">
+            <h2 className="section-title text-center">AI Insights</h2>
+            <p className="section-subtitle text-center">
+              Latest developments in artificial intelligence
+            </p>
+            <div className="max-w-4xl mx-auto">
+              <AINewsPreview />
+            </div>
+          </div>
+        </section>
+
+        {/* Core Expertise Section */}
+        <section className="section-spacing bg-code-bg">
+          <div className="content-wrapper">
+            <h2 className="section-title text-center">Core Expertise</h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+              {/* Solution Architecture */}
+              <div className="brutalist-card">
+                <div className="text-4xl mb-4">🏛️</div>
+                <h3 className="text-xl font-bold font-mono text-text mb-3">Solution Architecture</h3>
+                <p className="text-text-secondary text-sm mb-4">
+                  30 years of enterprise architecture, hybrid/multi-cloud strategies, and domain-driven design.
                 </p>
-                <div className="flex flex-wrap gap-2 mb-6">
+                <div className="flex flex-wrap gap-2">
+                  <span className="professional-badge">Enterprise</span>
+                  <span className="professional-badge">API-First</span>
+                  <span className="professional-badge">DDD</span>
+                </div>
+              </div>
+
+              {/* Multi-Cloud */}
+              <div className="brutalist-card">
+                <div className="text-4xl mb-4">☁️</div>
+                <h3 className="text-xl font-bold font-mono text-text mb-3">Multi-Cloud Expertise</h3>
+                <p className="text-text-secondary text-sm mb-4">
+                  8 years across GCP, AWS, and Azure, with specializations in GKE, serverless, and Kubernetes.
+                </p>
+                <div className="flex flex-wrap gap-2">
                   <span className="professional-badge">GCP</span>
                   <span className="professional-badge">AWS</span>
                   <span className="professional-badge">Azure</span>
                 </div>
-                <Link href="/consulting" className="font-semibold text-accent-blue hover:text-white transition-colors duration-200">
-                  Technical Expertise →
-                </Link>
               </div>
-              
-              {/* AI & Machine Learning */}
-              <div className="elegant-card p-8 elegant-hover">
-                <div className="professional-icon">
-                  <span className="text-3xl">🤖</span>
-                </div>
-                <h3 className="section-subheader">AI & Machine Learning</h3>
-                <p className="text-primary-text/80 mb-6">
-                  2 years of experience with Anthropic Claude, Google Gemini, and OpenAI, including API integration, prompt engineering, and function calling.
+
+              {/* AI & ML */}
+              <div className="brutalist-card">
+                <div className="text-4xl mb-4">🤖</div>
+                <h3 className="text-xl font-bold font-mono text-text mb-3">AI & Machine Learning</h3>
+                <p className="text-text-secondary text-sm mb-4">
+                  2 years with Claude, Gemini, and OpenAI, including API integration and prompt engineering.
                 </p>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  <span className="professional-badge">Gemini</span>
+                <div className="flex flex-wrap gap-2">
                   <span className="professional-badge">Claude</span>
+                  <span className="professional-badge">Gemini</span>
                   <span className="professional-badge">OpenAI</span>
                 </div>
-                <Link href="/consulting" className="font-semibold text-accent-blue hover:text-white transition-colors duration-200">
-                  AI Experience →
-                </Link>
               </div>
             </div>
           </div>
         </section>
-        
-        {/* Technology Stack */}
-        <section className="section-padding">
-          <div className="content-container">
-            <div className="text-center mb-16">
-              <h2 className="section-header">Technology Leadership</h2>
-              <p className="text-xl text-neutral-medium max-w-2xl mx-auto">
-                Modern technology stack driving innovation and architectural excellence
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-              <div className="professional-card p-6 rounded-xl text-center professional-hover">
+
+        {/* Technology Stack Section */}
+        <section className="section-spacing">
+          <div className="content-wrapper">
+            <h2 className="section-title text-center">Technology Stack</h2>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+              <div className="brutalist-card text-center">
                 <div className="text-4xl mb-4">📱</div>
-                <h3 className="font-semibold text-primary-text mb-2">iOS Development</h3>
-                <p className="text-neutral-medium text-sm">Swift 5.9, SwiftUI, Xcode 15, UIKit, Core Data, CloudKit</p>
+                <h3 className="font-bold font-mono text-text mb-2">iOS Dev</h3>
+                <p className="text-text-secondary text-sm font-mono">Swift, SwiftUI, Xcode</p>
               </div>
-              <div className="professional-card p-6 rounded-xl text-center professional-hover">
+              <div className="brutalist-card text-center">
                 <div className="text-4xl mb-4">💻</div>
-                <h3 className="font-semibold text-primary-text mb-2">Full-Stack JavaScript</h3>
-                <p className="text-neutral-medium text-sm">Node.js, Express.js, React, TypeScript, RESTful APIs</p>
+                <h3 className="font-bold font-mono text-text mb-2">Full-Stack JS</h3>
+                <p className="text-text-secondary text-sm font-mono">Node.js, React, TypeScript</p>
               </div>
-              <div className="professional-card p-6 rounded-xl text-center professional-hover">
+              <div className="brutalist-card text-center">
                 <div className="text-4xl mb-4">🐍</div>
-                <h3 className="font-semibold text-primary-text mb-2">Python Development</h3>
-                <p className="text-neutral-medium text-sm">FastAPI, Flask, CLI Tools, Data Processing, Automation Scripts</p>
+                <h3 className="font-bold font-mono text-text mb-2">Python</h3>
+                <p className="text-text-secondary text-sm font-mono">FastAPI, Flask, CLI Tools</p>
               </div>
-              <div className="professional-card p-6 rounded-xl text-center professional-hover">
+              <div className="brutalist-card text-center">
                 <div className="text-4xl mb-4">🤖</div>
-                <h3 className="font-semibold text-primary-text mb-2">AI-Assisted Development</h3>
-                <p className="text-neutral-medium text-sm">Claude Code, Gemini CLI, GitHub Copilot (1 Year)</p>
+                <h3 className="font-bold font-mono text-text mb-2">AI-Assisted</h3>
+                <p className="text-text-secondary text-sm font-mono">Claude Code, Gemini CLI</p>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="section-spacing bg-code-bg">
+          <div className="content-wrapper max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl sm:text-4xl font-bold font-mono text-text mb-6">
+              Let's Build Together
+            </h2>
+            <p className="text-text-secondary mb-8 font-mono">
+              Interested in collaboration, consulting, or just want to connect?
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/projects"
+                className="brutalist-button"
+              >
+                View Projects
+              </Link>
+              <Link
+                href="/contact"
+                className="brutalist-button-outline"
+              >
+                Get in Touch
+              </Link>
             </div>
           </div>
         </section>

@@ -8,6 +8,20 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // Brutalist color system
+        'brutalist': {
+          'bg': '#0a0a0a',
+          'text': '#ffffff',
+          'text-dim': '#a0a0a0',
+          'accent': '#00f0ff',
+          'accent-dim': '#00a0cc',
+          'border': '#333333',
+          'code-bg': '#1a1a1a',
+          'success': '#00ff00',
+          'warning': '#ffff00',
+        },
+
+        // Legacy colors (keep for compatibility during transition)
         'primary': {
           '50': '#f8fafc',
           '100': '#f1f5f9',
@@ -27,8 +41,10 @@ module.exports = {
         },
         'accent': {
           'blue': '#3b82f6',
+          'cyan': '#00f0ff',
           'slate': '#64748b',
-          'gold': '#f59e0b'
+          'gold': '#f59e0b',
+          'purple': '#a855f7'
         },
         'neutral': {
           'light': '#f1f5f9',

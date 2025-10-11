@@ -45,18 +45,18 @@ const Footer = () => {
     {
       title: 'Navigation',
       links: [
-        { name: 'Home', href: '/' },
-        { name: 'Projects', href: '/projects' },
+        { name: 'VibeCode', href: '/' },
+        { name: 'Work', href: '/projects' },
         { name: 'AI News', href: '/news' },
         { name: 'About', href: '/about' },
       ]
     },
     {
-      title: 'Services',
+      title: 'Connect',
       links: [
-        { name: 'Consulting', href: '/consulting' },
         { name: 'Contact', href: '/contact' },
-        { name: 'Newsletter', href: '#newsletter' },
+        { name: 'Consulting', href: '/consulting' },
+        { name: 'VibeCode Charter', href: '/vibecoding-charter' },
       ]
     },
     {
@@ -64,26 +64,25 @@ const Footer = () => {
       links: [
         { name: 'Privacy Policy', href: '/privacy' },
         { name: 'Terms of Service', href: '/terms' },
-        { name: 'Sitemap', href: '/sitemap.xml' },
       ]
     }
   ]
 
   return (
-    <footer className="bg-primary-secondary border-t border-primary-accent/30">
+    <footer className="bg-brutalist-code-bg border-t-2 border-brutalist-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Brand Section */}
           <div className="col-span-1 md:col-span-1">
             <div className="flex items-center space-x-3 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-accent-blue to-accent-slate rounded-xl flex items-center justify-center">
-                <span className="text-white font-bold text-lg">AS</span>
+              <div className="w-10 h-10 bg-accent border-2 border-accent flex items-center justify-center">
+                <span className="text-bg font-bold font-mono text-lg">AS</span>
               </div>
-              <span className="font-bold text-xl elegant-gradient">Allan Smeyatsky</span>
+              <span className="font-bold font-mono text-lg text-text">Allan Smeyatsky</span>
             </div>
-            <p className="text-primary-text/60 text-sm mb-4">
-              Transformational Technology Executive specializing in AI-native solutions and enterprise architecture.
+            <p className="text-brutalist-text-dim text-sm mb-4 font-mono">
+              VibeCode Developer • AI-Native Solutions • Enterprise Architecture
             </p>
             {/* Social Links */}
             <div className="flex space-x-4">
@@ -91,7 +90,7 @@ const Footer = () => {
                 <a
                   key={social.name}
                   href={social.href}
-                  className="text-primary-text/60 hover:text-accent-blue transition-colors duration-200 text-xl"
+                  className="text-brutalist-text-dim hover:text-accent transition-colors duration-200 text-xl"
                   aria-label={social.name}
                 >
                   {social.icon}
@@ -103,13 +102,13 @@ const Footer = () => {
           {/* Footer Links */}
           {footerLinks.map((section) => (
             <div key={section.title} className="col-span-1">
-              <h3 className="font-semibold text-accent-blue mb-4">{section.title}</h3>
+              <h3 className="font-bold font-mono text-accent mb-4 text-sm">{section.title}</h3>
               <ul className="space-y-2">
                 {section.links.map((link) => (
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-primary-text/60 hover:text-accent-blue transition-colors duration-200 text-sm"
+                      className="text-brutalist-text-dim hover:text-accent transition-colors duration-200 text-sm font-mono"
                     >
                       {link.name}
                     </Link>
@@ -120,60 +119,16 @@ const Footer = () => {
           ))}
         </div>
 
-        {/* Newsletter Signup */}
-        <div className="professional-card p-6 rounded-xl mb-8">
-          <div className="max-w-md mx-auto text-center">
-            <h3 className="font-semibold text-accent-blue mb-2">Stay Connected</h3>
-            <p className="text-primary-text/60 text-sm mb-4">
-              Get insights on AI innovation, enterprise architecture, and technology leadership.
-            </p>
-            <form onSubmit={handleNewsletterSubmit} className="flex gap-2">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 bg-primary-dark/50 border border-accent-blue/30 rounded-xl px-4 py-2 text-primary-text placeholder-primary-text/40 focus:outline-none focus:border-accent-blue transition-colors duration-200"
-                disabled={isSubmitting}
-              />
-              <button
-                type="submit"
-                disabled={isSubmitting || !email}
-                className="bg-accent-blue text-white px-6 py-2 rounded-xl font-semibold hover:bg-blue-600 transition-colors duration-200 whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isSubmitting ? 'Subscribing...' : 'Subscribe'}
-              </button>
-            </form>
-            {submitMessage && (
-              <p className={`text-sm mt-2 ${submitMessage.includes('Thanks') ? 'text-green-400' : 'text-red-400'}`}>
-                {submitMessage}
-              </p>
-            )}
-          </div>
-        </div>
-
-        {/* Portfolio CTA */}
-        <div className="professional-card p-6 rounded-xl mb-8">
-          <div className="max-w-2xl mx-auto text-center">
-            <h3 className="font-semibold text-accent-blue mb-2">Explore My Work</h3>
-            <p className="text-primary-text/60 text-sm mb-4">
-              Discover my technical projects and capabilities in AI, enterprise architecture, and cloud solutions.
-            </p>
-            <Link
-              href="/projects"
-              className="ai-button px-8 py-3"
-            >
-              View Portfolio
-            </Link>
-          </div>
-        </div>
+        {/* Newsletter Signup - Removed, already on homepage */}
 
         {/* Bottom Bar */}
-        <div className="border-t border-primary-accent/30 pt-6 flex flex-col md:flex-row justify-between items-center text-sm text-primary-text/60">
+        <div className="border-t-2 border-brutalist-border pt-6 flex flex-col md:flex-row justify-between items-center text-sm text-brutalist-text-dim font-mono">
           <p>© {currentYear} Allan Smeyatsky. All rights reserved.</p>
           <p className="mt-2 md:mt-0">
-            Built with ❤️ and{' '}
-            <span className="text-accent-blue">Next.js</span>
+            Built with{' '}
+            <span className="text-accent">Next.js</span>
+            {' '}+{' '}
+            <span className="text-accent">VibeCode</span>
           </p>
         </div>
       </div>
