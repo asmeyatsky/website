@@ -70,7 +70,7 @@ export default function Home() {
                 <p className="text-base sm:text-lg md:text-xl font-mono text-accent">
                   30yr Tech Executive • AI • Cloud • Architecture
                 </p>
-                <p className="text-sm sm:text-base font-mono text-text-secondary max-w-2xl mx-auto">
+                <p className="text-sm sm:text-base font-mono text-brutalist-text-dim max-w-2xl mx-auto">
                   Transformational technology leader combining strategic vision with hands-on technical execution
                 </p>
               </div>
@@ -83,20 +83,20 @@ export default function Home() {
           <div className="content-wrapper">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
               <div className="brutalist-card text-center">
-                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-accent font-mono">30+</div>
-                <div className="text-xs sm:text-sm text-text-secondary font-mono mt-2">Years Experience</div>
+                <div className="text-3xl sm:text-4xl md:text-5xl font-bold font-mono text-brutalist-accent">30+</div>
+                <div className="text-xs sm:text-sm text-brutalist-text-dim font-mono mt-2">Years Experience</div>
               </div>
               <div className="brutalist-card text-center">
-                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-accent font-mono">AI</div>
-                <div className="text-xs sm:text-sm text-text-secondary font-mono mt-2">Native Architecture</div>
+                <div className="text-3xl sm:text-4xl md:text-5xl font-bold font-mono text-brutalist-accent">AI</div>
+                <div className="text-xs sm:text-sm text-brutalist-text-dim font-mono mt-2">Native Architecture</div>
               </div>
               <div className="brutalist-card text-center">
-                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-accent font-mono">GCP</div>
-                <div className="text-xs sm:text-sm text-text-secondary font-mono mt-2">Multi-Cloud Expert</div>
+                <div className="text-3xl sm:text-4xl md:text-5xl font-bold font-mono text-brutalist-accent">GCP</div>
+                <div className="text-xs sm:text-sm text-brutalist-text-dim font-mono mt-2">Multi-Cloud Expert</div>
               </div>
               <div className="brutalist-card text-center">
-                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-accent font-mono">800+</div>
-                <div className="text-xs sm:text-sm text-text-secondary font-mono mt-2">Team Members Led</div>
+                <div className="text-3xl sm:text-4xl md:text-5xl font-bold font-mono text-brutalist-accent">800+</div>
+                <div className="text-xs sm:text-sm text-brutalist-text-dim font-mono mt-2">Team Members Led</div>
               </div>
             </div>
           </div>
@@ -147,8 +147,8 @@ export default function Home() {
               {/* Solution Architecture */}
               <div className="brutalist-card">
                 <div className="text-4xl mb-4">🏛️</div>
-                <h3 className="text-xl font-bold font-mono text-text mb-3">Solution Architecture</h3>
-                <p className="text-text-secondary text-sm mb-4">
+                <h3 className="text-xl font-bold font-mono text-brutalist-text mb-3">Solution Architecture</h3>
+                <p className="text-brutalist-text-dim text-sm mb-4">
                   30 years of enterprise architecture, hybrid/multi-cloud strategies, and domain-driven design.
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -161,8 +161,8 @@ export default function Home() {
               {/* Multi-Cloud */}
               <div className="brutalist-card">
                 <div className="text-4xl mb-4">☁️</div>
-                <h3 className="text-xl font-bold font-mono text-text mb-3">Multi-Cloud Expertise</h3>
-                <p className="text-text-secondary text-sm mb-4">
+                <h3 className="text-xl font-bold font-mono text-brutalist-text mb-3">Multi-Cloud Expertise</h3>
+                <p className="text-brutalist-text-dim text-sm mb-4">
                   8 years across GCP, AWS, and Azure, with specializations in GKE, serverless, and Kubernetes.
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -175,8 +175,8 @@ export default function Home() {
               {/* AI & ML */}
               <div className="brutalist-card">
                 <div className="text-4xl mb-4">🤖</div>
-                <h3 className="text-xl font-bold font-mono text-text mb-3">AI & Machine Learning</h3>
-                <p className="text-text-secondary text-sm mb-4">
+                <h3 className="text-xl font-bold font-mono text-brutalist-text mb-3">AI & Machine Learning</h3>
+                <p className="text-brutalist-text-dim text-sm mb-4">
                   2 years with Claude, Gemini, and OpenAI, including API integration and prompt engineering.
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -197,23 +197,23 @@ export default function Home() {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
               <div className="brutalist-card text-center">
                 <div className="text-4xl mb-4">📱</div>
-                <h3 className="font-bold font-mono text-text mb-2">iOS Dev</h3>
-                <p className="text-text-secondary text-sm font-mono">Swift, SwiftUI, Xcode</p>
+                <h3 className="font-bold font-mono text-brutalist-text mb-2">iOS Dev</h3>
+                <p className="text-brutalist-text-dim text-sm font-mono">Swift, SwiftUI, Xcode</p>
               </div>
               <div className="brutalist-card text-center">
                 <div className="text-4xl mb-4">💻</div>
-                <h3 className="font-bold font-mono text-text mb-2">Full-Stack JS</h3>
-                <p className="text-text-secondary text-sm font-mono">Node.js, React, TypeScript</p>
+                <h3 className="font-bold font-mono text-brutalist-text mb-2">Full-Stack JS</h3>
+                <p className="text-brutalist-text-dim text-sm font-mono">Node.js, React, TypeScript</p>
               </div>
               <div className="brutalist-card text-center">
                 <div className="text-4xl mb-4">🐍</div>
-                <h3 className="font-bold font-mono text-text mb-2">Python</h3>
-                <p className="text-text-secondary text-sm font-mono">FastAPI, Flask, CLI Tools</p>
+                <h3 className="font-bold font-mono text-brutalist-text mb-2">Python</h3>
+                <p className="text-brutalist-text-dim text-sm font-mono">FastAPI, Flask, CLI Tools</p>
               </div>
               <div className="brutalist-card text-center">
                 <div className="text-4xl mb-4">🤖</div>
-                <h3 className="font-bold font-mono text-text mb-2">AI-Assisted</h3>
-                <p className="text-text-secondary text-sm font-mono">Claude Code, Gemini CLI</p>
+                <h3 className="font-bold font-mono text-brutalist-text mb-2">AI-Assisted</h3>
+                <p className="text-brutalist-text-dim text-sm font-mono">Claude Code, Gemini CLI</p>
               </div>
             </div>
           </div>
@@ -222,10 +222,10 @@ export default function Home() {
         {/* CTA Section */}
         <section className="section-spacing bg-code-bg">
           <div className="content-wrapper max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl sm:text-4xl font-bold font-mono text-text mb-6">
+            <h2 className="text-3xl sm:text-4xl font-bold font-mono text-brutalist-text mb-6">
               Let's Build Together
             </h2>
-            <p className="text-text-secondary mb-8 font-mono">
+            <p className="text-brutalist-text-dim mb-8 font-mono">
               Interested in collaboration, consulting, or just want to connect?
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
