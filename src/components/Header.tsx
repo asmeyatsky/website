@@ -17,9 +17,9 @@ const Header = () => {
 
   const navItems = [
     { name: 'VibeCode', href: '/' },
-    { name: 'Work', href: '/projects' },
+    { name: 'Projects', href: '/projects' },
     { name: 'AI News', href: '/news' },
-    { name: 'Connect', href: '/contact' },
+    { name: 'Contact', href: '/contact' },
   ]
 
   return (

@@ -36,7 +36,7 @@ const Footer = () => {
   const socialLinks = [
     { name: 'GitHub', href: 'https://github.com/asmeyatsky', icon: '🔗' },
     { name: 'LinkedIn', href: 'https://linkedin.com/in/allansmeyatsky', icon: '💼' },
-    { name: 'Twitter', href: '#', icon: '🐦' },
+    { name: 'Twitter', href: 'https://twitter.com/allansmeyatsky', icon: '🐦' },
     { name: 'Instagram', href: 'https://www.instagram.com/allansmeyatsky/', icon: '📸' },
     { name: 'Email', href: 'mailto:allan@smeyatsky.com', icon: '📧' },
   ]
