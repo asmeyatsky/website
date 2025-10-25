@@ -6,11 +6,7 @@ import emailjs from '@emailjs/browser';
 export interface EmailData {
   name: string;
   email: string;
-  company?: string;
-  projectType?: string;
-  budget?: string;
   message: string;
-  timeline?: string;
 }
 
 export const sendContactEmail = async (data: EmailData): Promise<boolean> => {
@@ -24,11 +20,7 @@ export const sendContactEmail = async (data: EmailData): Promise<boolean> => {
     const templateParams = {
       from_name: data.name,
       from_email: data.email,
-      company: data.company || '',
-      project_type: data.projectType || '',
-      budget: data.budget || '',
       message: data.message,
-      timeline: data.timeline || '',
       to_email: 'allan@smeyatsky.com',
     };
 

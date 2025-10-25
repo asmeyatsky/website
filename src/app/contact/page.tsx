@@ -8,11 +8,8 @@ const ContactPage = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    company: '',
-    projectType: '',
-    budget: '',
-    message: '',
-    timeline: ''
+    reason: '',
+    message: ''
   })
 
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -35,11 +32,7 @@ const ContactPage = () => {
       const emailData: EmailData = {
         name: formData.name,
         email: formData.email,
-        company: formData.company || undefined,
-        projectType: formData.projectType || undefined,
-        budget: formData.budget || undefined,
-        message: formData.message,
-        timeline: formData.timeline || undefined
+        message: `Reason: ${formData.reason}\n\nMessage: ${formData.message}`,
       };
 
       const success = await sendContactEmail(emailData)
@@ -49,11 +42,8 @@ const ContactPage = () => {
         setFormData({
           name: '',
           email: '',
-          company: '',
-          projectType: '',
-          budget: '',
-          message: '',
-          timeline: ''
+          reason: '',
+          message: ''
         })
       } else {
         setSubmitStatus('error')
@@ -168,18 +158,18 @@ const ContactPage = () => {
             <div className="lg:col-span-2">
               <div className="glass-effect p-8 rounded-lg">
                 <h2 className="text-2xl font-sans font-bold text-primary-accent mb-6">
-                  Let's Connect
+                  Get Notified
                 </h2>
                 
                 {submitStatus === 'success' && (
                   <div className="bg-neon-green/20 border border-neon-green/50 rounded-lg p-4 mb-6">
-                    <p className="text-neon-green">Thank you! Your message has been sent successfully. I'll get back to you within 24 hours.</p>
+                    <p className="text-neon-green">Thank you! You've been added to the list. I'll be in touch soon.</p>
                   </div>
                 )}
                 
                 {submitStatus === 'error' && (
                   <div className="bg-neon-pink/20 border border-neon-pink/50 rounded-lg p-4 mb-6">
-                    <p className="text-neon-pink">Sorry, there was an error sending your message. Please try again or contact me directly.</p>
+                    <p className="text-neon-pink">Sorry, there was an error. Please try again or contact me directly.</p>
                   </div>
                 )}
 
@@ -216,93 +206,34 @@ const ContactPage = () => {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-medium text-primary-text mb-2">
-                        Company/Organization
-                      </label>
-                      <input
-                        type="text"
-                        name="company"
-                        value={formData.company}
-                        onChange={handleInputChange}
-                        className="w-full bg-primary-secondary/50 border border-primary-accent/30 rounded-lg px-4 py-3 text-primary-text placeholder-primary-text/40 focus:outline-none focus:border-primary-accent transition-colors duration-300"
-                        placeholder="Your company name"
-                      />
-                    </div>
-                    
-                    <div>
-                      <label className="block text-sm font-medium text-primary-text mb-2">
-                        Project Type
-                      </label>
-                      <select
-                        name="projectType"
-                        value={formData.projectType}
-                        onChange={handleInputChange}
-                        className="w-full bg-primary-secondary/50 border border-primary-accent/30 rounded-lg px-4 py-3 text-primary-text focus:outline-none focus:border-primary-accent transition-colors duration-300"
-                      >
-                        <option value="">Select project type</option>
-                        <option value="strategy">AI Strategy & Planning</option>
-                        <option value="development">Custom AI Development</option>
-                        <option value="integration">AI Integration</option>
-                        <option value="audit">AI Audit & Optimization</option>
-                        <option value="other">Other</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-medium text-primary-text mb-2">
-                        Budget Range
-                      </label>
-                      <select
-                        name="budget"
-                        value={formData.budget}
-                        onChange={handleInputChange}
-                        className="w-full bg-primary-secondary/50 border border-primary-accent/30 rounded-lg px-4 py-3 text-primary-text focus:outline-none focus:border-primary-accent transition-colors duration-300"
-                      >
-                        <option value="">Select budget range</option>
-                        <option value="under-10k">Under $10K</option>
-                        <option value="10k-25k">$10K - $25K</option>
-                        <option value="25k-50k">$25K - $50K</option>
-                        <option value="50k-100k">$50K - $100K</option>
-                        <option value="over-100k">Over $100K</option>
-                      </select>
-                    </div>
-                    
-                    <div>
-                      <label className="block text-sm font-medium text-primary-text mb-2">
-                        Timeline
-                      </label>
-                      <select
-                        name="timeline"
-                        value={formData.timeline}
-                        onChange={handleInputChange}
-                        className="w-full bg-primary-secondary/50 border border-primary-accent/30 rounded-lg px-4 py-3 text-primary-text focus:outline-none focus:border-primary-accent transition-colors duration-300"
-                      >
-                        <option value="">Select timeline</option>
-                        <option value="asap">ASAP (Rush)</option>
-                        <option value="1-3months">1-3 months</option>
-                        <option value="3-6months">3-6 months</option>
-                        <option value="6months+">6+ months</option>
-                        <option value="flexible">Flexible</option>
-                      </select>
-                    </div>
+                  <div>
+                    <label className="block text-sm font-medium text-primary-text mb-2">
+                      I'm interested in...
+                    </label>
+                    <select
+                      name="reason"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      className="w-full bg-primary-secondary/50 border border-primary-accent/30 rounded-lg px-4 py-3 text-primary-text focus:outline-none focus:border-primary-accent transition-colors duration-300"
+                    >
+                      <option value="">Select a reason</option>
+                      <option value="Get notified for new apps">Get notified for new apps</option>
+                      <option value="Request early access">Request early access</option>
+                      <option value="General inquiry">General inquiry</option>
+                    </select>
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-primary-text mb-2">
-                      Project Details *
+                      Message (Optional)
                     </label>
                     <textarea
                       name="message"
                       value={formData.message}
                       onChange={handleInputChange}
-                      required
                       rows={5}
                       className="w-full bg-primary-secondary/50 border border-primary-accent/30 rounded-lg px-4 py-3 text-primary-text placeholder-primary-text/40 focus:outline-none focus:border-primary-accent transition-colors duration-300"
-                      placeholder="Tell me about your project, challenges, and goals. The more details you provide, the better I can help you."
+                      placeholder="Tell me more..."
                     />
                   </div>
 
@@ -311,7 +242,7 @@ const ContactPage = () => {
                     disabled={isSubmitting}
                     className="w-full bg-primary-accent text-primary-dark px-8 py-4 text-lg font-semibold rounded-lg hover:bg-primary-accent/90 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    {isSubmitting ? 'Sending Message...' : 'Send Message'}
+                    {isSubmitting ? 'Submitting...' : 'Submit'}
                   </button>
                 </form>
               </div>

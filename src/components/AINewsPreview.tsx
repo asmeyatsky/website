@@ -112,7 +112,7 @@ export default function AINewsPreview() {
           <div className="space-y-4">
             {articles.map((article, index) => (
               <Link
-                key={article.link}
+                key={`${article.link}-${index}`}
                 href={article.link}
                 target="_blank"
                 rel="noopener noreferrer"

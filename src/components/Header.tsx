@@ -16,9 +16,10 @@ const Header = () => {
   }, [])
 
   const navItems = [
-    { name: 'VibeCode', href: '/' },
+    { name: 'Home', href: '/' },
     { name: 'Projects', href: '/projects' },
     { name: 'AI News', href: '/news' },
+    { name: 'About', href: '/about' },
     { name: 'Contact', href: '/contact' },
   ]
 
@@ -33,9 +34,9 @@ const Header = () => {
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3 group">
             <div className="w-10 h-10 sm:w-12 sm:h-12 bg-accent border-2 border-accent flex items-center justify-center">
-              <span className="font-bold font-mono text-bg text-lg sm:text-xl">AS</span>
+              <span className="font-bold font-mono text-bg text-lg sm:text-xl">SL</span>
             </div>
-            <span className="font-bold font-mono text-lg sm:text-xl text-text hidden sm:inline">Allan Smeyatsky</span>
+            <span className="font-bold font-mono text-lg sm:text-xl text-text hidden sm:inline">Smeyatsky Labs</span>
           </Link>
 
           {/* Desktop Navigation */}

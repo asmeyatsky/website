@@ -119,41 +119,46 @@ const AboutPage = () => {
             </div>
 
             {/* Bio */}
-            <div className="lg:col-span-2 space-y-6">
-              <div className="glass-effect p-8 rounded-xl">
-                <h3 className="section-subheader">My Journey</h3>
-                <div className="space-y-4 text-primary-text/80">
-                  <p>
-                    Transformational Technology Executive with three decades of solution architecture excellence spanning 
-                    on-premises to cloud-native ecosystems across global enterprises. I am a distinguished leader who combines 
-                    strategic vision with hands-on technical execution, leading from architecting enterprise solutions to 
-                    developing production applications while building world-class engineering organizations.
-                  </p>
-                  <p>
-                    My current focus is on advancing AI-native architectures through direct experience with Anthropic Claude, 
-                    Google Gemini, and OpenAI platforms, complemented by active development in Swift/iOS, Node.js, and Python ecosystems.
-                  </p>
-                  <p>
-                    I embody a Technical Leadership Mindset, emphasizing strategic execution through direct involvement. 
-                    I seamlessly transition between architecting enterprise solutions, coding innovative applications, 
-                    and mentoring global engineering talent.
-                  </p>
-                </div>
-              </div>
-
-              {/* Quick Stats */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="glass-effect p-4 rounded-xl text-center hover-glow">
-                  <div className="text-3xl font-bold gradient-text">30+</div>
-                  <div className="text-sm text-primary-text/80">Years Experience</div>
-                </div>
-                <div className="glass-effect p-4 rounded-xl text-center hover-glow">
-                  <div className="text-3xl font-bold gradient-text">Global</div>
-                  <div className="text-sm text-primary-text/80">Enterprise Impact</div>
-                </div>
-              </div>
-            </div>
-          </div>
+                          <div className="lg:col-span-2 space-y-6">
+                            <div className="glass-effect p-8 rounded-xl">
+                              <h3 className="section-subheader">My Journey</h3>
+                              <div className="space-y-4 text-primary-text/80">
+                                <p>
+                                  As the leader of Smeyatsky Labs, I focus on building small, high-impact tools. I believe the best tools are built iteratively and shared early to solve real-world problems.
+                                </p>
+                                <p>
+                                  My current focus is on advancing AI-native architectures through direct experience with Anthropic Claude, 
+                                  Google Gemini, and OpenAI platforms, complemented by active development in Swift/iOS, Node.js, and Python ecosystems.
+                                </p>
+                                <p>
+                                  I embody a Technical Leadership Mindset, emphasizing strategic execution through direct involvement. 
+                                  I seamlessly transition between architecting enterprise solutions, coding innovative applications, 
+                                  and mentoring global engineering talent.
+                                </p>
+                              </div>
+                            </div>
+            
+                            <div className="glass-effect p-8 rounded-xl">
+                              <h3 className="section-subheader">Smeyatsky Labs</h3>
+                              <div className="space-y-4 text-primary-text/80">
+                                <p>
+                                  Smeyatsky Labs is my digital studio where I create and share high-impact tools and applications. The lab is founded on the principle of iterative development and early sharing to deliver practical solutions.
+                                </p>
+                              </div>
+                            </div>
+            
+                            {/* Quick Stats */}
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                              <div className="glass-effect p-4 rounded-xl text-center hover-glow">
+                                <div className="text-3xl font-bold gradient-text">30+</div>
+                                <div className="text-sm text-primary-text/80">Years Experience</div>
+                              </div>
+                              <div className="glass-effect p-4 rounded-xl text-center hover-glow">
+                                <div className="text-3xl font-bold gradient-text">Global</div>
+                                <div className="text-sm text-primary-text/80">Enterprise Impact</div>
+                              </div>
+                            </div>
+                          </div>          </div>
         </section>
 
         {/* Skills Section */}

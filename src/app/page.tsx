@@ -3,77 +3,31 @@
 import React from 'react'
 import Layout from '@/components/Layout'
 import Link from 'next/link'
-import { TerminalLines } from '@/components/TerminalTyping'
 import GitHubProfile from '@/components/GitHubProfile'
 import ExperienceTimeline from '@/components/ExperienceTimeline'
 import AINewsPreview from '@/components/AINewsPreview'
 
 export default function Home() {
-  const vibeCodePrinciples = [
-    'Human-AI Symbiosis',
-    'Mindful Development',
-    'Flow State Engineering',
-  ]
 
   return (
     <Layout>
       <div className="min-h-screen">
-        {/* Hero Section - VibeCode First */}
-        <section className="min-h-screen flex items-center justify-center px-4 py-20">
-          <div className="content-wrapper max-w-4xl">
-            <div className="text-center space-y-8">
-              {/* Main Title */}
-              <h1 className="hero-title">
-                VibeCode
-                <br />
-                Developer
-              </h1>
-
-              {/* Animated Principles */}
-              <div className="space-y-2 sm:space-y-3">
-                <TerminalLines
-                  lines={vibeCodePrinciples}
-                  lineDelay={800}
-                  speed={30}
-                  className="terminal-line"
-                />
-              </div>
-
-              {/* CTAs */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
-                <Link
-                  href="/vibecoding-charter"
-                  className="brutalist-button"
-                >
-                  Read the Charter
-                </Link>
-                <Link
-                  href="https://github.com/asmeyatsky/vibecoding"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="brutalist-button-outline"
-                >
-                  View on GitHub
-                </Link>
-              </div>
-
-              {/* Divider */}
-              <div className="pt-12 pb-8">
-                <div className="h-px bg-border"></div>
-              </div>
-
-              {/* Personal Brand */}
-              <div className="text-center space-y-4">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-mono font-bold text-text">
-                  Allan Smeyatsky
-                </h2>
-                <p className="text-base sm:text-lg md:text-xl font-mono text-accent">
-                  30yr Tech Executive • AI • Cloud • Architecture
-                </p>
-                <p className="text-sm sm:text-base font-mono text-brutalist-text-dim max-w-2xl mx-auto">
-                  Transformational technology leader combining strategic vision with hands-on technical execution
-                </p>
-              </div>
+        {/* Hero Section - Smeyatsky Labs */}
+        <section className="min-h-screen flex items-center justify-center px-4 py-20 text-center">
+          <div className="max-w-4xl mx-auto">
+            <h1 className="text-5xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-teal-500 pb-4">
+              Smeyatsky Labs
+            </h1>
+            <p className="text-xl md:text-2xl text-slate-300 mt-4 max-w-2xl mx-auto">
+              Building small, high-impact tools that solve real problems.
+            </p>
+            <div className="mt-8 flex justify-center gap-4">
+              <Link href="/projects" className="brutalist-button">
+                Explore Apps
+              </Link>
+              <Link href="/contact" className="brutalist-button-outline">
+                Get Notified
+              </Link>
             </div>
           </div>
         </section>
