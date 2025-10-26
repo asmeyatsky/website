@@ -14,9 +14,10 @@ const ContactPage = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [submittedReason, setSubmittedReason] = useState('')
 
   const getSuccessMessage = () => {
-    switch(formData.reason) {
+    switch(submittedReason) {
       case 'Get notified for new apps':
         return 'Thank you! You\'ve been added to the list. I\'ll be in touch soon.';
       case 'Request early access':
@@ -40,6 +41,7 @@ const ContactPage = () => {
     e.preventDefault()
     setIsSubmitting(true)
     setSubmitStatus('idle')
+    setSubmittedReason('') // Reset the submitted reason when starting a new submission
     
     try {
       const emailData: EmailData = {
@@ -52,6 +54,7 @@ const ContactPage = () => {
       
       if (success) {
         setSubmitStatus('success')
+        setSubmittedReason(formData.reason) // Save the reason before resetting form
         setFormData({
           name: '',
           email: '',
