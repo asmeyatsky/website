@@ -212,7 +212,7 @@ const ContactPage = () => {
                     </label>
                     <select
                       name="reason"
-                      value={formData.message}
+                      value={formData.reason}
                       onChange={handleInputChange}
                       className="w-full bg-primary-secondary/50 border border-primary-accent/30 rounded-lg px-4 py-3 text-primary-text focus:outline-none focus:border-primary-accent transition-colors duration-300"
                     >
