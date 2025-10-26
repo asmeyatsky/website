@@ -15,6 +15,19 @@ const ContactPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
+  const getSuccessMessage = () => {
+    switch(formData.reason) {
+      case 'Get notified for new apps':
+        return 'Thank you! You\'ve been added to the list. I\'ll be in touch soon.';
+      case 'Request early access':
+        return 'Thank you! Your early access request has been received. I\'ll be in touch soon.';
+      case 'General inquiry':
+        return 'Thank you! Your inquiry has been received. I\'ll be in touch soon.';
+      default:
+        return 'Thank you! Your inquiry has been received. I\'ll be in touch soon.';
+    }
+  }
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
     setFormData(prev => ({
@@ -158,12 +171,12 @@ const ContactPage = () => {
             <div className="lg:col-span-2">
               <div className="glass-effect p-8 rounded-lg">
                 <h2 className="text-2xl font-sans font-bold text-primary-accent mb-6">
-                  Get Notified
+                  Send a Message
                 </h2>
                 
                 {submitStatus === 'success' && (
                   <div className="bg-neon-green/20 border border-neon-green/50 rounded-lg p-4 mb-6">
-                    <p className="text-neon-green">Thank you! You've been added to the list. I'll be in touch soon.</p>
+                    <p className="text-neon-green">{getSuccessMessage()}</p>
                   </div>
                 )}
                 
