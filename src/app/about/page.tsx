@@ -121,28 +121,29 @@ const AboutPage = () => {
             {/* Bio */}
                           <div className="lg:col-span-2 space-y-6">
                             <div className="glass-effect p-8 rounded-xl">
-                              <h3 className="section-subheader">My Journey</h3>
+                              <h3 className="section-subheader">Professional Philosophy</h3>
                               <div className="space-y-4 text-primary-text/80">
                                 <p>
-                                  As the leader of Smeyatsky Labs, I focus on building small, high-impact tools. I believe the best tools are built iteratively and shared early to solve real-world problems.
+                                  I combine 30+ years of enterprise technology leadership with hands-on full-stack development. I architect and build production-grade applications across App Store, full-stack web, and enterprise cloud platforms.
                                 </p>
                                 <p>
-                                  My current focus is on advancing AI-native architectures through direct experience with Anthropic Claude, 
-                                  Google Gemini, and OpenAI platforms, complemented by active development in Swift/iOS, Node.js, and Python ecosystems.
+                                  My approach emphasizes <strong>Technical Leadership through Direct Involvement</strong> — I seamlessly transition between:
+                                  architecting solutions for global enterprises, building production applications in Swift/iOS, Node.js and Python, and mentoring engineering talent.
                                 </p>
                                 <p>
-                                  I embody a Technical Leadership Mindset, emphasizing strategic execution through direct involvement. 
-                                  I seamlessly transition between architecting enterprise solutions, coding innovative applications, 
-                                  and mentoring global engineering talent.
+                                  I'm actively advancing AI-native architectures through hands-on integration of Anthropic Claude, Google Gemini, and OpenAI into production systems, combined with deep expertise in cloud infrastructure, Kubernetes, and DevSecOps.
                                 </p>
                               </div>
                             </div>
-            
+
                             <div className="glass-effect p-8 rounded-xl">
                               <h3 className="section-subheader">Smeyatsky Labs</h3>
                               <div className="space-y-4 text-primary-text/80">
                                 <p>
-                                  Smeyatsky Labs is my digital studio where I create and share high-impact tools and applications. The lab is founded on the principle of iterative development and early sharing to deliver practical solutions.
+                                  Smeyatsky Labs is where I develop production-grade applications and share my technical insights. Current focus areas include iOS applications with on-device AI, enterprise wellness platforms, full-stack web applications with modern architectures, and governance frameworks for responsible AI integration.
+                                </p>
+                                <p>
+                                  Every project is built with production-ready infrastructure, comprehensive architecture, and attention to scalability — reflecting the standards of serious application development.
                                 </p>
                               </div>
                             </div>
@@ -163,7 +164,7 @@ const AboutPage = () => {
 
         {/* Skills Section */}
         <section className="content-container section-padding">
-          <h2 className="section-header">Agentic AI Expertise</h2>
+          <h2 className="section-header">Technical Expertise</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {skills.map((skill, index) => (
@@ -256,10 +257,10 @@ const AboutPage = () => {
         <section className="content-container section-padding">
           <div className="glass-effect p-8 md:p-12 rounded-xl text-center">
             <h2 className="text-3xl font-bold gradient-text mb-4">
-              Let's Build the Future
+              Ready to Collaborate
             </h2>
             <p className="text-primary-text/80 mb-8 max-w-2xl mx-auto">
-              Explore my technical portfolio and learn about my journey in AI innovation, enterprise architecture, and cloud transformation.
+              Explore my portfolio of production applications, discuss architecture and strategy, or explore partnership opportunities for enterprise modernization and application development.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -267,13 +268,13 @@ const AboutPage = () => {
                 href="/projects"
                 className="ai-button px-8 py-4"
               >
-                View Technical Portfolio
+                View Production Applications
               </Link>
               <Link
-                href="/consulting"
+                href="/contact"
                 className="glass-effect px-8 py-4 text-lg font-semibold text-accent-cyan border border-accent-cyan/30 hover:border-accent-cyan transition-all duration-300 rounded-xl"
               >
-                Explore Capabilities
+                Start a Conversation
               </Link>
             </div>
           </div>

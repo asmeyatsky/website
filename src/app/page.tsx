@@ -19,14 +19,14 @@ export default function Home() {
               Smeyatsky Labs
             </h1>
             <p className="text-xl md:text-2xl text-slate-300 mt-4 max-w-2xl mx-auto">
-              Building small, high-impact tools that solve real problems.
+              Engineering production-grade applications across App Store, full-stack web, and enterprise platforms.
             </p>
             <div className="mt-8 flex justify-center gap-4">
               <Link href="/projects" className="brutalist-button">
-                Explore Apps
+                View Applications
               </Link>
               <Link href="/contact" className="brutalist-button-outline">
-                Get Notified
+                Start a Conversation
               </Link>
             </div>
           </div>
@@ -56,10 +56,67 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Application Categories Section */}
+        <section className="section-spacing bg-code-bg">
+          <div className="content-wrapper">
+            <h2 className="section-title text-center">Application Development</h2>
+            <p className="section-subtitle text-center">
+              Shipping production-grade applications across multiple platforms and markets
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+              {/* App Store Applications */}
+              <div className="brutalist-card">
+                <div className="text-4xl mb-4">📱</div>
+                <h3 className="text-xl font-bold font-mono text-brutalist-text mb-3">App Store Applications</h3>
+                <p className="text-brutalist-text-dim text-sm mb-4">
+                  Shipped iOS applications with sophisticated UI/UX, on-device AI, cloud integration, and App Store optimization. Focus on user experience and performance at scale.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="professional-badge">SwiftUI</span>
+                  <span className="professional-badge">CloudKit</span>
+                  <span className="professional-badge">On-Device AI</span>
+                </div>
+              </div>
+
+              {/* Full-Stack Web Applications */}
+              <div className="brutalist-card">
+                <div className="text-4xl mb-4">💻</div>
+                <h3 className="text-xl font-bold font-mono text-brutalist-text mb-3">Full-Stack Web Applications</h3>
+                <p className="text-brutalist-text-dim text-sm mb-4">
+                  Enterprise and consumer web platforms with scalable architectures, real-time features, payment integration, and optimized performance. Production deployments on cloud infrastructure.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="professional-badge">React</span>
+                  <span className="professional-badge">Node.js</span>
+                  <span className="professional-badge">Scalable APIs</span>
+                </div>
+              </div>
+
+              {/* Enterprise Cloud Solutions */}
+              <div className="brutalist-card">
+                <div className="text-4xl mb-4">☁️</div>
+                <h3 className="text-xl font-bold font-mono text-brutalist-text mb-3">Enterprise Cloud Solutions</h3>
+                <p className="text-brutalist-text-dim text-sm mb-4">
+                  Cloud modernization, infrastructure architecture, API-first design, and multi-cloud strategies. Leveraging 30+ years of enterprise experience for digital transformation.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="professional-badge">Cloud Architecture</span>
+                  <span className="professional-badge">Kubernetes</span>
+                  <span className="professional-badge">Modernization</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* GitHub Profile Section */}
         <section className="section-spacing">
           <div className="content-wrapper">
-            <h2 className="section-title text-center">Open Source Work</h2>
+            <h2 className="section-title text-center">Open Source Contributions</h2>
+            <p className="section-subtitle text-center">
+              Active open source development supporting application ecosystems
+            </p>
             <div className="max-w-2xl mx-auto">
               <GitHubProfile />
             </div>
@@ -69,9 +126,9 @@ export default function Home() {
         {/* Experience Timeline Section */}
         <section className="section-spacing bg-code-bg">
           <div className="content-wrapper">
-            <h2 className="section-title text-center">Experience</h2>
+            <h2 className="section-title text-center">Professional Background</h2>
             <p className="section-subtitle text-center">
-              Three decades of transformational technology leadership
+              Global technology leader combining 30+ years of enterprise architecture with hands-on application development
             </p>
             <div className="max-w-4xl mx-auto">
               <ExperienceTimeline />
@@ -95,48 +152,51 @@ export default function Home() {
         {/* Core Expertise Section */}
         <section className="section-spacing bg-code-bg">
           <div className="content-wrapper">
-            <h2 className="section-title text-center">Core Expertise</h2>
+            <h2 className="section-title text-center">Technical Leadership</h2>
+            <p className="section-subtitle text-center">
+              Deep expertise across architecture, infrastructure, and modern AI technologies
+            </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
               {/* Solution Architecture */}
               <div className="brutalist-card">
                 <div className="text-4xl mb-4">🏛️</div>
-                <h3 className="text-xl font-bold font-mono text-brutalist-text mb-3">Solution Architecture</h3>
+                <h3 className="text-xl font-bold font-mono text-brutalist-text mb-3">Architecture & Design</h3>
                 <p className="text-brutalist-text-dim text-sm mb-4">
-                  30 years of enterprise architecture, hybrid/multi-cloud strategies, and domain-driven design.
+                  30 years designing enterprise systems. Specializing in scalable architectures, API-first design, domain-driven design, and systems that grow from prototype to production.
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  <span className="professional-badge">Enterprise</span>
                   <span className="professional-badge">API-First</span>
                   <span className="professional-badge">DDD</span>
+                  <span className="professional-badge">Scalability</span>
                 </div>
               </div>
 
               {/* Multi-Cloud */}
               <div className="brutalist-card">
                 <div className="text-4xl mb-4">☁️</div>
-                <h3 className="text-xl font-bold font-mono text-brutalist-text mb-3">Multi-Cloud Expertise</h3>
+                <h3 className="text-xl font-bold font-mono text-brutalist-text mb-3">Cloud Infrastructure</h3>
                 <p className="text-brutalist-text-dim text-sm mb-4">
-                  8 years across GCP, AWS, and Azure, with specializations in GKE, serverless, and Kubernetes.
+                  8+ years deploying production applications across GCP, AWS, and Azure. Kubernetes, serverless platforms, and DevSecOps for applications at scale.
                 </p>
                 <div className="flex flex-wrap gap-2">
                   <span className="professional-badge">GCP</span>
-                  <span className="professional-badge">AWS</span>
-                  <span className="professional-badge">Azure</span>
+                  <span className="professional-badge">Kubernetes</span>
+                  <span className="professional-badge">DevSecOps</span>
                 </div>
               </div>
 
               {/* AI & ML */}
               <div className="brutalist-card">
                 <div className="text-4xl mb-4">🤖</div>
-                <h3 className="text-xl font-bold font-mono text-brutalist-text mb-3">AI & Machine Learning</h3>
+                <h3 className="text-xl font-bold font-mono text-brutalist-text mb-3">AI-Native Development</h3>
                 <p className="text-brutalist-text-dim text-sm mb-4">
-                  2 years with Claude, Gemini, and OpenAI, including API integration and prompt engineering.
+                  Integrating Claude, Gemini, and OpenAI into production applications. Prompt engineering, RAG systems, and building AI capabilities that enhance user experience.
                 </p>
                 <div className="flex flex-wrap gap-2">
                   <span className="professional-badge">Claude</span>
                   <span className="professional-badge">Gemini</span>
-                  <span className="professional-badge">OpenAI</span>
+                  <span className="professional-badge">RAG Systems</span>
                 </div>
               </div>
             </div>
@@ -177,23 +237,23 @@ export default function Home() {
         <section className="section-spacing bg-code-bg">
           <div className="content-wrapper max-w-3xl mx-auto text-center">
             <h2 className="text-3xl sm:text-4xl font-bold font-mono text-brutalist-text mb-6">
-              Let's Build Together
+              Ready to Partner
             </h2>
             <p className="text-brutalist-text-dim mb-8 font-mono">
-              Interested in collaboration, consulting, or just want to connect?
+              Available for architecture consulting, full-stack development, and strategic technology partnerships.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/projects"
+                href="/consulting"
                 className="brutalist-button"
               >
-                View Projects
+                Consulting Services
               </Link>
               <Link
                 href="/contact"
                 className="brutalist-button-outline"
               >
-                Get in Touch
+                Schedule a Call
               </Link>
             </div>
           </div>

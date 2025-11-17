@@ -25,24 +25,24 @@ const ConsultingPage = () => {
   // Capability areas data
   const capabilities = [
     {
-      title: "AI Strategy & Implementation",
-      description: "Deep experience with cutting-edge AI solutions including Anthropic Claude, Google Gemini, and OpenAI platforms.",
-      icon: "🤖"
+      title: "Application Architecture & Design",
+      description: "Strategic architecture for scalable, production-grade applications from prototype to enterprise scale. API-first design, domain-driven architecture, and microservices patterns.",
+      icon: "🏛️"
     },
     {
-      title: "Enterprise Architecture",
-      description: "30+ years designing scalable, secure, and efficient technology infrastructures for global enterprises.",
-      icon: "🏗️"
+      title: "Full-Stack Development",
+      description: "Hands-on development across iOS, full-stack web, and backend systems. Swift, TypeScript, Python, and cloud-native technologies.",
+      icon: "💻"
     },
     {
-      title: "Cloud Migration & Optimization",
-      description: "Multi-cloud expertise across GCP, AWS, and Azure with focus on performance and cost optimization.",
+      title: "Cloud Infrastructure & DevOps",
+      description: "Design and implement scalable cloud infrastructure on GCP, AWS, and Azure. Kubernetes, serverless platforms, and CI/CD automation.",
       icon: "☁️"
     },
     {
-      title: "Digital Transformation",
-      description: "Proven experience leading comprehensive digital transformation initiatives across multiple industries.",
-      icon: "🚀"
+      title: "AI-Native Application Development",
+      description: "Integrate Claude, Gemini, and OpenAI into production applications. Prompt engineering, RAG systems, and AI-powered user experiences.",
+      icon: "🤖"
     }
   ]
 
@@ -197,10 +197,10 @@ const ConsultingPage = () => {
         <section className="content-container py-16 md:py-24">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="professional-title mb-6">
-              <span className="elegant-gradient">Technology Capabilities</span>
+              <span className="elegant-gradient">Architecture & Development Services</span>
             </h1>
             <p className="professional-subtitle mb-10">
-              Three decades of technology leadership and innovation in AI, enterprise architecture, and cloud-native solutions across global enterprises.
+              Strategic consulting and hands-on development for building production-grade applications and modernizing enterprise infrastructure. 30+ years of experience combined with active full-stack development.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
@@ -223,10 +223,10 @@ const ConsultingPage = () => {
         <section className="content-container section-padding">
           <div className="text-center mb-16">
             <h2 className="section-header">
-              <span className="elegant-gradient">Core Technology Expertise</span>
+              <span className="elegant-gradient">Consulting Services</span>
             </h2>
             <p className="professional-subtitle max-w-3xl mx-auto">
-              Deep expertise in modern technology areas gained through hands-on leadership and implementation
+              Strategic guidance and hands-on implementation across application development, architecture, and cloud infrastructure
             </p>
           </div>
           
@@ -327,24 +327,24 @@ const ConsultingPage = () => {
         <section className="content-container section-padding">
           <div className="glass-effect p-8 md:p-12 rounded-xl text-center">
             <h2 className="text-3xl font-bold gradient-text mb-4">
-              Explore More
+              Ready to Collaborate
             </h2>
             <p className="text-primary-text/80 mb-8 max-w-2xl mx-auto">
-              Learn more about my technical journey, view my latest projects, or connect with me on professional networks.
+              Discuss architecture, plan cloud modernization, or explore how to integrate AI into your applications. Available for partnerships, advisory, and strategic technology engagements.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/about"
+                href="/contact"
                 className="professional-button px-8 py-4"
               >
-                View Full Experience
+                Schedule Consultation
               </Link>
               <Link
                 href="/projects"
                 className="glass-effect px-8 py-4 text-lg font-semibold text-accent-blue border border-accent-blue/30 hover:border-accent-blue transition-all duration-200 rounded-xl inline-flex items-center justify-center"
               >
-                Technical Portfolio
+                View Production Applications
               </Link>
             </div>
           </div>
