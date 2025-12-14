@@ -1,67 +1,67 @@
 import { NextResponse } from 'next/server'
-import { Storage } from '@google-cloud/storage'
+
+const GCS_NEWS_URL = process.env.NEXT_PUBLIC_GCS_NEWS_JSON_URL ||
+  'https://storage.googleapis.com/website2-480712-ai-news/ai_news.json'
 
 export async function GET() {
-  if (process.env.NODE_ENV !== 'production') {
-    // Return mock data in development
-    const mockData = [
-      {
-        title: "The Rise of AI in Software Development",
-        link: "/news/the-rise-of-ai-in-software-development",
-        published: "2025-10-24T10:00:00Z",
-        category: "AI Development"
-      },
-      {
-        title: "Next.js 15: What's New?",
-        link: "/news/nextjs-15-whats-new",
-        published: "2025-10-23T14:30:00Z",
-        category: "Web Development"
-      },
-      {
-        title: "A Deep Dive into Serverless Architecture",
-        link: "/news/a-deep-dive-into-serverless-architecture",
-        published: "2025-10-22T11:00:00Z",
-        category: "Cloud Computing"
-      }
-    ];
-    return NextResponse.json(mockData);
-  }
-
   try {
-    const GCS_BUCKET_NAME = process.env.GCS_BUCKET_NAME || "website-469906-ai-news"
-    const GCS_FILE_NAME = process.env.GCS_FILE_NAME || "ai_news.json"
+    console.log('Fetching news from:', GCS_NEWS_URL)
 
-    const storage = new Storage()
-    const bucket = storage.bucket(GCS_BUCKET_NAME)
-    const file = bucket.file(GCS_FILE_NAME)
+    const response = await fetch(GCS_NEWS_URL, {
+      next: { revalidate: 300 }, // Cache for 5 minutes
+      headers: {
+        'Cache-Control': 'no-cache'
+      }
+    })
 
-    const [contents] = await file.download()
-    const data = JSON.parse(contents.toString('utf8'))
+    console.log('Response status:', response.status)
+    console.log('Response OK:', response.ok)
 
-    // Flatten the data and add category
-    const articles: Array<{
+    if (!response.ok) {
+      throw new Error(`Failed to fetch news: ${response.status} ${response.statusText}`)
+    }
+
+    const data = await response.json()
+    console.log('Raw data received:', typeof data, Array.isArray(data) ? 'array' : 'object')
+
+    // Check if data is an array or object
+    let articles: Array<{
       title: string
       link: string
       published: string
       category: string
     }> = []
 
-    for (const category in data) {
-      if (Object.prototype.hasOwnProperty.call(data, category)) {
-        data[category].forEach((article: any) => {
-          articles.push({
-            title: article.title,
-            link: article.link,
-            published: article.published,
-            category: category,
+    if (Array.isArray(data)) {
+      // If data is already an array, use it directly
+      articles = data.map((item: any) => ({
+        title: item.title || 'No title',
+        link: item.link || '#',
+        published: item.published || new Date().toISOString(),
+        category: item.category || 'General',
+      }))
+    } else if (typeof data === 'object') {
+      // If data is an object with categories, flatten it
+      for (const category in data) {
+        if (Object.prototype.hasOwnProperty.call(data, category)) {
+          const categoryItems = Array.isArray(data[category]) ? data[category] : [data[category]]
+          categoryItems.forEach((article: any) => {
+            articles.push({
+              title: article.title || 'No title',
+              link: article.link || '#',
+              published: article.published || new Date().toISOString(),
+              category: category,
+            })
           })
-        })
+        }
       }
     }
 
+    console.log('Processed articles count:', articles.length)
     return NextResponse.json(articles)
-  } catch (error) {
-    console.error('Error fetching news data from GCS:', error)
-    return NextResponse.json({ error: 'Failed to fetch news data' }, { status: 500 })
+  } catch (error: any) {
+    console.error('Error fetching news data from GCS:', error?.message || error)
+    console.error('Error stack:', error?.stack)
+    return NextResponse.json({ error: 'Failed to fetch news data', details: error?.message || 'Unknown error' }, { status: 500 })
   }
 }
