@@ -3,6 +3,10 @@ import Layout from '@/components/Layout'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 
+// Make this page fully static to ensure reliability in all environments
+export const dynamic = 'error'; // Prevents any dynamic server-side rendering
+export const revalidate = false; // Makes this a fully static page
+
 export const metadata: Metadata = {
   title: 'Technology Capabilities | Allan Smeyatsky',
   description: 'Technology expertise in AI implementation, enterprise architecture, cloud migration, and digital transformation gained through three decades of experience.',

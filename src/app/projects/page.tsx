@@ -1,7 +1,8 @@
 import ProjectsClientPage from './ProjectsClientPage';
 
-// Revalidate this page every 5 minutes for testing
-export const revalidate = 300; // seconds
+// Make this page fully static to avoid server-side rendering issues in production
+export const dynamic = 'error'; // Prevents any dynamic server-side rendering
+export const revalidate = false; // Makes this a fully static page
 
 export default function ProjectsServerPage() {
   return <ProjectsClientPage />;
