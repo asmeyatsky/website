@@ -3,9 +3,8 @@ import Layout from '@/components/Layout'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 
-// Make this page fully static to ensure reliability in all environments
-export const dynamic = 'error'; // Prevents any dynamic server-side rendering
-export const revalidate = false; // Makes this a fully static page
+// Static generation with 1-hour revalidation
+export const revalidate = 3600; // Revalidate every hour
 
 export const metadata: Metadata = {
   title: 'Technology Capabilities | Allan Smeyatsky',
