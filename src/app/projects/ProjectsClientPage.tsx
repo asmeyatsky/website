@@ -6,14 +6,14 @@ import Link from 'next/link'
 
 const projects = [
   {
-    title: "Lucent - iOS Photo Management with On-Device AI",
+    title: "Lucent Pro - AI Photo Manager",
     category: "App Store Application",
-    description: "Production iOS application that revolutionizes media organization through comprehensive AI-powered features. All processing is on-device for complete privacy and performance.",
-    features: ["Intelligent visual tagging", "Semantic photo search", "On-device ML models", "Duplicate/near-duplicate detection", "Photo clustering", "NIMA aesthetic scoring", "CloudKit synchronization", "Modern SwiftUI interface"],
-    tech: "iOS (SwiftUI, CloudKit, Vision Framework), Google Gemini, CLIP Embeddings, NIMA Model",
-    targetAudience: "iPhone users with large photo libraries",
-    why: "To deliver powerful, production-grade photo management with on-device AI, prioritizing privacy and performance.",
-    cta: { text: "Coming Soon", link: "#" }
+    description: "Production iOS application that organizes your entire photo library using on-device AI. Smart search, 200+ intelligent collections, duplicate detection, and photo maps. Your photos never leave your device.",
+    features: ["Natural language photo search", "200+ AI-generated collections", "Duplicate & similar photo detection", "Interactive photo map", "Face & object recognition", "Text recognition (OCR)", "Voice search", "iCloud library support"],
+    tech: "iOS (SwiftUI, Vision Framework, Core ML), Apple Neural Engine, On-Device AI",
+    targetAudience: "iPhone, iPad, Mac, and Vision Pro users with large photo libraries",
+    why: "To deliver powerful, production-grade photo management with 100% on-device AI, prioritizing privacy and performance.",
+    cta: { text: "Download on App Store", link: "https://apps.apple.com/us/app/lucent-pro/id6749473261" }
   },
   {
     title: "WellnessApp - Enterprise Wellness Platform",
