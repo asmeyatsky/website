@@ -110,17 +110,24 @@ const NewsClientPage = ({ initialArticles }: NewsClientPageProps) => {
 
           if (response.ok) {
             setArticles(articles)
+            console.log(`Successfully loaded ${articles.length} news articles`)
           } else {
-            console.error('Error fetching news data:', articles.error)
+            console.error('Error fetching news data:', articles)
+            // Show an error message to the user
+            setArticles([]) // Set to empty array to show no articles message
           }
           setLoading(false)
         } catch (error) {
           console.error('Error fetching news data:', error)
           setLoading(false)
+          // Still set to empty array to show no articles message
+          setArticles([])
         }
       }
 
       fetchArticles()
+    } else {
+      setLoading(false)
     }
   }, [initialArticles])
 
