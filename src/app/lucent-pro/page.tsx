@@ -270,6 +270,23 @@ export default function LucentProPage() {
             <p className="text-brutalist-text-dim mb-8 font-mono">
               Download Lucent Pro and experience intelligent photo management with complete privacy.
             </p>
+
+            {/* QR Code for mobile download */}
+            <div className="mb-8">
+              <div className="inline-block bg-white p-4 rounded-lg shadow-lg">
+                <Image
+                  src="/lucent-pro-qr.png"
+                  alt="Scan to download Lucent Pro from the App Store"
+                  width={160}
+                  height={160}
+                  className="mx-auto"
+                />
+              </div>
+              <p className="text-brutalist-text-dim text-sm font-mono mt-3">
+                Scan with your phone to download
+              </p>
+            </div>
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href={appStoreUrl}
