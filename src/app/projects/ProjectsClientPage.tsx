@@ -123,14 +123,23 @@ const ProjectsClientPage = () => {
   const webApps = projects.filter(p => p.category === "Full-Stack Web Application")
   const enterpriseTools = projects.filter(p => p.category === "Enterprise Tool" || p.category === "Enterprise Framework")
 
-  const renderProjectCard = (project: typeof projects[0]) => (
+  const renderProjectCard = (project: typeof projects[0]) => {
+    const isLucentPro = project.title.includes('Lucent Pro')
+
+    return (
     <div key={project.title} className="glass-effect p-6 rounded-lg flex flex-col">
       <div className="mb-2">
         <span className="inline-block px-3 py-1 bg-brutalist-accent/20 text-brutalist-accent text-xs font-mono rounded mb-2">
           {project.category}
         </span>
       </div>
-      <h2 className="text-2xl font-bold mb-2 gradient-text">{project.title}</h2>
+      {isLucentPro ? (
+        <Link href="/lucent-pro" className="text-2xl font-bold mb-2 gradient-text hover:opacity-80 transition-opacity">
+          {project.title}
+        </Link>
+      ) : (
+        <h2 className="text-2xl font-bold mb-2 gradient-text">{project.title}</h2>
+      )}
       <p className="text-primary-text/80 mb-4 flex-grow">{project.description}</p>
       <div className="mb-4">
         <h3 className="font-bold text-lg mb-2">Target Audience:</h3>
@@ -160,7 +169,7 @@ const ProjectsClientPage = () => {
         </div>
       )}
     </div>
-  )
+  )}
 
   return (
     <Layout>

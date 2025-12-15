@@ -17,6 +17,7 @@ const Header = () => {
 
   const navItems = [
     { name: 'Home', href: '/' },
+    { name: 'Lucent Pro', href: '/lucent-pro' },
     { name: 'Projects', href: '/projects' },
     { name: 'AI News', href: '/news' },
     { name: 'About', href: '/about' },
