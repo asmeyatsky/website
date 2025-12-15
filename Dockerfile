@@ -14,6 +14,7 @@ RUN npm ci --frozen-lockfile
 COPY . .
 
 # Set build-time environment variables for NEXT_PUBLIC_ variables
+# Contentful secrets will be mounted at runtime, not build time
 ARG NEXT_PUBLIC_EMAILJS_CONTACT_SERVICE_ID
 ARG NEXT_PUBLIC_EMAILJS_CONTACT_TEMPLATE_ID
 ARG NEXT_PUBLIC_EMAILJS_CONTACT_PUBLIC_KEY
@@ -43,9 +44,12 @@ FROM node:18-alpine AS runner
 # Set working directory
 WORKDIR /app
 
-# Create a non-root user
+# Create a non-root user with limited permissions
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
+
+# Install dumb-init for proper signal handling
+RUN apk add --no-cache dumb-init
 
 # Copy necessary files from builder stage
 COPY --from=builder /app/next.config.js ./
@@ -62,6 +66,9 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 # Install only production dependencies
 RUN npm ci --frozen-lockfile --production && npm cache clean --force
 
+# Limit resources and create a more restricted environment
+RUN echo "ulimit -u 32" >> /etc/profile
+
 # Switch to non-root user
 USER nextjs
 
@@ -71,6 +78,9 @@ EXPOSE 3000
 # Set environment variable
 ENV PORT 3000
 ENV HOSTNAME "0.0.0.0"
+
+# Use dumb-init as the entrypoint to handle signals properly
+ENTRYPOINT ["dumb-init", "--"]
 
 # Start the application
 CMD ["node", "server.js"]

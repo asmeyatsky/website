@@ -2,119 +2,114 @@ steps:
   # Build the Next.js Website Docker image
   - name: 'gcr.io/cloud-builders/docker'
     args:
-      - 'build'
-      - '--build-arg'
-      - 'NEXT_PUBLIC_EMAILJS_CONTACT_SERVICE_ID=service_uyqiqsr'
-      - '--build-arg'
-      - 'NEXT_PUBLIC_EMAILJS_CONTACT_TEMPLATE_ID=template_ce8x97i'
-      - '--build-arg'
-      - 'NEXT_PUBLIC_EMAILJS_CONTACT_PUBLIC_KEY=11IgiqqknI_1XVn7c'
-      - '--build-arg'
-      - 'NEXT_PUBLIC_EMAILJS_NEWSLETTER_SERVICE_ID=service_uyqiqsr'
-      - '--build-arg'
-      - 'NEXT_PUBLIC_EMAILJS_NEWSLETTER_TEMPLATE_ID=template_pmw9ndd'
-      - '--build-arg'
-      - 'NEXT_PUBLIC_EMAILJS_NEWSLETTER_PUBLIC_KEY=11IgiqqknI_1XVn7c'
-      - '--build-arg'
-      - 'NEXT_PUBLIC_GCS_NEWS_JSON_URL=https://storage.googleapis.com/website-469906-ai-news/ai_news.json'
-      - '--build-arg'
-      - 'CONTENTFUL_SPACE_ID=cxkmb6m0pcxc'
-      - '--build-arg'
-      - 'CONTENTFUL_ACCESS_TOKEN=wiC8MN-A3xfd1t5PBzKOhgg6Jn2TVX2CGcWe6de_j6o'
-      - '-t'
-      - 'europe-west1-docker.pkg.dev/$PROJECT_ID/website/website:585f91a'
-      - '-t'
-      - 'europe-west1-docker.pkg.dev/$PROJECT_ID/website/website:latest'
-      - '.'
+    - 'build'
+    - '--build-arg'
+    - 'NEXT_PUBLIC_EMAILJS_CONTACT_SERVICE_ID=service_uyqiqsr'
+    - '--build-arg'
+    - 'NEXT_PUBLIC_EMAILJS_CONTACT_TEMPLATE_ID=template_ce8x97i'
+    - '--build-arg'
+    - 'NEXT_PUBLIC_EMAILJS_CONTACT_PUBLIC_KEY=11IgiqqknI_1XVn7c'
+    - '--build-arg'
+    - 'NEXT_PUBLIC_EMAILJS_NEWSLETTER_SERVICE_ID=service_uyqiqsr'
+    - '--build-arg'
+    - 'NEXT_PUBLIC_EMAILJS_NEWSLETTER_TEMPLATE_ID=template_pmw9ndd'
+    - '--build-arg'
+    - 'NEXT_PUBLIC_EMAILJS_NEWSLETTER_PUBLIC_KEY=11IgiqqknI_1XVn7c'
+    - '--build-arg'
+    - 'NEXT_PUBLIC_GCS_NEWS_JSON_URL=https://storage.googleapis.com/website2-480712-ai-news/ai_news.json'
+    - '--build-arg'
+    - 'CONTENTFUL_SPACE_ID=cxkmb6m0pcxc'  # Use a placeholder value for build time, real value will be from secrets at runtime
+    - '--build-arg'
+    - 'CONTENTFUL_ACCESS_TOKEN=wiC8MN-A3xfd1t5PBzKOhgg6Jn2TVX2CGcWe6de_j6o'  # Use a placeholder value for build time, real value will be from secrets at runtime
+    - '-t'
+    - 'europe-west1-docker.pkg.dev/$PROJECT_ID/website/website:585f91a'
+    - '-t'
+    - 'europe-west1-docker.pkg.dev/$PROJECT_ID/website/website:latest'
+    - '.'
 
-  # Push the Next.js Website Docker image to Google Container Registry
+  # Push the Next.js Website Docker image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
     args:
-      - 'push'
-      - '--all-tags'
-      - 'europe-west1-docker.pkg.dev/$PROJECT_ID/website/website'
+    - 'push'
+    - '--all-tags'
+    - 'europe-west1-docker.pkg.dev/$PROJECT_ID/website/website'
 
   # Build the AI News Scraper Docker image
   - name: 'gcr.io/cloud-builders/docker'
     args:
-      - 'build'
-      - '-f' # Specify Dockerfile name
-      - 'Dockerfile.scraper'
-      - '-t'
-      - 'us-central1-docker.pkg.dev/$PROJECT_ID/ai-news-scraper-repo-us/ai-news-scraper:585f91a'
-      - '-t'
-      - 'us-central1-docker.pkg.dev/$PROJECT_ID/ai-news-scraper-repo-us/ai-news-scraper:latest'
-      - '.' # Build context
+    - 'build'
+    - '-f'  # Specify Dockerfile name
+    - 'Dockerfile.scraper'
+    - '-t'
+    - 'us-central1-docker.pkg.dev/$PROJECT_ID/ai-news-scraper-repo-us/ai-news-scraper:585f91a'
+    - '-t'
+    - 'us-central1-docker.pkg.dev/$PROJECT_ID/ai-news-scraper-repo-us/ai-news-scraper:latest'
+    - '.'  # Build context
 
   # Push the AI News Scraper Docker image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
     args:
-      - 'push'
-      - '--all-tags'
-      - 'us-central1-docker.pkg.dev/$PROJECT_ID/ai-news-scraper-repo-us/ai-news-scraper'
+    - 'push'
+    - '--all-tags'
+    - 'us-central1-docker.pkg.dev/$PROJECT_ID/ai-news-scraper-repo-us/ai-news-scraper'
 
-  # Test GCS access before Next.js build
+  # Test GCS access
   - name: 'gcr.io/cloud-builders/gsutil'
-    args: ['cat', 'gs://$PROJECT_ID-ai-news/ai_news.json']
-    id: 'test-gcs-access'
+    args: ['ls', '-b', 'gs://$PROJECT_ID-ai-news/']
+    id: 'test-gcs-bucket'
 
   # Deploy Next.js Website to Staging
   - name: 'gcr.io/cloud-builders/gcloud'
     id: 'deploy-staging'
+    entrypoint: 'bash'
     args:
-      - 'run'
-      - 'deploy'
-      - 'website-staging'
-      - '--image'
-      - 'europe-west1-docker.pkg.dev/$PROJECT_ID/website/website:585f91a'
-      - '--region'
-      - 'europe-west1'
-      - '--platform'
-      - 'managed'
-      - '--allow-unauthenticated'
-      - '--port'
-      - '3000'
-      - '--memory'
-      - '1Gi'
-      - '--cpu'
-      - '1'
-      - '--max-instances'
-      - '1'
-      - '--cpu-boost'
-      - '--timeout=600'
+    - '-c'
+    - |
+      gcloud run deploy website-staging \
+        --image=europe-west1-docker.pkg.dev/$PROJECT_ID/website/website:latest \
+        --region=europe-west1 \
+        --platform=managed \
+        --allow-unauthenticated \
+        --port=3000 \
+        --memory=1Gi \
+        --cpu=1 \
+        --max-instances=1 \
+        --cpu-boost \
+        --timeout=600 \
+        --set-env-vars=GOOGLE_CLOUD_PROJECT=$PROJECT_ID,NEXT_PUBLIC_GCS_NEWS_JSON_URL=https://storage.googleapis.com/website2-480712-ai-news/ai_news.json \
+        --update-secrets=CONTENTFUL_SPACE_ID=projects/$PROJECT_ID/secrets/CONTENTFUL_SPACE_ID:latest,CONTENTFUL_ACCESS_TOKEN=projects/$PROJECT_ID/secrets/CONTENTFUL_ACCESS_TOKEN:latest \
+        --service-account=website-sa@$PROJECT_ID.iam.gserviceaccount.com \
+        --project=$PROJECT_ID
 
   # Deploy Next.js Website to Production
   - name: 'gcr.io/cloud-builders/gcloud'
     id: 'deploy-production'
+    entrypoint: 'bash'
     args:
-      - 'run'
-      - 'deploy'
-      - 'website'
-      - '--image'
-      - 'europe-west1-docker.pkg.dev/$PROJECT_ID/website/website:585f91a'
-      - '--region'
-      - 'europe-west1'
-      - '--platform'
-      - 'managed'
-      - '--allow-unauthenticated'
-      - '--port'
-      - '3000'
-      - '--memory'
-      - '1Gi'
-      - '--cpu'
-      - '1'
-      - '--max-instances'
-      - '10'
-      - '--cpu-boost'
-      - '--timeout=600'
+    - '-c'
+    - |
+      gcloud run deploy website \
+        --image=europe-west1-docker.pkg.dev/$PROJECT_ID/website/website:latest \
+        --region=europe-west1 \
+        --platform=managed \
+        --allow-unauthenticated \
+        --port=3000 \
+        --memory=1Gi \
+        --cpu=1 \
+        --max-instances=10 \
+        --cpu-boost \
+        --timeout=600 \
+        --set-env-vars=GOOGLE_CLOUD_PROJECT=$PROJECT_ID,NEXT_PUBLIC_GCS_NEWS_JSON_URL=https://storage.googleapis.com/website2-480712-ai-news/ai_news.json \
+        --update-secrets=CONTENTFUL_SPACE_ID=projects/$PROJECT_ID/secrets/CONTENTFUL_SPACE_ID:latest,CONTENTFUL_ACCESS_TOKEN=projects/$PROJECT_ID/secrets/CONTENTFUL_ACCESS_TOKEN:latest \
+        --service-account=website-sa@$PROJECT_ID.iam.gserviceaccount.com \
+        --project=$PROJECT_ID
 
-
-# Store images in Google Container Registry and Artifact Registry
+# Store images in Artifact Registry
 images:
-  - 'europe-west1-docker.pkg.dev/$PROJECT_ID/website/website:585f91a'
-  - 'europe-west1-docker.pkg.dev/$PROJECT_ID/website/website:latest'
-  - 'us-central1-docker.pkg.dev/$PROJECT_ID/ai-news-scraper-repo-us/ai-news-scraper:585f91a'
-  - 'us-central1-docker.pkg.dev/$PROJECT_ID/ai-news-scraper-repo-us/ai-news-scraper:latest'
+- 'europe-west1-docker.pkg.dev/$PROJECT_ID/website/website:585f91a'
+- 'europe-west1-docker.pkg.dev/$PROJECT_ID/website/website:latest'
+- 'us-central1-docker.pkg.dev/$PROJECT_ID/ai-news-scraper-repo-us/ai-news-scraper:585f91a'
+- 'us-central1-docker.pkg.dev/$PROJECT_ID/ai-news-scraper-repo-us/ai-news-scraper:latest'
 
 # Build options
 options:

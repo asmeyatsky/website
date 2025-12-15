@@ -6,7 +6,7 @@ from datetime import datetime
 import requests
 
 # Define the GCS bucket name
-GCS_BUCKET_NAME = "website-469906-ai-news"
+GCS_BUCKET_NAME = "website2-480712-ai-news"
 GCS_FILE_NAME = "ai_news.json"
 
 def upload_to_gcs(bucket_name, source_string, destination_blob_name):
