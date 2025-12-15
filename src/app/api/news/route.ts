@@ -8,10 +8,10 @@ export async function GET() {
     console.log('Fetching news from:', GCS_NEWS_URL)
 
     const response = await fetch(GCS_NEWS_URL, {
-      next: { revalidate: 300 }, // Cache for 5 minutes
+      next: { revalidate: 900 }, // Cache for 15 minutes to reduce GCS requests
       headers: {
-        'Cache-Control': 'no-cache',
-        'User-Agent': 'Website-News-Service/1.0'
+        'User-Agent': 'Website-News-Service/1.0',
+        'Accept': 'application/json',
       }
     })
 
@@ -19,6 +19,16 @@ export async function GET() {
     console.log('Response OK:', response.ok)
 
     if (!response.ok) {
+      // Return empty array instead of throwing for 429 errors to avoid cascading failures
+      if (response.status === 429) {
+        console.warn('Rate limited when fetching news data from GCS')
+        return NextResponse.json([], {
+          headers: {
+            'X-Rate-Limited': 'true',
+            'Cache-Control': 'public, s-maxage=60' // Cache for 1 minute if rate limited
+          }
+        })
+      }
       throw new Error(`Failed to fetch news: ${response.status} ${response.statusText}`)
     }
 
@@ -75,7 +85,12 @@ export async function GET() {
     console.log('Processed articles count:', articles.length)
     console.log('Sample article:', articles.length > 0 ? articles[0] : 'No articles')
 
-    return NextResponse.json(articles)
+    // Add cache headers for the response to reduce load
+    return NextResponse.json(articles, {
+      headers: {
+        'Cache-Control': 'public, s-maxage=900' // Cache for 15 minutes on CDN
+      }
+    })
   } catch (error: any) {
     console.error('Error fetching news data from GCS:', error?.message || error)
     console.error('Error stack:', error?.stack)
@@ -83,6 +98,11 @@ export async function GET() {
       error: 'Failed to fetch news data',
       details: error?.message || 'Unknown error',
       message: 'Please check if the GCS bucket contains properly formatted JSON data'
-    }, { status: 500 })
+    }, {
+      status: 500,
+      headers: {
+        'Cache-Control': 'public, s-maxage=60' // Cache error responses briefly
+      }
+    })
   }
 }
