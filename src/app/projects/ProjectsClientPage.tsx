@@ -6,14 +6,24 @@ import Link from 'next/link'
 
 const projects = [
   {
-    title: "Lucent Pro - AI Photo Manager",
+    title: "Lucent Pro v2 - AI Photo Manager",
     category: "App Store Application",
-    description: "Production iOS application that organizes your entire photo library using on-device AI. Smart search, 200+ intelligent collections, duplicate detection, and photo maps. Your photos never leave your device.",
+    description: "Production iOS application that organizes your entire photo library using on-device AI. Smart search, 200+ intelligent collections, duplicate detection, and photo maps. All users get full solution for free for 7 days (to try it out). Your photos never leave your device.",
     features: ["Natural language photo search", "200+ AI-generated collections", "Duplicate & similar photo detection", "Interactive photo map", "Face & object recognition", "Text recognition (OCR)", "Voice search", "iCloud library support"],
     tech: "iOS (SwiftUI, Vision Framework, Core ML), Apple Neural Engine, On-Device AI",
     targetAudience: "iPhone, iPad, Mac, and Vision Pro users with large photo libraries",
     why: "To deliver powerful, production-grade photo management with 100% on-device AI, prioritizing privacy and performance.",
     cta: { text: "Download on App Store", link: "https://apps.apple.com/us/app/lucent-pro/id6749473261" }
+  },
+  {
+    title: "Shadow Protocol - Espionage Strategy Game",
+    category: "App Store Application",
+    description: "A futuristic espionage strategy game where players build and manage their own intelligence agency. Players deploy agents on missions worldwide, gather intelligence, compete against rival agencies, and dominate the global intelligence landscape. Features advanced visual effects, enhanced UI components, a tutorial system, data persistence (save/load, auto-save), and an enhanced main menu. Built with Clean Architecture principles.",
+    features: ["4 Agent Types (Field Operative, Analyst, Tech Specialist, Enforcer)", "Mission System (difficulty levels, rewards)", "Base Building (facility management, upgrades)", "Resource Management (budget, intel, action points)", "Advanced Visual Effects (holograms, enhanced UI, visual feedback)", "Enhanced UI Components (Agent/Mission Display, Futuristic Design)", "Tutorial System (step-by-step guidance, progress tracking, highlighting)", "Data Persistence (save/load, cross-session continuity, auto-save)", "Enhanced Main Menu (panels, config, version display)", "Cross-Platform (Unity)"],
+    tech: "Unity 2022.3 LTS+, C#, Clean Architecture, Domain-Driven Design",
+    targetAudience: "Gamers, strategy game enthusiasts, mobile/desktop users",
+    why: "To deliver a compelling, visually rich, and strategically deep espionage game experience across multiple platforms.",
+    cta: { text: "Coming Soon", link: "#" }
   },
   {
     title: "WellnessApp - Enterprise Wellness Platform",
@@ -25,26 +35,8 @@ const projects = [
     why: "To provide a production-ready wellness platform combining powerful backend services with native iOS experience.",
     cta: { text: "In Development", link: "#" }
   },
-  {
-    title: "Echo - Audio Memory Platform",
-    category: "App Store Application",
-    description: "Mobile-first application for intelligent audio recording with AI-powered transcription and speaker identification. Privacy-first architecture with secure cloud storage.",
-    features: ["Ambient audio recording", "AI transcription with speaker diarization", "Chronological memory stream", "Universal semantic search", "Memory curation", "Secure sharing", "Privacy-first design"],
-    tech: "Backend: Node.js, Express, PostgreSQL, Google Cloud Platform (Speech-to-Text, NLP APIs), JWT. Frontend: React",
-    targetAudience: "Individuals seeking to capture, organize, and preserve audio memories",
-    why: "To create a production application for capturing and reliving memories with advanced AI capabilities.",
-    cta: { text: "Coming Soon", link: "#" }
-  },
-  {
-    title: "Little Canvas - Kids Super App",
-    category: "App Store Application",
-    description: "Production iOS/Android application for children aged 3-8+ combining creative tools, storytelling, and learning modules. Features AI-powered personalization, global localization, and enterprise-grade safety.",
-    features: ["Advanced creative tools", "AI-powered learning system", "Global localization", "Enterprise-level safety & privacy", "Offline-first architecture", "Gamification & rewards", "Parent dashboard", "Inclusive accessibility"],
-    tech: "Frontend: React Native (iOS & Android), Redux Toolkit. Backend: Firebase, serverless functions, AI/ML personalization",
-    targetAudience: "Children aged 3-8+ and their parents",
-    why: "To deliver a production-grade educational platform combining safety, engagement, and learning outcomes.",
-    cta: { text: "Coming Soon", link: "#" }
-  },
+
+
   {
     title: "P2P Gear Rental - Marketplace Platform",
     category: "Full-Stack Web Application",
@@ -53,18 +45,9 @@ const projects = [
     tech: "Frontend: Next.js 15, React 19, TypeScript, Tailwind CSS. Backend: Next.js API Routes, Prisma, PostgreSQL. Deployment: Docker, GitHub Actions",
     targetAudience: "Photographers, videographers, and content creators",
     why: "To create a production-ready marketplace enabling equipment sharing within creative communities.",
-    cta: { text: "View on GitHub", link: "https://github.com/asmeyatsky/p2p-gear-rental" }
+    cta: { text: "Live on Staging", link: "https://smeyatsky.com/gear-staging" }
   },
-  {
-    title: "Classic Games - World-Class Cross-Platform Suite",
-    category: "Full-Stack Web Application",
-    description: "Production gaming suite featuring Texas Hold'em Poker, Backgammon, and Scrabble with realistic 3D graphics and online multiplayer. Enterprise-grade server architecture with real-time synchronization.",
-    features: ["Realistic 3D graphics with physics", "Cross-platform (iOS, Android, Web)", "Online multiplayer with matchmaking", "Real-time synchronization", "Offline AI opponents", "Sound and haptic feedback", "Scalable backend infrastructure"],
-    tech: "Frontend: React, React Native, Three.js, Expo GL, TypeScript. Backend: Node.js with WebSocket, Turborepo monorepo",
-    targetAudience: "Gamers seeking high-quality implementations of classic games",
-    why: "To deliver production gaming applications combining sophisticated graphics, multiplayer features, and cross-platform availability.",
-    cta: { text: "View on GitHub", link: "https://github.com/asmeyatsky/classic-games-monorepo" }
-  },
+
   {
     title: "AI Education Platform (aiteach)",
     category: "Full-Stack Web Application",
@@ -74,6 +57,16 @@ const projects = [
     targetAudience: "Students and professionals pursuing AI/ML education",
     why: "To provide a production-ready educational platform with personalized learning and professional-grade infrastructure.",
     cta: { text: "Coming Soon", link: "#" }
+  },
+  {
+    title: "Continuum - Infinite Concept Expansion Engine",
+    category: "Enterprise Tool",
+    description: "An autonomous knowledge exploration system that continuously learns and evolves, transforming initial concepts into interconnected webs of multimodal knowledge. Features include 3D knowledge graphs, interactive dashboards, real-time evolution tracking, self-improving and persistent learning capabilities, and multimodal excellence (text, images, audio, video).",
+    features: ["Visually Stunning 3D knowledge graphs", "Interactive dashboards", "Real-time evolution tracking", "Self-Improving & Persistent Learning", "Multimodal Excellence (text, images, audio, video)", "FastAPI-based REST endpoints", "Multi-LLM Support (OpenAI, Anthropic, Qwen, Google Gemini)", "Semantic Search (Sentence Transformer embeddings)", "Database Persistence (SQLAlchemy, SQLite)", "Resilience (circuit breakers, retry logic)", "Enhanced Agent System (Research, Connection, Content Generation, Visual, Multimedia, Validation)"],
+    tech: "Python, FastAPI, OpenAI (GPT-4), Anthropic (Claude), Qwen (Alibaba), Google (Gemini), SQLAlchemy, SQLite, Sentence Transformers, Docker, Pytest",
+    targetAudience: "Researchers, data scientists, AI developers, knowledge managers",
+    why: "To provide a powerful, autonomous system for continuous knowledge exploration and concept expansion, enhancing understanding and innovation.",
+    cta: { text: "View on GitHub", link: "https://github.com/asmeyatsky/continuum" }
   },
   {
     title: "NexusComm - Unified Communication Platform",
@@ -86,6 +79,26 @@ const projects = [
     cta: { text: "Coming Soon", link: "#" }
   },
   {
+    title: "Digital Twin System",
+    category: "Enterprise Tool",
+    description: "A robust Digital Twin system with completed core components including a Domain Layer (DDD), Service Layer (real-time data, simulation), Infrastructure (Unity adapters, clean architecture), Persistence Layer (database with migrations), Presentation Layer (professional UI), and comprehensive Testing Suite (95%+ coverage). Focus on production readiness with prioritized security, analytics, and integration features.",
+    features: ["Domain Layer (DDD)", "Service Layer (real-time data, simulation)", "Unity adapters with clean architecture", "Database integration with migrations", "Professional UI", "95%+ test coverage", "Security & Authentication (JWT, RBAC, session management)", "Analytics & Monitoring (real-time dashboards, predictive analytics)", "External Integrations (Mobile, Web, API Gateway, Cloud, IoT, AI)"],
+    tech: "C#, Python, Docker, Unity, FastAPI, JWT, SQL",
+    targetAudience: "Enterprises, software development teams, IoT solution providers",
+    why: "To provide a production-ready and scalable Digital Twin platform with robust core functionality and a clear roadmap for enterprise deployment.",
+    cta: { text: "View on GitHub", link: "https://github.com/asmeyatsky/digitaltwin" }
+  },
+  {
+    title: "Clipsmith - Social Video Creation Platform",
+    category: "Full-Stack Web Application",
+    description: "A social video creation and sharing platform built with a focus on scalability and clean architecture. Features include secure authentication, video upload with processing and metadata storage, a public video feed, user profiles with video grids, and social interactions like likes and comments.",
+    features: ["Secure Authentication (Register/Login with JWT)", "Video Upload with Processing and Metadata Storage", "Public Video Feed", "User Profiles with Video Grids", "Social Interactions (Likes, Comments)", "Scalable Architecture", "Clean Architecture and Domain-Driven Design"],
+    tech: "Backend: Python (FastAPI), SQLModel (SQLite), JWT, Argon2. Frontend: Next.js 14 (App Router), TypeScript, Tailwind CSS, Zustand. Infrastructure: Docker, Docker Compose.",
+    targetAudience: "Content creators, social media users, developers interested in video platforms",
+    why: "To provide a robust and scalable platform for creating and sharing short-form video content with a focus on modern development practices.",
+    cta: { text: "View on GitHub", link: "https://github.com/asmeyatsky/clipsmith" }
+  },
+  {
     title: "Universal Agent Builder (UAB)",
     category: "Full-Stack Web Application",
     description: "Web application for creating and configuring AI agents supporting multiple frameworks (A2A, ADK, MCP). Production-ready with template management, testing environment, and deployment options.",
@@ -94,6 +107,16 @@ const projects = [
     targetAudience: "Developers and enterprises building AI agents",
     why: "To provide a production tool simplifying AI agent creation and deployment across multiple frameworks.",
     cta: { text: "Coming Soon", link: "#" }
+  },
+  {
+    title: "Traderbot - World-Class AI-Powered Autonomous Trading Platform",
+    category: "Enterprise Tool",
+    description: "A sophisticated AI-powered autonomous trading platform utilizing advanced AI/ML models (LSTM, Transformer, Reinforcement Learning, FinBERT for sentiment), comprehensive risk management (VaR, stress testing), and professional-grade execution (multi-broker integration, smart order routing, VWAP/TWAP, sub-100ms latency). Features intelligent portfolio optimization and real-time market intelligence from multiple sources. Built with Clean Architecture and Domain-Driven Design principles.",
+    features: ["Advanced AI/ML Intelligence Core (LSTM, Transformer, RL, FinBERT)", "Comprehensive Risk Management (VaR, ES, stress testing)", "Professional-Grade Trading Execution (multi-broker, smart order routing, VWAP/TWAP)", "Intelligent Portfolio Optimization (MPT, Black-Litterman, AI-enhanced allocation)", "Real-Time Market Intelligence (news, sentiment, alternative data)", "Clean Architecture & DDD", "JWT Authentication, Rate Limiting", "Swagger UI/ReDoc API Docs", "Pytest Suite", "High Performance (connection pooling, caching, async APIs)"],
+    tech: "Python 3.11+, FastAPI, PostgreSQL, SQLite, Redis, Docker, Docker Compose, Pandas, NumPy, Scikit-learn, TensorFlow/PyTorch (implied by ML models), JWT, bcrypt, Uvicorn, Pytest",
+    targetAudience: "Algorithmic traders, financial institutions, AI/ML developers in finance",
+    why: "To provide a robust, high-performance, and intelligently autonomous platform for advanced trading strategies and portfolio management.",
+    cta: { text: "View on GitHub", link: "https://github.com/asmeyatsky/traderbot" }
   },
   {
     title: "aicache - Developer Productivity Tool",
