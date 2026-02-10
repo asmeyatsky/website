@@ -55,3 +55,14 @@ Resume Allan Smeyatsky - August 2025.pdf
 
 # tsconfig build info
 tsconfig.tsbuildinfo
+
+# Operational scripts and infrastructure
+SECURITY_HARDENING.md
+SKILL.md
+Smeyatsky_Website_Audit.pdf
+diagnose_gcs.sh
+fix_gcs_bucket.sh
+setup_new_project.sh
+terraform/
+urlmap.json
+urlmap.yaml
