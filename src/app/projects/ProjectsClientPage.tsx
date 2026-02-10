@@ -33,7 +33,7 @@ const projects = [
     tech: "Backend: Node.js, Express, MongoDB, Socket.IO, Stripe, Google Cloud Storage. iOS: Swift 5.9, SwiftUI, MVVM, Core Data",
     targetAudience: "Organizations and individuals seeking comprehensive wellness solutions",
     why: "To provide a production-ready wellness platform combining powerful backend services with native iOS experience.",
-    cta: { text: "In Development", link: "#" }
+    cta: { text: "Live on Staging", link: "https://smeyatsky.com/wellness-staging" }
   },
 
 
