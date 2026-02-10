@@ -56,7 +56,7 @@ const projects = [
     tech: "Backend: FastAPI (Python), PostgreSQL, Docker. Frontend: Flutter. Scalable API architecture",
     targetAudience: "Students and professionals pursuing AI/ML education",
     why: "To provide a production-ready educational platform with personalized learning and professional-grade infrastructure.",
-    cta: { text: "Coming Soon", link: "#" }
+    cta: { text: "Live on Staging", link: "https://www.smeyatsky.com/aiteach-staging" }
   },
   {
     title: "Continuum - Infinite Concept Expansion Engine",
