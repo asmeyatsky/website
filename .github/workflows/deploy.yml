@@ -1,0 +1,104 @@
+name: Deploy to Cloud Run
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  PROJECT_ID: website2-480712
+  GCP_REGION: europe-west1
+  SERVICE_NAME: website
+  STAGING_SERVICE_NAME: website-staging
+  ARTIFACT_REGISTRY_REPO: website
+  IMAGE: europe-west1-docker.pkg.dev/website2-480712/website/website
+
+jobs:
+  build-and-deploy-staging:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Authenticate to GCP
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Configure Docker for Artifact Registry
+        run: gcloud auth configure-docker ${GCP_REGION}-docker.pkg.dev --quiet
+
+      - name: Build Docker image
+        run: |
+          docker build \
+            --build-arg NEXT_PUBLIC_EMAILJS_CONTACT_SERVICE_ID=${{ secrets.EMAILJS_CONTACT_SERVICE_ID }} \
+            --build-arg NEXT_PUBLIC_EMAILJS_CONTACT_TEMPLATE_ID=${{ secrets.EMAILJS_CONTACT_TEMPLATE_ID }} \
+            --build-arg NEXT_PUBLIC_EMAILJS_CONTACT_PUBLIC_KEY=${{ secrets.EMAILJS_CONTACT_PUBLIC_KEY }} \
+            --build-arg NEXT_PUBLIC_EMAILJS_NEWSLETTER_SERVICE_ID=${{ secrets.EMAILJS_NEWSLETTER_SERVICE_ID }} \
+            --build-arg NEXT_PUBLIC_EMAILJS_NEWSLETTER_TEMPLATE_ID=${{ secrets.EMAILJS_NEWSLETTER_TEMPLATE_ID }} \
+            --build-arg NEXT_PUBLIC_EMAILJS_NEWSLETTER_PUBLIC_KEY=${{ secrets.EMAILJS_NEWSLETTER_PUBLIC_KEY }} \
+            --build-arg NEXT_PUBLIC_GCS_NEWS_JSON_URL=${{ secrets.GCS_NEWS_JSON_URL }} \
+            --build-arg CONTENTFUL_SPACE_ID=${{ secrets.CONTENTFUL_SPACE_ID }} \
+            --build-arg CONTENTFUL_ACCESS_TOKEN=${{ secrets.CONTENTFUL_ACCESS_TOKEN }} \
+            -t ${IMAGE}:${{ github.sha }} \
+            -t ${IMAGE}:latest \
+            .
+
+      - name: Push Docker image
+        run: |
+          docker push ${IMAGE}:${{ github.sha }}
+          docker push ${IMAGE}:latest
+
+      - name: Deploy to staging
+        run: |
+          gcloud run deploy ${STAGING_SERVICE_NAME} \
+            --image=${IMAGE}:${{ github.sha }} \
+            --region=${GCP_REGION} \
+            --platform=managed \
+            --allow-unauthenticated \
+            --port=3000 \
+            --memory=1Gi \
+            --cpu=1 \
+            --max-instances=1 \
+            --cpu-boost \
+            --timeout=600 \
+            --set-env-vars="GOOGLE_CLOUD_PROJECT=${PROJECT_ID}" \
+            --update-secrets="CONTENTFUL_SPACE_ID=CONTENTFUL_SPACE_ID:latest,CONTENTFUL_ACCESS_TOKEN=CONTENTFUL_ACCESS_TOKEN:latest" \
+            --service-account=website-sa@${PROJECT_ID}.iam.gserviceaccount.com \
+            --project=${PROJECT_ID}
+
+  deploy-production:
+    needs: build-and-deploy-staging
+    runs-on: ubuntu-latest
+    environment: production
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Authenticate to GCP
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Deploy to production
+        run: |
+          gcloud run deploy ${SERVICE_NAME} \
+            --image=${IMAGE}:${{ github.sha }} \
+            --region=${GCP_REGION} \
+            --platform=managed \
+            --allow-unauthenticated \
+            --port=3000 \
+            --memory=1Gi \
+            --cpu=1 \
+            --max-instances=10 \
+            --cpu-boost \
+            --timeout=600 \
+            --set-env-vars="GOOGLE_CLOUD_PROJECT=${PROJECT_ID}" \
+            --update-secrets="CONTENTFUL_SPACE_ID=CONTENTFUL_SPACE_ID:latest,CONTENTFUL_ACCESS_TOKEN=CONTENTFUL_ACCESS_TOKEN:latest" \
+            --service-account=website-sa@${PROJECT_ID}.iam.gserviceaccount.com \
+            --project=${PROJECT_ID}
