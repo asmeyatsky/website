@@ -26,6 +26,16 @@ const projects = [
     cta: { text: "Coming Soon", link: "#" }
   },
   {
+    title: "Book of the Month",
+    category: "App Store Application",
+    description: "A children's educational platform that delivers daily age-appropriate news stories, compiles them into monthly books, and gamifies reading with streaks, quizzes, and achievements. Designed for kids ages 4-12 across three reading levels.",
+    features: ["Daily age-appropriate news stories", "Monthly book compilations", "Reading streaks & achievements", "Interactive quizzes", "Three reading levels (4-12 years)", "AI-powered content processing", "Cross-platform (iOS, Android, Web)"],
+    tech: "Backend: Django 6 + Django REST Framework, PostgreSQL, Django Q2, Google Gemini API. Frontend: React Native (iOS, Android, Web). Deployment: GCP Cloud Run, Firebase Hosting",
+    targetAudience: "Kids ages 4-12 and their parents",
+    why: "To provide an engaging educational platform that combines daily news with gamified reading experiences for children.",
+    cta: { text: "Live on Staging", link: "https://smeyatsky.com/bookofmonth-staging" }
+  },
+  {
     title: "WellnessApp - Enterprise Wellness Platform",
     category: "App Store Application",
     description: "Enterprise-grade wellness application with secure backend and native iOS client. Empowers users to manage mental, physical, and social wellbeing holistically with production-ready architecture.",
