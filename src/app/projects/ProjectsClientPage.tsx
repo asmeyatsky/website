@@ -33,7 +33,7 @@ const projects = [
     tech: "Backend: Django 6 + Django REST Framework, PostgreSQL, Django Q2, Google Gemini API. Frontend: React Native (iOS, Android, Web). Deployment: GCP Cloud Run, Firebase Hosting",
     targetAudience: "Kids ages 4-12 and their parents",
     why: "To provide an engaging educational platform that combines daily news with gamified reading experiences for children.",
-    cta: { text: "Live on Staging", link: "https://bookofmonth-staging.smeyatsky.com" }
+    cta: { text: "Live on Staging", link: "https://smeyatsky.com/bookofmonth-staging" }
   },
   {
     title: "WellnessApp - Enterprise Wellness Platform",
