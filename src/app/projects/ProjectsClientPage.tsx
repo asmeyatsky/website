@@ -86,7 +86,7 @@ const projects = [
     tech: "Microservices: Node.js 18+, Express.js, PostgreSQL, Redis, Socket.IO. Frontend: React Native (mobile), React (web). Deployment: Docker, Kubernetes",
     targetAudience: "Professionals and enterprises seeking unified communication",
     why: "To deliver a production platform solving communication fragmentation with enterprise-grade security and AI capabilities.",
-    cta: { text: "Coming Soon", link: "#" }
+    cta: { text: "Live on Staging", link: "https://smeyatsky.com/nexuscom-staging" }
   },
   {
     title: "Digital Twin System",
