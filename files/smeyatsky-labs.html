@@ -522,33 +522,11 @@
     overflow: hidden;
   }
 
-  .founder-visual-inner {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .founder-monogram {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 7rem;
-    font-weight: 300;
-    color: rgba(14,14,13,0.08);
-    line-height: 1;
-  }
-
-  .founder-badge {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--mid);
-    border: 1px solid var(--rule);
-    padding: 0.5rem 1.2rem;
-    background: var(--white);
+  .founder-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
   }
 
   .founder-content {}
@@ -1091,26 +1069,27 @@
 <section class="founder" id="founder">
   <div class="founder-inner">
     <div class="founder-visual reveal">
-      <div class="founder-visual-inner">
-        <div class="founder-monogram">AS</div>
-        <div class="founder-badge">Founder & Principal Architect</div>
-      </div>
+      <img src="allan.jpeg" alt="Allan Smeyatsky — Founder & Principal Architect" class="founder-photo">
     </div>
     <div class="founder-content reveal">
       <div class="founder-eyebrow">04 — The Founder</div>
       <h2 class="founder-name">Allan Smeyatsky</h2>
       <p class="founder-bio">
-        Thirty years of enterprise architecture across the UK, Middle East, and Indian markets. Currently Global Infrastructure Modernisation Leader at Searce — a Google Cloud Premier Partner — and a member of the Google UK CTO Council. Recognised as a 2024 Google Cloud Partner All-Star.<br><br>
+        Thirty years of enterprise architecture across the UK, Middle East, and Indian markets. Currently Global Infrastructure Modernisation Leader at Searce — a Google Cloud Premier Partner.<br><br>
         Smeyatsky Labs is where that institutional knowledge meets frontier AI tooling. The studio exists to build the products that large organisations move too slowly to imagine — and deploy them with the rigour enterprises demand.
       </p>
       <div class="credential-list">
         <div class="credential">
           <div class="credential-dot"></div>
-          Google Cloud Partner All-Star 2024
+          AI Native
         </div>
         <div class="credential">
           <div class="credential-dot"></div>
-          Google UK CTO Council Member
+          Agentic AI Architect
+        </div>
+        <div class="credential">
+          <div class="credential-dot"></div>
+          High Velocity Product Architect
         </div>
         <div class="credential">
           <div class="credential-dot"></div>
@@ -1153,6 +1132,10 @@
         <a href="https://wa.me/447930399439" target="_blank" rel="noopener" class="contact-channel">
           <span class="channel-icon">✦</span>
           <span class="channel-text">WhatsApp</span>
+        </a>
+        <a href="https://github.com/asmeyatsky" target="_blank" rel="noopener" class="contact-channel">
+          <span class="channel-icon">⌘</span>
+          <span class="channel-text">GitHub</span>
         </a>
       </div>
     </div>
