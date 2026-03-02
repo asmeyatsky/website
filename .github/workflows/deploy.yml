@@ -35,15 +35,6 @@ jobs:
       - name: Build Docker image
         run: |
           docker build \
-            --build-arg NEXT_PUBLIC_EMAILJS_CONTACT_SERVICE_ID=${{ secrets.EMAILJS_CONTACT_SERVICE_ID }} \
-            --build-arg NEXT_PUBLIC_EMAILJS_CONTACT_TEMPLATE_ID=${{ secrets.EMAILJS_CONTACT_TEMPLATE_ID }} \
-            --build-arg NEXT_PUBLIC_EMAILJS_CONTACT_PUBLIC_KEY=${{ secrets.EMAILJS_CONTACT_PUBLIC_KEY }} \
-            --build-arg NEXT_PUBLIC_EMAILJS_NEWSLETTER_SERVICE_ID=${{ secrets.EMAILJS_NEWSLETTER_SERVICE_ID }} \
-            --build-arg NEXT_PUBLIC_EMAILJS_NEWSLETTER_TEMPLATE_ID=${{ secrets.EMAILJS_NEWSLETTER_TEMPLATE_ID }} \
-            --build-arg NEXT_PUBLIC_EMAILJS_NEWSLETTER_PUBLIC_KEY=${{ secrets.EMAILJS_NEWSLETTER_PUBLIC_KEY }} \
-            --build-arg NEXT_PUBLIC_GCS_NEWS_JSON_URL=${{ secrets.GCS_NEWS_JSON_URL }} \
-            --build-arg CONTENTFUL_SPACE_ID=${{ secrets.CONTENTFUL_SPACE_ID }} \
-            --build-arg CONTENTFUL_ACCESS_TOKEN=${{ secrets.CONTENTFUL_ACCESS_TOKEN }} \
             -t ${IMAGE}:${{ github.sha }} \
             -t ${IMAGE}:latest \
             .
@@ -60,14 +51,11 @@ jobs:
             --region=${GCP_REGION} \
             --platform=managed \
             --allow-unauthenticated \
-            --port=3000 \
-            --memory=1Gi \
+            --port=8080 \
+            --memory=256Mi \
             --cpu=1 \
             --max-instances=1 \
-            --cpu-boost \
-            --timeout=600 \
-            --set-env-vars="GOOGLE_CLOUD_PROJECT=${PROJECT_ID}" \
-            --update-secrets="CONTENTFUL_SPACE_ID=CONTENTFUL_SPACE_ID:latest,CONTENTFUL_ACCESS_TOKEN=CONTENTFUL_ACCESS_TOKEN:latest" \
+            --timeout=60 \
             --service-account=website-sa@${PROJECT_ID}.iam.gserviceaccount.com \
             --project=${PROJECT_ID}
 
@@ -92,13 +80,10 @@ jobs:
             --region=${GCP_REGION} \
             --platform=managed \
             --allow-unauthenticated \
-            --port=3000 \
-            --memory=1Gi \
+            --port=8080 \
+            --memory=256Mi \
             --cpu=1 \
             --max-instances=10 \
-            --cpu-boost \
-            --timeout=600 \
-            --set-env-vars="GOOGLE_CLOUD_PROJECT=${PROJECT_ID}" \
-            --update-secrets="CONTENTFUL_SPACE_ID=CONTENTFUL_SPACE_ID:latest,CONTENTFUL_ACCESS_TOKEN=CONTENTFUL_ACCESS_TOKEN:latest" \
+            --timeout=60 \
             --service-account=website-sa@${PROJECT_ID}.iam.gserviceaccount.com \
             --project=${PROJECT_ID}

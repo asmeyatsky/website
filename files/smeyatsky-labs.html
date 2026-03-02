@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smeyatsky Labs — AI-Native Product Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --white: #FAFAF8;
+    --ink: #0E0E0D;
+    --mid: #6B6B67;
+    --rule: #E2E2DE;
+    --accent: #1A1A18;
+    --warm: #F5F4F0;
+    --highlight: #C8B89A;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Figtree', sans-serif;
+    background: var(--white);
+    color: var(--ink);
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.4rem 2.5rem;
+    background: rgba(250,250,248,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+    transition: padding 0.3s ease;
+  }
+
+  .nav-logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--ink); }
+
+  .nav-cta {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--white) !important;
+    background: var(--ink);
+    padding: 0.55rem 1.2rem;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .nav-cta:hover { background: var(--highlight); color: var(--ink) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5rem 3rem 5rem 2.5rem;
+    position: relative;
+  }
+
+  .hero-right {
+    background: var(--warm);
+    border-left: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-right::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    right: -10%;
+    width: 70%;
+    height: 70%;
+    background: radial-gradient(ellipse, rgba(200,184,154,0.25) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 1.8rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.1s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(3.2rem, 6vw, 5.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--highlight);
+  }
+
+  .hero-body {
+    font-size: 1.05rem;
+    color: var(--mid);
+    max-width: 42ch;
+    line-height: 1.75;
+    margin-bottom: 2.8rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.35s forwards;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.5s forwards;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--white);
+    background: var(--ink);
+    padding: 0.9rem 2rem;
+    text-decoration: none;
+    transition: all 0.25s;
+  }
+
+  .btn-primary:hover { background: var(--highlight); color: var(--ink); }
+
+  .btn-ghost {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .btn-ghost:hover { color: var(--ink); border-color: var(--ink); }
+
+  /* Large decorative type on hero right */
+  .hero-deco-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(4rem, 8vw, 7rem);
+    line-height: 1;
+    color: rgba(14,14,13,0.07);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+
+  .stat-item {
+    padding: 1.5rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  .stat-item:nth-child(even) { border-left: 1px solid var(--rule); }
+
+  .stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+  }
+
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+
+  /* ── SECTION SHARED ── */
+  section { border-top: 1px solid var(--rule); }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--mid);
+    padding-top: 0.15rem;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1.1;
+  }
+
+  /* ── UVP ── */
+  .uvp {
+    padding: 6rem 2.5rem;
+    background: var(--ink);
+    color: var(--white);
+  }
+
+  .uvp-inner { max-width: 1100px; margin: 0 auto; }
+
+  .uvp .section-num { color: var(--highlight); }
+  .uvp .section-title { color: var(--white); }
+
+  .uvp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 0;
+    margin-top: 3rem;
+  }
+
+  .uvp-card {
+    padding: 2.5rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    position: relative;
+    transition: background 0.3s;
+  }
+
+  .uvp-card:not(:last-child) { border-right: 1px solid rgba(255,255,255,0.1); }
+  .uvp-card:hover { background: rgba(255,255,255,0.04); }
+
+  .uvp-card-icon {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--highlight);
+    margin-bottom: 1.2rem;
+    display: block;
+  }
+
+  .uvp-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: var(--white);
+    margin-bottom: 0.8rem;
+    line-height: 1.2;
+  }
+
+  .uvp-card-body {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.7;
+  }
+
+  /* ── PROJECTS ── */
+  .projects {
+    padding: 6rem 2.5rem;
+  }
+
+  .projects-inner { max-width: 1100px; margin: 0 auto; }
+
+  .project-list { display: flex; flex-direction: column; }
+
+  .project-item {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    align-items: start;
+    gap: 2rem;
+    padding: 2.8rem 0;
+    border-bottom: 1px solid var(--rule);
+    cursor: default;
+    transition: background 0.2s;
+    position: relative;
+  }
+
+  .project-item::before {
+    content: '';
+    position: absolute;
+    left: -2.5rem;
+    right: -2.5rem;
+    top: 0; bottom: 0;
+    background: var(--warm);
+    opacity: 0;
+    transition: opacity 0.25s;
+    pointer-events: none;
+  }
+
+  .project-item:hover::before { opacity: 1; }
+
+  .project-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--mid);
+    padding-top: 0.4rem;
+    position: relative;
+  }
+
+  .project-content { position: relative; }
+
+  .project-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 0.6rem;
+  }
+
+  .project-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.8rem;
+  }
+
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mid);
+    border: 1px solid var(--rule);
+    padding: 0.25rem 0.6rem;
+  }
+
+  .project-desc {
+    font-size: 0.95rem;
+    color: var(--mid);
+    max-width: 55ch;
+    line-height: 1.7;
+  }
+
+  .project-status {
+    position: relative;
+    padding-top: 0.4rem;
+    text-align: right;
+  }
+
+  .status-dot {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+
+  .status-dot::before {
+    content: '';
+    display: block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #8BC34A;
+    flex-shrink: 0;
+    animation: pulse 2s infinite;
+  }
+
+  .status-dot.building::before { background: var(--highlight); animation: none; }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* ── APPROACH ── */
+  .approach {
+    padding: 6rem 2.5rem;
+    background: var(--warm);
+  }
+
+  .approach-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .approach-left {}
+
+  .approach-statement {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-weight: 300;
+    line-height: 1.45;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+
+  .approach-statement em { font-style: italic; color: var(--highlight); }
+
+  .approach-body {
+    font-size: 0.95rem;
+    color: var(--mid);
+    line-height: 1.8;
+  }
+
+  .approach-right {}
+
+  .principle-list { display: flex; flex-direction: column; }
+
+  .principle {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .principle-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--mid);
+    padding-top: 0.3rem;
+    flex-shrink: 0;
+    width: 1.5rem;
+  }
+
+  .principle-text { font-size: 0.95rem; color: var(--ink); line-height: 1.6; }
+  .principle-text strong { font-weight: 500; }
+
+  /* ── FOUNDER ── */
+  .founder {
+    padding: 6rem 2.5rem;
+  }
+
+  .founder-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .founder-visual {
+    position: relative;
+    height: 420px;
+    background: var(--warm);
+    border: 1px solid var(--rule);
+    overflow: hidden;
+  }
+
+  .founder-visual-inner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .founder-monogram {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 7rem;
+    font-weight: 300;
+    color: rgba(14,14,13,0.08);
+    line-height: 1;
+  }
+
+  .founder-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mid);
+    border: 1px solid var(--rule);
+    padding: 0.5rem 1.2rem;
+    background: var(--white);
+  }
+
+  .founder-content {}
+
+  .founder-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 1rem;
+  }
+
+  .founder-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 1.2rem;
+  }
+
+  .founder-bio {
+    font-size: 0.95rem;
+    color: var(--mid);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+
+  .credential-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .credential {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 0.85rem;
+    color: var(--ink);
+  }
+
+  .credential-dot {
+    width: 4px; height: 4px;
+    background: var(--highlight);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── CONTACT ── */
+  .contact {
+    padding: 7rem 2.5rem;
+    background: var(--ink);
+    color: var(--white);
+  }
+
+  .contact-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .contact-left {}
+
+  .contact-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--highlight);
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+
+  .contact-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-heading em { font-style: italic; color: var(--highlight); }
+
+  .contact-body {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+  }
+
+  .contact-email {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--white);
+    text-decoration: none;
+    padding: 1.2rem 0;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    transition: color 0.2s;
+  }
+
+  .contact-email:hover { color: var(--highlight); }
+
+  .contact-channels {
+    display: flex;
+    gap: 0;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .contact-channel {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1rem 1.4rem;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-right: none;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .contact-channel:last-child { border-right: 1px solid rgba(255,255,255,0.12); }
+  .contact-channel:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.25); }
+
+  .channel-icon {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--highlight);
+    flex-shrink: 0;
+  }
+
+  .channel-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .contact-right {}
+
+  .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+
+  .form-field { display: flex; flex-direction: column; gap: 0.5rem; }
+
+  .form-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .form-input, .form-textarea {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: var(--white);
+    font-family: 'Figtree', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 300;
+    padding: 0.85rem 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+
+  .form-input::placeholder, .form-textarea::placeholder {
+    color: rgba(255,255,255,0.2);
+  }
+
+  .form-input:focus, .form-textarea:focus {
+    border-color: var(--highlight);
+  }
+
+  .form-textarea { resize: vertical; min-height: 100px; }
+
+  .form-submit {
+    background: var(--white);
+    color: var(--ink);
+    border: none;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    align-self: flex-start;
+  }
+
+  .form-submit:hover { background: var(--highlight); }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    background: var(--ink);
+    padding: 2rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-brand {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+  }
+
+  .footer-copy {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.08em;
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  /* ── MOBILE ── */
+  .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+  .hamburger span { display: block; width: 22px; height: 1px; background: var(--ink); transition: all 0.3s; }
+
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 1.5rem; }
+
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+
+    .nav-links.open {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 56px; left: 0; right: 0;
+      background: var(--white);
+      padding: 2rem 1.5rem;
+      border-bottom: 1px solid var(--rule);
+      gap: 1.5rem;
+      z-index: 99;
+    }
+
+    .hero {
+      grid-template-columns: 1fr;
+      min-height: auto;
+    }
+
+    .hero-left { padding: 4rem 1.5rem 3rem; }
+    .hero-right { display: none; }
+
+    .uvp-grid { grid-template-columns: 1fr; }
+    .uvp-card:not(:last-child) { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+
+    .project-item { grid-template-columns: 50px 1fr; }
+    .project-status { display: none; }
+
+    .approach-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .founder-inner { grid-template-columns: 1fr; }
+    .founder-visual { height: 220px; }
+
+    .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .contact-channels { flex-direction: column; }
+    .contact-channel { border-right: 1px solid rgba(255,255,255,0.12); border-bottom: none; }
+    .contact-channel:last-child { border-bottom: 1px solid rgba(255,255,255,0.12); }
+
+    .projects { padding: 4rem 1.5rem; }
+    .approach { padding: 4rem 1.5rem; }
+    .founder { padding: 4rem 1.5rem; }
+    .uvp { padding: 4rem 1.5rem; }
+    .contact { padding: 4rem 1.5rem; }
+
+    footer { padding: 1.5rem; }
+  }
+
+  @media (max-width: 600px) {
+    .hero-title { font-size: 2.8rem; }
+    .hero-stats { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Smeyatsky Labs</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#approach">Approach</a></li>
+    <li><a href="#founder">Founder</a></li>
+    <li><a href="mailto:allan@smeyatsky.com" class="nav-cta">Partner with us</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">AI-Native Product Studio — Est. 2024</div>
+    <h1 class="hero-title">
+      Building what<br>
+      <em>should exist.</em>
+    </h1>
+    <p class="hero-body">
+      Smeyatsky Labs designs and deploys production-grade applications where AI amplifies every layer of execution — from concept to cloud-native infrastructure at scale.
+    </p>
+    <div class="hero-actions">
+      <a href="mailto:allan@smeyatsky.com" class="btn-primary">Partner with the Lab</a>
+      <a href="#projects" class="btn-ghost">View Projects →</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-deco-text">Labs</div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-number">5+</div>
+        <div class="stat-label">Live Ventures</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">30</div>
+        <div class="stat-label">Years Enterprise</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">3</div>
+        <div class="stat-label">Cloud Platforms</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">AI</div>
+        <div class="stat-label">Force Multiplier</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UVP -->
+<section class="uvp" id="approach">
+  <div class="uvp-inner">
+    <div class="section-header reveal">
+      <span class="section-num">01</span>
+      <h2 class="section-title" style="color:var(--white);">The Difference</h2>
+    </div>
+    <div class="uvp-grid">
+      <div class="uvp-card reveal">
+        <span class="uvp-card-icon">↗ AI as Multiplier</span>
+        <div class="uvp-card-title">Intelligence at every layer</div>
+        <p class="uvp-card-body">We don't add AI as a feature. Every product is architectured from the ground up as an AI-native system — reasoning, generation, and automation embedded into core workflows from day one.</p>
+      </div>
+      <div class="uvp-card reveal">
+        <span class="uvp-card-icon">☁ Cloud-Native Delivery</span>
+        <div class="uvp-card-title">Production-deployed, always</div>
+        <p class="uvp-card-body">Vibe-Coded applications aren't prototypes. They ship to production cloud infrastructure — GCP, AWS, Azure — fully instrumented, scalable, and enterprise-ready out of the gate.</p>
+      </div>
+      <div class="uvp-card reveal">
+        <span class="uvp-card-icon">⚡ Velocity without compromise</span>
+        <div class="uvp-card-title">From idea to infrastructure</div>
+        <p class="uvp-card-body">Thirty years of enterprise architecture compresses into weeks of focused delivery. Complex problems get solved faster because the fundamentals are already internalised.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects" id="projects">
+  <div class="projects-inner">
+    <div class="section-header reveal">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Ventures</h2>
+    </div>
+    <div class="project-list">
+
+      <div class="project-item reveal">
+        <div class="project-num">01</div>
+        <div class="project-content">
+          <h3 class="project-name">Forge</h3>
+          <div class="project-tags">
+            <span class="tag">Enterprise Platform</span>
+            <span class="tag">AI-Native</span>
+            <span class="tag">Cloud</span>
+          </div>
+          <p class="project-desc">An intelligent enterprise operations platform built for organisations navigating infrastructure modernisation. Forge orchestrates complex multi-cloud environments with embedded AI decision layers that surface insight at the moment it matters.</p>
+        </div>
+        <div class="project-status">
+          <span class="status-dot">Live</span>
+        </div>
+      </div>
+
+      <div class="project-item reveal">
+        <div class="project-num">02</div>
+        <div class="project-content">
+          <h3 class="project-name">Bank in a Box</h3>
+          <div class="project-tags">
+            <span class="tag">FinTech</span>
+            <span class="tag">Core Banking</span>
+            <span class="tag">FHIR / OMOP</span>
+          </div>
+          <p class="project-desc">A fully containerised, cloud-deployable core banking architecture for emerging markets and challenger financial institutions. Production-ready from day one, with AI-powered risk and compliance baked in — not bolted on.</p>
+        </div>
+        <div class="project-status">
+          <span class="status-dot building">Building</span>
+        </div>
+      </div>
+
+      <div class="project-item reveal">
+        <div class="project-num">03</div>
+        <div class="project-content">
+          <h3 class="project-name">Digital Twin</h3>
+          <div class="project-tags">
+            <span class="tag">Infrastructure</span>
+            <span class="tag">Simulation</span>
+            <span class="tag">GCP</span>
+          </div>
+          <p class="project-desc">Real-time digital representation of enterprise infrastructure — enabling organisations to model, simulate, and optimise complex cloud environments before committing capital. A living mirror of your technical estate.</p>
+        </div>
+        <div class="project-status">
+          <span class="status-dot">Live</span>
+        </div>
+      </div>
+
+      <div class="project-item reveal">
+        <div class="project-num">04</div>
+        <div class="project-content">
+          <h3 class="project-name">Shadow Protocol</h3>
+          <div class="project-tags">
+            <span class="tag">Security</span>
+            <span class="tag">AI Defence</span>
+            <span class="tag">Enterprise</span>
+          </div>
+          <p class="project-desc">An AI-driven security intelligence platform that operates continuously beneath the surface — monitoring, detecting, and neutralising threats across distributed cloud infrastructure with autonomous response capabilities.</p>
+        </div>
+        <div class="project-status">
+          <span class="status-dot building">Building</span>
+        </div>
+      </div>
+
+      <div class="project-item reveal">
+        <div class="project-num">05</div>
+        <div class="project-content">
+          <h3 class="project-name">Vibe Charter 2026</h3>
+          <div class="project-tags">
+            <span class="tag">Methodology</span>
+            <span class="tag">AI Development</span>
+            <span class="tag">Framework</span>
+          </div>
+          <p class="project-desc">The definitive framework for AI-assisted product development at production scale. Vibe Charter codifies the methodology behind how Smeyatsky Labs ships — combining human architectural intent with AI execution velocity to compress development cycles from months to weeks.</p>
+        </div>
+        <div class="project-status">
+          <span class="status-dot">Live</span>
+        </div>
+      </div>
+
+      <div class="project-item reveal">
+        <div class="project-num">06</div>
+        <div class="project-content">
+          <h3 class="project-name">TraderBot</h3>
+          <div class="project-tags">
+            <span class="tag">FinTech</span>
+            <span class="tag">Algorithmic Trading</span>
+            <span class="tag">AWS</span>
+          </div>
+          <p class="project-desc">An AI-powered algorithmic trading platform deployed on AWS, combining real-time market data ingestion with machine learning signal generation and automated execution. TraderBot demonstrates the viability of production-grade AI in high-stakes, latency-sensitive financial environments.</p>
+        </div>
+        <div class="project-status">
+          <span class="status-dot">Live</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH / PRINCIPLES -->
+<section class="approach">
+  <div class="approach-inner">
+    <div class="approach-left reveal">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <h2 class="section-title">Philosophy</h2>
+      </div>
+      <p class="approach-statement">
+        The era of slow, bloated enterprise software is over. <em>AI changes what's possible</em> — and what's acceptable.
+      </p>
+      <p class="approach-body">
+        Smeyatsky Labs exists at the intersection of hard-won enterprise experience and frontier AI capability. We don't ship MVPs and iterate slowly. We deploy architecturally sound, production-hardened systems — fast — because three decades of lessons are already built into the approach.
+      </p>
+    </div>
+    <div class="approach-right reveal">
+      <div class="principle-list">
+        <div class="principle">
+          <div class="principle-num">I</div>
+          <div class="principle-text"><strong>AI is not a feature, it's the foundation.</strong> Every product architecture treats intelligence as a first-class citizen.</div>
+        </div>
+        <div class="principle">
+          <div class="principle-num">II</div>
+          <div class="principle-text"><strong>Production or nothing.</strong> We don't build demos. Every line ships to real infrastructure.</div>
+        </div>
+        <div class="principle">
+          <div class="principle-num">III</div>
+          <div class="principle-text"><strong>Speed comes from depth.</strong> Velocity without architectural grounding creates technical debt. We move fast because the foundations are sound.</div>
+        </div>
+        <div class="principle">
+          <div class="principle-num">IV</div>
+          <div class="principle-text"><strong>Cloud is the product.</strong> Multi-cloud fluency isn't a technical skill — it's a business differentiator for the organisations we serve.</div>
+        </div>
+        <div class="principle">
+          <div class="principle-num">V</div>
+          <div class="principle-text"><strong>The methodology ships too.</strong> Vibe Charter 2026 means every project also advances the practice of AI-native development itself.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section class="founder" id="founder">
+  <div class="founder-inner">
+    <div class="founder-visual reveal">
+      <div class="founder-visual-inner">
+        <div class="founder-monogram">AS</div>
+        <div class="founder-badge">Founder & Principal Architect</div>
+      </div>
+    </div>
+    <div class="founder-content reveal">
+      <div class="founder-eyebrow">04 — The Founder</div>
+      <h2 class="founder-name">Allan Smeyatsky</h2>
+      <p class="founder-bio">
+        Thirty years of enterprise architecture across the UK, Middle East, and Indian markets. Currently Global Infrastructure Modernisation Leader at Searce — a Google Cloud Premier Partner — and a member of the Google UK CTO Council. Recognised as a 2024 Google Cloud Partner All-Star.<br><br>
+        Smeyatsky Labs is where that institutional knowledge meets frontier AI tooling. The studio exists to build the products that large organisations move too slowly to imagine — and deploy them with the rigour enterprises demand.
+      </p>
+      <div class="credential-list">
+        <div class="credential">
+          <div class="credential-dot"></div>
+          Google Cloud Partner All-Star 2024
+        </div>
+        <div class="credential">
+          <div class="credential-dot"></div>
+          Google UK CTO Council Member
+        </div>
+        <div class="credential">
+          <div class="credential-dot"></div>
+          Global Infrastructure Modernisation Leader, Searce Inc
+        </div>
+        <div class="credential">
+          <div class="credential-dot"></div>
+          30 Years Enterprise Architecture — UK · Middle East · India
+        </div>
+        <div class="credential">
+          <div class="credential-dot"></div>
+          Multi-cloud: GCP · AWS · Azure
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="contact-left reveal">
+      <span class="contact-label">05 — Partner with the Lab</span>
+      <h2 class="contact-heading">
+        Let's build something<br><em>worth building.</em>
+      </h2>
+      <p class="contact-body">
+        Whether you're an enterprise navigating a modernisation challenge, a founder with an ambitious product thesis, or an investor looking at the AI-native infrastructure space — the conversation starts here.
+      </p>
+      <a href="mailto:allan@smeyatsky.com" class="contact-email">allan@smeyatsky.com →</a>
+      <div class="contact-channels">
+        <a href="https://www.linkedin.com/in/allansmeyatsky/" target="_blank" rel="noopener" class="contact-channel">
+          <span class="channel-icon">in</span>
+          <span class="channel-text">LinkedIn</span>
+        </a>
+        <a href="tel:+447930399439" class="contact-channel">
+          <span class="channel-icon">☎</span>
+          <span class="channel-text">+44 7930 399 439</span>
+        </a>
+        <a href="https://wa.me/447930399439" target="_blank" rel="noopener" class="contact-channel">
+          <span class="channel-icon">✦</span>
+          <span class="channel-text">WhatsApp</span>
+        </a>
+      </div>
+    </div>
+    <div class="contact-right reveal">
+      <div class="contact-form">
+        <div class="form-field">
+          <label class="form-label">Your name</label>
+          <input type="text" class="form-input" placeholder="Name">
+        </div>
+        <div class="form-field">
+          <label class="form-label">Organisation</label>
+          <input type="text" class="form-input" placeholder="Company or institution">
+        </div>
+        <div class="form-field">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-input" placeholder="you@company.com">
+        </div>
+        <div class="form-field">
+          <label class="form-label">What are you building?</label>
+          <textarea class="form-textarea" placeholder="Tell us about the problem or opportunity..."></textarea>
+        </div>
+        <button class="form-submit">Send Enquiry →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">Smeyatsky Labs — AI-Native Product Studio</div>
+  <div class="footer-copy">© 2026 Smeyatsky Labs. All rights reserved.</div>
+</footer>
+
+<script>
+  // Mobile nav
+  function toggleNav() {
+    const links = document.getElementById('navLinks');
+    links.classList.toggle('open');
+  }
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  // Stagger siblings within same parent
+  document.querySelectorAll('.uvp-grid, .principle-list, .credential-list, .project-list').forEach(container => {
+    const children = container.querySelectorAll('.reveal');
+    children.forEach((child, i) => {
+      child.style.transitionDelay = `${i * 60}ms`;
+    });
+  });
+</script>
+</body>
+</html>
